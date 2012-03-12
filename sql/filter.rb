@@ -3,6 +3,15 @@
 require "win32ole"
 require "iconv"
 
+def format(str)
+  index = str.index('.')  
+  if index != nil and index > 0
+    str[0, index]
+  else
+    str
+  end
+end
+
 excel = WIN32OLE.new('excel.application')
 excel.Visible = true
 workBook = excel.WorkBooks.Open('c:/filter.xlsx')
@@ -19,11 +28,11 @@ while workSheet.Range("b#{line}").Value
   supply = '博世'
   brand = conv.iconv(workSheet.Range("a#{line}").Value) if workSheet.Range("a#{line}").Value
   type = conv.iconv(workSheet.Range("b#{line}").Value)
-  air = workSheet.Range("c#{line}").Value.to_s[0..9]
-  machine_oil = workSheet.Range("d#{line}").Value.to_s[0..9]
-  fuel_oil = workSheet.Range("e#{line}").Value.to_s[0..9]
-  air_condition_std = workSheet.Range("f#{line}").Value.to_s[0..9]
-  air_condition_carbon = workSheet.Range("g#{line}").Value.to_s[0..9]
+  air = format(workSheet.Range("c#{line}").Value.to_s)
+  machine_oil = format(workSheet.Range("d#{line}").Value.to_s)
+  fuel_oil = format(workSheet.Range("e#{line}").Value.to_s)
+  air_condition_std = format(workSheet.Range("f#{line}").Value.to_s)
+  air_condition_carbon = format(workSheet.Range("g#{line}").Value.to_s)
 
   file.puts "INSERT INTO filter(supply, brand, type, air, machine_oil, fuel_oil, air_condition_std, air_condition_carbon) VALUES ('#{supply}', '#{brand}', '#{type}', '#{air}', '#{machine_oil}', '#{fuel_oil}', '#{air_condition_std}', '#{air_condition_carbon}');"
   
