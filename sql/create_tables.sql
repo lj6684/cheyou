@@ -1,4 +1,5 @@
 DROP TABLE filter;
+DROP TABLE supply;
 
 CREATE TABLE filter
 (
@@ -11,5 +12,12 @@ CREATE TABLE filter
 	fuel_oil VARCHAR(30),
 	air_condition_std VARCHAR(30),
 	air_condition_carbon VARCHAR(30),
-	PRIMARY KEY(fid)
+	PRIMARY KEY (fid)
+);
+
+CREATE TABLE supply
+(
+	sid INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(50) NOT NULL UNIQUE,
+	PRIMARY KEY(sid)
 );
