@@ -29,7 +29,7 @@ public class BrandServiceTest {
 	}
 
 	@Test
-	public void test_add_and_list() {
+	public void test_add_and_get() {
 		Brand brand = new Brand();
 		brand.setName("大众");
 		brand = service.addBrand(brand);

@@ -29,7 +29,7 @@ public class StyleServiceTest {
 	}
 
 	@Test
-	public void test_add_and_list() {
+	public void test_add_and_get() {
 		Brand brand = brandService.fetch(1);
 		Style style = new Style();
 		style.setName("速腾 1.6 舒适");

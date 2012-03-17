@@ -29,7 +29,7 @@ public class FilterServiceTest {
 	}
 
 	@Test
-	public void test_add_and_list() {
+	public void test_add_and_get() {
 		Filter filter = new Filter();
 		filter.setBrandId(1);
 		filter.setStyleId(1);

@@ -33,5 +33,14 @@ var ioc = {
 				refer : "dao"
 			}
 		}
+	},
+	
+	filterViewService : {
+		type : "org.cheyou.dao.FilterViewService",
+		fields : {
+			dao : {
+				refer : "dao"
+			}
+		}
 	}
 };

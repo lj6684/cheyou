@@ -29,7 +29,7 @@ public class SupplyServiceTest {
 	}
 
 	@Test
-	public void test_add_and_list() {
+	public void test_add_and_get() {
 		Supply supply = new Supply();
 		supply.setName("博世");
 		supply = service.addSupply(supply);
