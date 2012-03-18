@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<!-- 开发模式设置 -->
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.serve.static.browserCache" value="false" />
+    <constant name="struts.i18n.reload" value="true" />
+    <constant name="struts.configuration.xml.reload" value="true" />
+    
+    <!-- 全局资源文件设置 -->
+    <constant name="struts.custom.i18n.resources" value="messageResource"/>
+    <constant name="struts.i18n.encoding" value="UTF-8"></constant>
+    
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" /> 
+
+    <include file="cheyou.xml"/>
+
+</struts>
