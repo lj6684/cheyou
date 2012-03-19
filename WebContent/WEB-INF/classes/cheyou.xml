@@ -6,9 +6,15 @@
 <struts>
 
     <package name="example" extends="struts-default">
+    
         <action name="brand_*" class="org.cheyou.web.BrandAction" method="{1}">
             <result name="success">brand_list.jsp</result>
             <result name="input">brand_modify.jsp</result>
+        </action>
+        
+         <action name="supply_*" class="org.cheyou.web.SupplyAction" method="{1}">
+            <result name="success">supply_list.jsp</result>
+            <result name="input">supply_modify.jsp</result>
         </action>
     </package>
 </struts>
