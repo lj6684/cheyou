@@ -10,18 +10,25 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form action="supply_save.action" method="post">
+<form action="style_save.action" method="post">
 	<input type="hidden" name="id" value="<s:property value="id"/>"/>
 <table width="98%" border="0" cellpadding="0" cellspacing="0"
 	class="CContent">
 	<tr>
-		<th class="tablestyle_title" colspan="2">修改品牌信息</th>
+		<th class="tablestyle_title" colspan="2">修改型号信息</th>
 	</tr>
 	<tr style="height: 50px">
-		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">品牌名称:&nbsp;<input type="text"
-			name="supplyName" style="width: 150px" value="<s:property value="supplyName"/>"/>&nbsp;<span class="red">*</span>&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" value="保存"></input></td>
+		<td style="width:1%; align:left">&nbsp;</td>
+		<td style="width:70%; align:left">汽车品牌:&nbsp;<s:property value="brandName"/></td>
+	</tr>
+	<tr style="height: 50px">
+		<td style="width:1%; align:left">&nbsp;</td>
+		<td style="width:70%; align:left">汽车型号:&nbsp;<input type="text"
+			name="styleName" style="width: 150px" value="<s:property value="styleName"/>"/>&nbsp;<span class="red">*</span></td>
+	</tr>
+	<tr style="height: 50px">
+		<td style="width:1%; align:left">&nbsp;</td>
+		<td style="width:70%; align:left"><input type="submit" value="保存"></input></td>
 	</tr>
 </table>
 </form>

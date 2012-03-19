@@ -15,12 +15,12 @@
 <table width="98%" border="0" cellpadding="0" cellspacing="0"
 	class="CContent">
 	<tr>
-		<th class="tablestyle_title" colspan="3">修改品牌信息</th>
+		<th class="tablestyle_title" colspan="2">修改品牌信息</th>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
 		<td style="width: 70%; align: left">品牌名称:&nbsp;<input type="text"
-			name="brandName" style="width: 150px" value="<s:property value="brandName"/>">&nbsp;</input><span class="red">*</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			name="brandName" style="width: 150px" value="<s:property value="brandName"/>"/>&nbsp;<span class="red">*</span>&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="submit" value="保存"></input></td>
 	</tr>
 </table>
