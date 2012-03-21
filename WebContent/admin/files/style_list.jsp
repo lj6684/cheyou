@@ -14,20 +14,20 @@
 <table width="98%" border="0" cellpadding="0" cellspacing="0"
 	class="CContent">
 	<tr>
-		<th class="tablestyle_title" colspan="3">添加汽车型号</th>
+		<th class="tablestyle_title" colspan="2">添加汽车型号</th>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">汽车品牌:&nbsp;<s:select name="brandId" list="#request.brands" listKey="id" listValue="name" value="brandId" theme="simple" onchange="changeBrand();"></s:select>&nbsp;<span class="red">*</span>&nbsp;&nbsp;&nbsp;&nbsp;
+		<td style="width: 70%; align: left">汽车品牌:&nbsp;<s:select name="brandId" list="#request.brands" listKey="id" listValue="name" value="brandId" theme="simple" onchange="changeBrand();"></s:select>&nbsp;<span class="red">*</span></td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
 		<td style="width: 70%; align: left">汽车型号:&nbsp;<input type="text"
-			name="styleName" style="width: 150px"></input>&nbsp;<span class="red">*</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			name="styleName" style="width: 150px"></input>&nbsp;<span class="red">*</span></td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td><input type="submit" value="保存"></input></td>
+		<td><input type="submit" value="添加"></input></td>
 	</tr>
 </table>
 </form>

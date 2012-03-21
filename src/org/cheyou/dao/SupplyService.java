@@ -3,9 +3,9 @@ package org.cheyou.dao;
 import java.util.List;
 
 import org.cheyou.dao.model.Supply;
-import org.nutz.service.IdEntityService;
+import org.nutz.service.IdNameEntityService;
 
-public class SupplyService extends IdEntityService<Supply> {
+public class SupplyService extends IdNameEntityService<Supply> {
 	
 	public Supply addSupply(Supply supply) {
 		return this.dao().insert(supply);

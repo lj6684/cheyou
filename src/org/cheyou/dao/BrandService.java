@@ -3,9 +3,9 @@ package org.cheyou.dao;
 import java.util.List;
 
 import org.cheyou.dao.model.Brand;
-import org.nutz.service.IdEntityService;
+import org.nutz.service.IdNameEntityService;
 
-public class BrandService extends IdEntityService<Brand>{
+public class BrandService extends IdNameEntityService<Brand>{
 	
 	public Brand addBrand(Brand brand) {
 		return this.dao().insert(brand);

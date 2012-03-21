@@ -20,7 +20,7 @@
 		<td style="width: 1%; align: left">&nbsp;</td>
 		<td style="width: 70%; align: left">供货商品牌名称:&nbsp;<input type="text"
 			name="supplyName" style="width: 150px"></input>&nbsp;<span class="red">*</span>&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" value="保存"></input></td>
+		<input type="submit" value="添加"></input></td>
 	</tr>
 </table>
 </form>
