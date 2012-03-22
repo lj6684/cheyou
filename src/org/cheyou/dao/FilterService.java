@@ -23,7 +23,7 @@ public class FilterService extends IdEntityService<Filter> {
 	
 	public Filter getFilter(int styleId, int supplyId) {
 		Condition c = Cnd.where("styleId", "=", styleId).and("supplyId", "=", supplyId);
-		List<Filter> filters = this.dao().query(Filter.class, c);
+		List<Filter> filters = this.query(c, null);
 		if(filters.size() > 0) {
 			return filters.get(0);
 		} else {

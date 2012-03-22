@@ -3,6 +3,7 @@ DROP TABLE supply;
 DROP TABLE brand;
 DROP TABLE style;
 DROP VIEW filter_view;
+DROP VIEW style_filter_view;
 
 CREATE TABLE filter
 (
@@ -45,9 +46,16 @@ CREATE TABLE style
 
 CREATE VIEW filter_view AS
 (
-SELECT f.filter_id, sp.supply_name, sp.supply_img, b.brand_name, b.brand_img, st.style_name, st.style_img, f.air, f.machine_oil, f.fuel_oil, f.air_condition_std, f.air_condition_carbon
+SELECT f.filter_id, sp.supply_id, sp.supply_name, sp.supply_img, b.brand_id, b.brand_name, b.brand_img, st.style_id, st.style_name, st.style_img, f.air, f.machine_oil, f.fuel_oil, f.air_condition_std, f.air_condition_carbon
 FROM ((filter f
 INNER JOIN supply sp ON f.supply_id = sp.supply_id)
 INNER JOIN style st ON f.style_id = st.style_id)
 INNER JOIN brand b ON f.brand_id = b.brand_id
+);
+
+CREATE VIEW style_filter_view AS
+(
+SELECT st.style_id, st.style_img, st.style_name, st.brand_id, f.filter_id, f.supply_id, f.air, f.machine_oil, f.fuel_oil, f.air_condition_std, f.air_condition_carbon
+FROM style st
+LEFT JOIN filter f ON st.style_id = f.style_id
 );

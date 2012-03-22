@@ -28,7 +28,7 @@
 <table width="98%" border="0" cellpadding="4" cellspacing="1"
 	bgcolor="#464646" class="newfont03">
 	<tr class="CTitle">
-		<td height="22" colspan="7" align="center" style="font-size: 16px">已登记汽车品牌列表</td>
+		<td height="22" colspan="3" align="center" style="font-size: 16px">已登记汽车品牌列表</td>
 	</tr>
 	<tr bgcolor="#EEEEEE">
 		<td width="3%" align="center" height="30">No.</td>

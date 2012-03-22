@@ -25,6 +25,10 @@
         <action name="filter_*" class="org.cheyou.web.FilterAction" method="{1}">
             <result name="success">filter_list.jsp</result>
         </action>
+        
+        <action name="styleFilter_*" class="org.cheyou.web.StyleFilterAction" method="{1}">
+            <result name="success">style_filter_list.jsp</result>
+        </action>
     </package>
 </struts>
 
