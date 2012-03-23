@@ -3,6 +3,8 @@ package org.cheyou.dao;
 import java.util.List;
 
 import org.cheyou.dao.model.Style;
+import org.nutz.dao.Cnd;
+import org.nutz.dao.Condition;
 import org.nutz.service.IdNameEntityService;
 
 public class StyleService extends IdNameEntityService<Style> {
@@ -17,6 +19,11 @@ public class StyleService extends IdNameEntityService<Style> {
 	
 	public List<Style> getAllStyles() {
 		return this.query(null, null);
+	}
+	
+	public List<Style> getStyles(int brandId) {
+		Condition c = Cnd.where("bid", "=", brandId);
+		return this.query(c, null);
 	}
 
 }

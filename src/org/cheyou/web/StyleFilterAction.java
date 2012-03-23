@@ -104,7 +104,7 @@ public class StyleFilterAction extends ActionSupport {
 		supplyId = supply.getId();
 		ctx.put("supplies", supplies);
 		
-		List<StyleFilterView> styleFilters = styleFilterService.getAll(brandId, supplyId);
+		List<StyleFilterView> styleFilters = styleFilterService.getStyleFilters(brandId, supplyId);
 		ctx.put("styleFilters", styleFilters);
 		
 		return SUCCESS;
@@ -118,7 +118,7 @@ public class StyleFilterAction extends ActionSupport {
 		List<Supply> supplies = supplyService.getAllSupplies();
 		ctx.put("supplies", supplies);
 		
-		List<StyleFilterView> styleFilters = styleFilterService.getAll(brandId, supplyId);
+		List<StyleFilterView> styleFilters = styleFilterService.getStyleFilters(brandId, supplyId);
 		ctx.put("styleFilters", styleFilters);
 		
 		return SUCCESS;

@@ -10,7 +10,7 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form action="styleFilter_query.action" method="post">
+<form action="#" method="post">
 <table width="98%" border="0" cellpadding="0" cellspacing="0"
 	class="CContent">
 	<tr>
@@ -23,10 +23,6 @@
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
 		<td style="width: 70%; align: left">供应商名称:&nbsp;<s:select name="supplyId" list="#request.supplies" listKey="id" listValue="name" value="supplyId" theme="simple" onchange="change();"></s:select>&nbsp;<span class="red">*</span></td>
-	</tr>
-	<tr style="height: 50px">
-		<td style="width: 1%; align: left">&nbsp;</td>
-		<td><input type="submit" value="查询"></input></td>
 	</tr>
 </table>
 </form>
@@ -55,7 +51,16 @@
 		<td><s:property value="fuelOil"/></td>
 		<td><s:property value="airConditionStd"/></td>
 		<td><s:property value="airConditionCarbon"/></td>
-		<td><a href="style_view.action?id=<s:property value="id"/>">修改</a>&nbsp;|&nbsp;<a href="style_delete.action?id=<s:property value="id"/>">删除</a></td>
+		<td>
+			<s:if test="filterId == 0">
+				<a href="filter_init.action?brandId=<s:property value="brandId"/>&styleId=<s:property value="styleId"/>&supplyId=<s:property value="supplyId"/>&act=add">添加数据</a>
+			</s:if>
+			<s:else>
+				<a href="filter_init.action?brandId=<s:property value="brandId"/>&styleId=<s:property value="styleId"/>&supplyId=<s:property value="supplyId"/>&filterId=<s:property value="filterId"/>&act=update">更新数据</a>
+				&nbsp;&nbsp;|&nbsp;&nbsp;
+				<a href="filter_delete.action?brandId=<s:property value="brandId"/>&supplyId=<s:property value="supplyId"/>&filterId=<s:property value="filterId"/>">删除数据</a>
+			</s:else>
+		</td>
 	</tr>
 	</s:iterator>
 </table>

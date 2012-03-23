@@ -21,14 +21,9 @@ public class FilterService extends IdEntityService<Filter> {
 		return this.query(null, null);
 	}
 	
-	public Filter getFilter(int styleId, int supplyId) {
-		Condition c = Cnd.where("styleId", "=", styleId).and("supplyId", "=", supplyId);
-		List<Filter> filters = this.query(c, null);
-		if(filters.size() > 0) {
-			return filters.get(0);
-		} else {
-			return new Filter();
-		}
+	public List<Filter> getFilterByBrand(int brandId, int supplyId) {
+		Condition c = Cnd.where("brandId", "=", brandId).and("supplyId", "=", supplyId);
+		return this.query(c, null);
 	}
 
 }
