@@ -34,6 +34,9 @@ public class StyleFilterViewService extends IdEntityService<StyleFilterView> {
 		for(Filter filter : filters) {
 			int styleId = filter.getStyleId();
 			StyleFilterView sfView = resMap.get(styleId);
+			if(sfView == null) {
+				continue;
+			}
 			sfView.setFilterId(filter.getId());
 			sfView.setAir(filter.getAir());
 			sfView.setMachineOil(filter.getMachineOil());

@@ -43,7 +43,13 @@
 		<td>操作</td>
 	</tr>
 	<s:iterator value="#request.styleFilters" id="styleFilter" status="st">
-	<tr bgcolor="#FFFFFF">
+		<s:if test="#st.even">
+			<tr bgcolor="#EFF5FC">
+		</s:if>
+		<s:else>
+			<tr bgcolor="#FFFFFF">
+		</s:else>
+	
 		<td height="20"><s:property value="#st.count"></s:property></td>
 		<td><s:property value="styleName"/></td>
 		<td><s:property value="air"/></td>
