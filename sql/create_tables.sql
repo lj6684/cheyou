@@ -3,6 +3,8 @@ DROP TABLE supply;
 DROP TABLE brand;
 DROP TABLE style;
 DROP VIEW filter_view;
+DROP TABLE spark_plug
+DROP VIEW spark_plug_view;
 
 
 CREATE TABLE filter
@@ -51,4 +53,32 @@ FROM ((filter f
 INNER JOIN supply sp ON f.supply_id = sp.supply_id)
 INNER JOIN style st ON f.style_id = st.style_id)
 INNER JOIN brand b ON f.brand_id = b.brand_id
+);
+
+CREATE TABLE spark_plug
+(
+	sp_id INT NOT NULL AUTO_INCREMENT,
+	brand_id INT NOT NULL,
+	style_id INT NOT NULL,
+	supply_id INT NOT NULL,
+	output_volumn VARCHAR(4) NOT NULL,
+	motor VARCHAR(30) NOT NULL,
+	year VARCHAR(30) NOT NULL,
+	remark VARCHAR(50),
+	xun_sn VARCHAR(30),
+	xun_type VARCHAR(30),
+	chao_sn VARCHAR(30),
+	chao_type VARCHAR(30),
+	rui_sn VARCHAR(30),
+	rui_type VARCHAR(30),
+	PRIMARY KEY (sp_id)
+);
+
+CREATE VIEW spark_plug_view AS
+(
+SELECT spl.sp_id, spl.supply_id, sp.supply_name, sp.supply_img, spl.brand_id, b.brand_name, b.brand_img, spl.style_id, st.style_name, st.style_img, spl.output_volumn, spl.motor, spl.year, spl.remark, spl.xun_sn, spl.xun_type, spl.chao_sn, spl.chao_type, spl.rui_sn, spl.rui_type
+FROM ((spark_plug spl
+INNER JOIN supply sp ON spl.supply_id = sp.supply_id)
+INNER JOIN style st ON spl.style_id = st.style_id)
+INNER JOIN brand b ON spl.brand_id = b.brand_id
 );

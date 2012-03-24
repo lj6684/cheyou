@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.cheyou.dao.BrandService;
 import org.cheyou.dao.FilterService;
-import org.cheyou.dao.StyleFilterViewService;
+import org.cheyou.dao.FilterViewService;
 import org.cheyou.dao.StyleService;
 import org.cheyou.dao.SupplyService;
 import org.cheyou.dao.model.Brand;
 import org.cheyou.dao.model.Filter;
+import org.cheyou.dao.model.FilterView;
 import org.cheyou.dao.model.Style;
-import org.cheyou.dao.model.StyleFilterView;
 import org.cheyou.dao.model.Supply;
 import org.cheyou.util.ContextUtil;
 
@@ -34,7 +34,7 @@ public class FilterAction extends ActionSupport {
 	private FilterService filterService = ContextUtil.getBean(FilterService.class, "filterService");
 	private SupplyService supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
 	private StyleService styleService = ContextUtil.getBean(StyleService.class, "styleService");
-	private StyleFilterViewService styleFilterService = ContextUtil.getBean(StyleFilterViewService.class, "styleFilterViewService");
+	private FilterViewService FilterService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
 	
 	
 	public int getBrandId() {
@@ -157,7 +157,7 @@ public class FilterAction extends ActionSupport {
 		List<Supply> supplies = supplyService.getAllSupplies();
 		ctx.put("supplies", supplies);
 		
-		List<StyleFilterView> styleFilters = styleFilterService.getStyleFilters(brandId, supplyId);
-		ctx.put("styleFilters", styleFilters);
+		List<FilterView> styleFilters = FilterService.getStyleFilters(brandId, supplyId);
+		ctx.put("filters", styleFilters);
 	}
 }

@@ -3,11 +3,10 @@ package org.cheyou.web;
 import java.util.List;
 
 import org.cheyou.dao.BrandService;
-import org.cheyou.dao.StyleFilterViewService;
+import org.cheyou.dao.FilterViewService;
 import org.cheyou.dao.SupplyService;
 import org.cheyou.dao.model.Brand;
-import org.cheyou.dao.model.Style;
-import org.cheyou.dao.model.StyleFilterView;
+import org.cheyou.dao.model.FilterView;
 import org.cheyou.dao.model.Supply;
 import org.cheyou.util.ContextUtil;
 
@@ -23,11 +22,10 @@ public class StyleFilterAction extends ActionSupport {
 	private String brandName;
 	private String styleName;
 	private String supplyName;
-	private StyleFilterView styleFilterView;
 	
 	private BrandService brandService = ContextUtil.getBean(BrandService.class, "brandService");
 	private SupplyService supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
-	private StyleFilterViewService styleFilterService = ContextUtil.getBean(StyleFilterViewService.class, "styleFilterViewService");
+	private FilterViewService filterService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
 	
 	
 	public int getSupplyId() {
@@ -77,20 +75,6 @@ public class StyleFilterAction extends ActionSupport {
 	public void setSupplyName(String supplyName) {
 		this.supplyName = supplyName;
 	}
-
-	public StyleFilterView getStyleFilterView() {
-		return styleFilterView;
-	}
-
-	public void setStyleFilterView(StyleFilterView styleFilterView) {
-		this.styleFilterView = styleFilterView;
-	}
-
-	public String add() throws Exception {
-		
-		
-		return SUCCESS;
-	}
 	
 	public String init() throws Exception {
 		ActionContext ctx = ActionContext.getContext();
@@ -104,8 +88,8 @@ public class StyleFilterAction extends ActionSupport {
 		supplyId = supply.getId();
 		ctx.put("supplies", supplies);
 		
-		List<StyleFilterView> styleFilters = styleFilterService.getStyleFilters(brandId, supplyId);
-		ctx.put("styleFilters", styleFilters);
+		List<FilterView> styleFilters = filterService.getStyleFilters(brandId, supplyId);
+		ctx.put("filters", styleFilters);
 		
 		return SUCCESS;
 	}
@@ -118,8 +102,8 @@ public class StyleFilterAction extends ActionSupport {
 		List<Supply> supplies = supplyService.getAllSupplies();
 		ctx.put("supplies", supplies);
 		
-		List<StyleFilterView> styleFilters = styleFilterService.getStyleFilters(brandId, supplyId);
-		ctx.put("styleFilters", styleFilters);
+		List<FilterView> styleFilters = filterService.getStyleFilters(brandId, supplyId);
+		ctx.put("filters", styleFilters);
 		
 		return SUCCESS;
 	}

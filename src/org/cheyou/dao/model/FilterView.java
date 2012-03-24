@@ -9,15 +9,21 @@ public class FilterView {
 	
 	@Id
 	@Column("filter_id")
-	private int id;
+	private int filterId;
+	@Column("supply_id")
+	private int supplyId;
 	@Column("supply_name")
 	private String supplyName;
 	@Column("supply_img")
 	private String supplyImg;
+	@Column("brand_id")
+	private int brandId;
 	@Column("brand_name")
 	private String brandName;
 	@Column("brand_img")
 	private String brandImg;
+	@Column("style_id")
+	private int styleId;
 	@Column("style_name")
 	private String styleName;
 	@Column("style_img")
@@ -33,11 +39,23 @@ public class FilterView {
 	@Column("air_condition_carbon")
 	private String airConditionCarbon;
 	
-	public int getId() {
-		return id;
+	public int getSupplyId() {
+		return supplyId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setSupplyId(int supplyId) {
+		this.supplyId = supplyId;
+	}
+	public int getBrandId() {
+		return brandId;
+	}
+	public void setBrandId(int brandId) {
+		this.brandId = brandId;
+	}
+	public int getStyleId() {
+		return styleId;
+	}
+	public void setStyleId(int styleId) {
+		this.styleId = styleId;
 	}
 	public String getSupplyName() {
 		return supplyName;
@@ -105,14 +123,23 @@ public class FilterView {
 	public void setAirConditionCarbon(String airConditionCarbon) {
 		this.airConditionCarbon = airConditionCarbon;
 	}
+	public int getFilterId() {
+		return filterId;
+	}
+	public void setFilterId(int filterId) {
+		this.filterId = filterId;
+	}
 	@Override
 	public String toString() {
-		return "FilterView [id=" + id + ", supplyName=" + supplyName
-				+ ", supplyImg=" + supplyImg + ", brandName=" + brandName
-				+ ", brandImg=" + brandImg + ", styleName=" + styleName
-				+ ", styleImg=" + styleImg + ", air=" + air + ", machineOil="
-				+ machineOil + ", fuelOil=" + fuelOil + ", airConditionStd="
-				+ airConditionStd + ", airConditionCarbon="
-				+ airConditionCarbon + "]";
+		return "FilterView [air=" + air + ", airConditionCarbon="
+				+ airConditionCarbon + ", airConditionStd=" + airConditionStd
+				+ ", brandId=" + brandId + ", brandImg=" + brandImg
+				+ ", brandName=" + brandName + ", filterId=" + filterId
+				+ ", fuelOil=" + fuelOil + ", machineOil=" + machineOil
+				+ ", styleId=" + styleId + ", styleImg=" + styleImg
+				+ ", styleName=" + styleName + ", supplyId=" + supplyId
+				+ ", supplyImg=" + supplyImg + ", supplyName=" + supplyName
+				+ "]";
 	}
+	
 }
