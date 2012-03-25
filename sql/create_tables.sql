@@ -3,7 +3,7 @@ DROP TABLE supply;
 DROP TABLE brand;
 DROP TABLE style;
 DROP VIEW filter_view;
-DROP TABLE spark_plug
+DROP TABLE spark_plug;
 DROP VIEW spark_plug_view;
 
 
