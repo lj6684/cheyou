@@ -42,5 +42,23 @@ var ioc = {
 				refer : "dao"
 			}
 		}
+	},
+	
+	sparkPlugViewService : {
+		type : "org.cheyou.dao.SparkPlugViewService",
+		fields : {
+			dao : {
+				refer : "dao"
+			}
+		}
+	},
+	
+	sparkPlugService : {
+		type : "org.cheyou.dao.SparkPlugService",
+		fields : {
+			dao : {
+				refer : "dao"
+			}
+		}
 	}
 };

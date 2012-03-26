@@ -30,6 +30,15 @@
             <result name="success">filter_list.jsp</result>
             <result name="input">filter_add.jsp</result>
         </action>
+        
+        <action name="styleSparkPlug_*" class="org.cheyou.web.StyleSparkPlugAction" method="{1}">
+            <result name="success">sparkplug_list.jsp</result>
+        </action>
+        
+        <action name="sparkPlug_*" class="org.cheyou.web.SparkPlugAction" method="{1}">
+            <result name="success">sparkplug_list.jsp</result>
+            <result name="input">sparkplug_add.jsp</result>
+        </action>
     </package>
 </struts>
 

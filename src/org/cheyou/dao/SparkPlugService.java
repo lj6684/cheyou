@@ -10,12 +10,12 @@ import org.nutz.service.IdEntityService;
 
 public class SparkPlugService extends IdEntityService<SparkPlug> {
 	
-	public Filter addFilter(Filter filter) {
-		return this.dao().insert(filter);
+	public SparkPlug addSparkPlug(SparkPlug sparkPlug) {
+		return this.dao().insert(sparkPlug);
 	}
 	
-	public int updateFilter(Filter filter) {
-		return this.dao().update(filter);
+	public int updateSparkPlug(SparkPlug sparkPlug) {
+		return this.dao().update(sparkPlug);
 	}
 	
 	public List<SparkPlug> getAllSparkPlugs() {

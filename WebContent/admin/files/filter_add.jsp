@@ -16,8 +16,6 @@
 	<s:hidden name="filter.brandId" value="%{brandId}"></s:hidden>
 	<s:hidden name="filter.supplyId" value="%{supplyId}"></s:hidden>
 	<s:hidden name="filter.styleId" value="%{styleId}"></s:hidden>
-	<s:hidden name="brandId"></s:hidden>
-	<s:hidden name="supplyId"></s:hidden>
 <table width="98%" border="0" cellpadding="0" cellspacing="0" class="CContent">
 	<tr>
 		<th class="tablestyle_title" colspan="2">滤清器</th>

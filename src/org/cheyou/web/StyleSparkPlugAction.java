@@ -3,17 +3,18 @@ package org.cheyou.web;
 import java.util.List;
 
 import org.cheyou.dao.BrandService;
-import org.cheyou.dao.FilterViewService;
+import org.cheyou.dao.SparkPlugViewService;
 import org.cheyou.dao.SupplyService;
 import org.cheyou.dao.model.Brand;
 import org.cheyou.dao.model.FilterView;
+import org.cheyou.dao.model.SparkPlugView;
 import org.cheyou.dao.model.Supply;
 import org.cheyou.util.ContextUtil;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class StyleFilterAction extends ActionSupport {
+public class StyleSparkPlugAction extends ActionSupport {
 	
 	private int styleId;
 	private int brandId;
@@ -25,7 +26,7 @@ public class StyleFilterAction extends ActionSupport {
 	
 	private BrandService brandService = ContextUtil.getBean(BrandService.class, "brandService");
 	private SupplyService supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
-	private FilterViewService filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
+	private SparkPlugViewService sparkPlugViewService = ContextUtil.getBean(SparkPlugViewService.class, "sparkPlugViewService");
 	
 	
 	public int getSupplyId() {
@@ -88,8 +89,8 @@ public class StyleFilterAction extends ActionSupport {
 		supplyId = supply.getId();
 		ctx.put("supplies", supplies);
 		
-		List<FilterView> styleFilters = filterViewService.getStyleFilters(brandId, supplyId);
-		ctx.put("filters", styleFilters);
+		List<SparkPlugView> spViews = sparkPlugViewService.getStyleSparkPlugs(brandId, supplyId);
+		ctx.put("sparkPlugs", spViews);
 		
 		return SUCCESS;
 	}
@@ -102,8 +103,8 @@ public class StyleFilterAction extends ActionSupport {
 		List<Supply> supplies = supplyService.getAllSupplies();
 		ctx.put("supplies", supplies);
 		
-		List<FilterView> styleFilters = filterViewService.getStyleFilters(brandId, supplyId);
-		ctx.put("filters", styleFilters);
+		List<SparkPlugView> styleFilters = sparkPlugViewService.getStyleSparkPlugs(brandId, supplyId);
+		ctx.put("sparkPlugs", styleFilters);
 		
 		return SUCCESS;
 	}
