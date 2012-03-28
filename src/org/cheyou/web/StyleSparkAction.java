@@ -3,18 +3,17 @@ package org.cheyou.web;
 import java.util.List;
 
 import org.cheyou.dao.BrandService;
-import org.cheyou.dao.SparkPlugViewService;
+import org.cheyou.dao.SparkViewService;
 import org.cheyou.dao.SupplyService;
 import org.cheyou.dao.model.Brand;
-import org.cheyou.dao.model.FilterView;
-import org.cheyou.dao.model.SparkPlugView;
+import org.cheyou.dao.model.SparkView;
 import org.cheyou.dao.model.Supply;
 import org.cheyou.util.ContextUtil;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class StyleSparkPlugAction extends ActionSupport {
+public class StyleSparkAction extends ActionSupport {
 	
 	private int styleId;
 	private int brandId;
@@ -26,7 +25,7 @@ public class StyleSparkPlugAction extends ActionSupport {
 	
 	private BrandService brandService = ContextUtil.getBean(BrandService.class, "brandService");
 	private SupplyService supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
-	private SparkPlugViewService sparkPlugViewService = ContextUtil.getBean(SparkPlugViewService.class, "sparkPlugViewService");
+	private SparkViewService sparkViewService = ContextUtil.getBean(SparkViewService.class, "sparkViewService");
 	
 	
 	public int getSupplyId() {
@@ -89,8 +88,8 @@ public class StyleSparkPlugAction extends ActionSupport {
 		supplyId = supply.getId();
 		ctx.put("supplies", supplies);
 		
-		List<SparkPlugView> spViews = sparkPlugViewService.getStyleSparkPlugs(brandId, supplyId);
-		ctx.put("sparkPlugs", spViews);
+		List<SparkView> sparks = sparkViewService.getStyleSparks(brandId, supplyId);
+		ctx.put("sparks", sparks);
 		
 		return SUCCESS;
 	}
@@ -103,8 +102,8 @@ public class StyleSparkPlugAction extends ActionSupport {
 		List<Supply> supplies = supplyService.getAllSupplies();
 		ctx.put("supplies", supplies);
 		
-		List<SparkPlugView> styleFilters = sparkPlugViewService.getStyleSparkPlugs(brandId, supplyId);
-		ctx.put("sparkPlugs", styleFilters);
+		List<SparkView> sparks = sparkViewService.getStyleSparks(brandId, supplyId);
+		ctx.put("sparks", sparks);
 		
 		return SUCCESS;
 	}

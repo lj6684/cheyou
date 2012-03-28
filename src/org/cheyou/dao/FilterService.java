@@ -21,7 +21,7 @@ public class FilterService extends IdEntityService<Filter> {
 		return this.query(null, null);
 	}
 	
-	public List<Filter> getFilterByBrand(int brandId, int supplyId) {
+	public List<Filter> getFiltersByBrand(int brandId, int supplyId) {
 		Condition c = Cnd.where("brandId", "=", brandId).and("supplyId", "=", supplyId);
 		return this.query(c, null);
 	}

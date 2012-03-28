@@ -3,13 +3,13 @@ package org.cheyou.web;
 import java.util.List;
 
 import org.cheyou.dao.BrandService;
-import org.cheyou.dao.SparkPlugService;
-import org.cheyou.dao.SparkPlugViewService;
+import org.cheyou.dao.SparkService;
+import org.cheyou.dao.SparkViewService;
 import org.cheyou.dao.StyleService;
 import org.cheyou.dao.SupplyService;
 import org.cheyou.dao.model.Brand;
-import org.cheyou.dao.model.SparkPlug;
-import org.cheyou.dao.model.SparkPlugView;
+import org.cheyou.dao.model.Spark;
+import org.cheyou.dao.model.SparkView;
 import org.cheyou.dao.model.Style;
 import org.cheyou.dao.model.Supply;
 import org.cheyou.util.ContextUtil;
@@ -17,7 +17,7 @@ import org.cheyou.util.ContextUtil;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class SparkPlugAction extends ActionSupport {
+public class SparkAction extends ActionSupport {
 	
 	private int brandId;
 	private String brandName;
@@ -25,24 +25,24 @@ public class SparkPlugAction extends ActionSupport {
 	private String supplyName;
 	private int styleId;
 	private String styleName;
-	private int spId;
+	private int sparkId;
 	
 	private String act;
-	private SparkPlug sparkPlug = new SparkPlug();
+	private Spark spark = new Spark();
 	
 	private BrandService brandService = ContextUtil.getBean(BrandService.class, "brandService");
-	private SparkPlugService sparkPlugService = ContextUtil.getBean(SparkPlugService.class, "sparkPlugService");
+	private SparkService sparkService = ContextUtil.getBean(SparkService.class, "sparkService");
 	private SupplyService supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
 	private StyleService styleService = ContextUtil.getBean(StyleService.class, "styleService");
-	private SparkPlugViewService sparkPlugViewService = ContextUtil.getBean(SparkPlugViewService.class, "sparkPlugViewService");
+	private SparkViewService sparkViewService = ContextUtil.getBean(SparkViewService.class, "sparkViewService");
 	
 
-	public int getSpId() {
-		return spId;
+	public int getSparkId() {
+		return sparkId;
 	}
 
-	public void setSpId(int spId) {
-		this.spId = spId;
+	public void setSparkId(int sparkId) {
+		this.sparkId = sparkId;
 	}
 
 	public int getBrandId() {
@@ -101,12 +101,12 @@ public class SparkPlugAction extends ActionSupport {
 		this.act = act;
 	}
 
-	public SparkPlug getSparkPlug() {
-		return sparkPlug;
+	public Spark getSpark() {
+		return spark;
 	}
 
-	public void setSparkPlug(SparkPlug sparkPlug) {
-		this.sparkPlug = sparkPlug;
+	public void setSpark(Spark spark) {
+		this.spark = spark;
 	}
 
 	public StyleService getStyleService() {
@@ -126,7 +126,7 @@ public class SparkPlugAction extends ActionSupport {
 		supplyName = supply.getName();
 		
 		if(act.equals("update")) {
-			sparkPlug = sparkPlugService.fetch(spId);
+			spark = sparkService.fetch(sparkId);
 		}
 		
 		return INPUT;
@@ -134,9 +134,9 @@ public class SparkPlugAction extends ActionSupport {
 	
 	public String add() throws Exception {
 		if(act.equals("add")) {
-			sparkPlugService.addSparkPlug(sparkPlug);
+			sparkService.addSpark(spark);
 		} else if(act.equals("update")) {
-			sparkPlugService.updateSparkPlug(sparkPlug);
+			sparkService.updateSpark(spark);
 		}
 		initData();
 		
@@ -144,7 +144,7 @@ public class SparkPlugAction extends ActionSupport {
 	}
 	
 	public String delete() throws Exception{
-		sparkPlugService.delete(spId);
+		sparkService.delete(sparkId);
 		initData();
 		return SUCCESS;
 	}
@@ -157,7 +157,7 @@ public class SparkPlugAction extends ActionSupport {
 		List<Supply> supplies = supplyService.getAllSupplies();
 		ctx.put("supplies", supplies);
 		
-		List<SparkPlugView> sparkPlugs = sparkPlugViewService.getStyleSparkPlugs(brandId, supplyId);
-		ctx.put("sparkPlugs", sparkPlugs);
+		List<SparkView> sparks = sparkViewService.getStyleSparks(brandId, supplyId);
+		ctx.put("sparks", sparks);
 	}
 }

@@ -30,7 +30,7 @@
 <table width="98%" border="0" cellpadding="4" cellspacing="1"
 	bgcolor="#464646" class="newfont03">
 	<tr class="CTitle">
-		<td height="22" colspan="12" align="center" style="font-size: 16px">车型列表</td>
+		<td height="22" colspan="13" align="center" style="font-size: 16px">车型列表</td>
 	</tr>
 	<tr bgcolor="#EEEEEE">
 		<td width="3%" align="center" height="30">No.</td>
@@ -47,7 +47,7 @@
 		<td width="5%">瑞能型号</td>
 		<td>操作</td>
 	</tr>
-	<s:iterator value="#request.sparkPlugs" id="sparkPlug" status="st">
+	<s:iterator value="#request.sparks" id="sparkView" status="st">
 		<s:if test="#st.even">
 			<tr bgcolor="#EFF5FC">
 		</s:if>
@@ -68,13 +68,13 @@
 		<td><s:property value="ruiSn"/></td>
 		<td><s:property value="ruiType"/></td>
 		<td>
-			<s:if test="spId == 0">
-				<a href="sparkPlug_init.action?brandId=<s:property value="brandId"/>&styleId=<s:property value="styleId"/>&supplyId=<s:property value="supplyId"/>&act=add">添加数据</a>
+			<s:if test="sparkId == 0">
+				<a href="spark_init.action?brandId=<s:property value="brandId"/>&styleId=<s:property value="styleId"/>&supplyId=<s:property value="supplyId"/>&act=add">添加数据</a>
 			</s:if>
 			<s:else>
-				<a href="sparkPlug_init.action?brandId=<s:property value="brandId"/>&styleId=<s:property value="styleId"/>&splyId=<s:property value="supplyId"/>&spId=<s:property value="spId"/>&act=update">更新数据</a>
+				<a href="spark_init.action?brandId=<s:property value="brandId"/>&styleId=<s:property value="styleId"/>&supplyId=<s:property value="supplyId"/>&sparkId=<s:property value="sparkId"/>&act=update">更新数据</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a href="sparkPlug_delete.action?brandId=<s:property value="brandId"/>&supplyId=<s:property value="supplyId"/>&spId=<s:property value="spId"/>">删除数据</a>
+				<a href="spark_delete.action?brandId=<s:property value="brandId"/>&supplyId=<s:property value="supplyId"/>&sparkId=<s:property value="sparkId"/>">删除数据</a>
 			</s:else>
 		</td>
 	</tr>
@@ -84,7 +84,7 @@
 <script type="text/javascript">
 function change() {
 	var form = document.forms[0];
-	form.action = "styleSparkPlug_change.action";
+	form.action = "styleSpark_change.action";
 	form.submit();
 }
 </script>

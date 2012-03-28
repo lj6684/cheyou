@@ -34,7 +34,7 @@ public class FilterViewService extends IdEntityService<FilterView> {
 			resMap.put(style.getId(), filterView);
 		}
 		
-		List<Filter> filters = filterService.getFilterByBrand(brandId, supplyId);
+		List<Filter> filters = filterService.getFiltersByBrand(brandId, supplyId);
 		for(Filter filter : filters) {
 			int styleId = filter.getStyleId();
 			FilterView filterView = resMap.get(styleId);

@@ -31,13 +31,13 @@
             <result name="input">filter_add.jsp</result>
         </action>
         
-        <action name="styleSparkPlug_*" class="org.cheyou.web.StyleSparkPlugAction" method="{1}">
-            <result name="success">sparkplug_list.jsp</result>
+        <action name="styleSpark_*" class="org.cheyou.web.StyleSparkAction" method="{1}">
+            <result name="success">spark_list.jsp</result>
         </action>
         
-        <action name="sparkPlug_*" class="org.cheyou.web.SparkPlugAction" method="{1}">
-            <result name="success">sparkplug_list.jsp</result>
-            <result name="input">sparkplug_add.jsp</result>
+        <action name="spark_*" class="org.cheyou.web.SparkAction" method="{1}">
+            <result name="success">spark_list.jsp</result>
+            <result name="input">spark_add.jsp</result>
         </action>
     </package>
 </struts>

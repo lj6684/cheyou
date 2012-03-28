@@ -2,27 +2,26 @@ package org.cheyou.dao;
 
 import java.util.List;
 
-import org.cheyou.dao.model.Filter;
-import org.cheyou.dao.model.SparkPlug;
+import org.cheyou.dao.model.Spark;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Condition;
 import org.nutz.service.IdEntityService;
 
-public class SparkPlugService extends IdEntityService<SparkPlug> {
+public class SparkService extends IdEntityService<Spark> {
 	
-	public SparkPlug addSparkPlug(SparkPlug sparkPlug) {
+	public Spark addSpark(Spark sparkPlug) {
 		return this.dao().insert(sparkPlug);
 	}
 	
-	public int updateSparkPlug(SparkPlug sparkPlug) {
+	public int updateSpark(Spark sparkPlug) {
 		return this.dao().update(sparkPlug);
 	}
 	
-	public List<SparkPlug> getAllSparkPlugs() {
+	public List<Spark> getAllSparks() {
 		return this.query(null, null);
 	}
 	
-	public List<SparkPlug> getSparkPlugByBrand(int brandId, int supplyId) {
+	public List<Spark> getSparksByBrand(int brandId, int supplyId) {
 		Condition c = Cnd.where("brandId", "=", brandId).and("supplyId", "=", supplyId);
 		return this.query(c, null);
 	}

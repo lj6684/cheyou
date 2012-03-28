@@ -42,7 +42,7 @@
 		<td width="10%">空调滤(活性炭)</td>
 		<td>操作</td>
 	</tr>
-	<s:iterator value="#request.filters" id="styleFilter" status="st">
+	<s:iterator value="#request.filters" id="filterView" status="st">
 		<s:if test="#st.even">
 			<tr bgcolor="#EFF5FC">
 		</s:if>

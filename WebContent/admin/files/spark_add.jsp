@@ -10,12 +10,14 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form action="sparkPlug_add.action" method="post">
+<form action="spark_add.action" method="post">
 	<s:hidden name="act" value="%{act}"></s:hidden>
-	<s:hidden name="sparkPlug.Id" value="%{sparkPlugId}"></s:hidden>
-	<s:hidden name="sparkPlug.brandId" value="%{brandId}"></s:hidden>
-	<s:hidden name="sparkPlug.supplyId" value="%{supplyId}"></s:hidden>
-	<s:hidden name="sparkPlug.styleId" value="%{styleId}"></s:hidden>
+	<s:hidden name="spark.id" value="%{sparkId}"></s:hidden>
+	<s:hidden name="spark.brandId" value="%{brandId}"></s:hidden>
+	<s:hidden name="spark.supplyId" value="%{supplyId}"></s:hidden>
+	<s:hidden name="spark.styleId" value="%{styleId}"></s:hidden>
+	<s:hidden name="brandId"></s:hidden>
+	<s:hidden name="supplyId"></s:hidden>
 <table width="98%" border="0" cellpadding="0" cellspacing="0" class="CContent">
 	<tr>
 		<th class="tablestyle_title" colspan="2">火花塞</th>
@@ -30,7 +32,7 @@
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">排量:&nbsp;<s:textfield name="sparkPlug.outputVolumn" theme="simple"></s:textfield> </td>
+		<td style="width: 70%; align: left">排量:&nbsp;<s:textfield name="spark.outputVolumn" theme="simple"></s:textfield> </td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
@@ -38,39 +40,39 @@
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">发动机:&nbsp;<s:textfield name="sparkPlug.motor" theme="simple"></s:textfield> </td>
+		<td style="width: 70%; align: left">发动机:&nbsp;<s:textfield name="spark.motor" theme="simple"></s:textfield> </td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">出厂年份:&nbsp;<s:textfield name="sparkPlug.year" theme="simple"></s:textfield> </td>
+		<td style="width: 70%; align: left">出厂年份:&nbsp;<s:textfield name="spark.year" theme="simple"></s:textfield> </td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">备注:&nbsp;<s:textfield name="sparkPlug.remark" theme="simple"></s:textfield> </td>
+		<td style="width: 70%; align: left">备注:&nbsp;<s:textfield name="spark.remark" theme="simple"></s:textfield> </td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">迅能编号:&nbsp;<s:textfield name="sparkPlug.xunSn" theme="simple"></s:textfield> </td>
+		<td style="width: 70%; align: left">迅能编号:&nbsp;<s:textfield name="spark.xunSn" theme="simple"></s:textfield> </td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">迅能类型:&nbsp;<s:textfield name="sparkPlug.xunType" theme="simple"></s:textfield> </td>
+		<td style="width: 70%; align: left">迅能类型:&nbsp;<s:textfield name="spark.xunType" theme="simple"></s:textfield> </td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">超能编号:&nbsp;<s:textfield name="sparkPlug.chaoSn" theme="simple"></s:textfield> </td>
+		<td style="width: 70%; align: left">超能编号:&nbsp;<s:textfield name="spark.chaoSn" theme="simple"></s:textfield> </td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">超能类型:&nbsp;<s:textfield name="sparkPlug.chaoType" theme="simple"></s:textfield> </td>
+		<td style="width: 70%; align: left">超能类型:&nbsp;<s:textfield name="spark.chaoType" theme="simple"></s:textfield> </td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">瑞能编号:&nbsp;<s:textfield name="sparkPlug.ruiSn" theme="simple"></s:textfield> </td>
+		<td style="width: 70%; align: left">瑞能编号:&nbsp;<s:textfield name="spark.ruiSn" theme="simple"></s:textfield> </td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">瑞能类型:&nbsp;<s:textfield name="sparkPlug.ruiType" theme="simple"></s:textfield> </td>
+		<td style="width: 70%; align: left">瑞能类型:&nbsp;<s:textfield name="spark.ruiType" theme="simple"></s:textfield> </td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>

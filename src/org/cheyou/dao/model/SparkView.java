@@ -2,19 +2,31 @@ package org.cheyou.dao.model;
 
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
-import org.nutz.dao.entity.annotation.Table;
+import org.nutz.dao.entity.annotation.View;
 
-@Table("spark_plug")
-public class SparkPlug {
+@View("spark_view")
+public class SparkView {	
 	@Id
-	@Column("sp_id")
-	private int id;
+	@Column("sparkId")
+	private int sparkId;
 	@Column("brand_id")
 	private int brandId;
+	@Column("brand_name")
+	private String brandName;
+	@Column("brand_img")
+	private String brandImg;
 	@Column("style_id")
 	private int styleId;
+	@Column("style_name")
+	private String styleName;
+	@Column("style_img")
+	private String styleImg;
 	@Column("supply_id")
 	private int supplyId;
+	@Column("supply_name")
+	private String supplyName;
+	@Column("supply_img")
+	private String supplyImg;
 	@Column("output_volumn")
 	private String outputVolumn;
 	@Column("motor")
@@ -35,11 +47,13 @@ public class SparkPlug {
 	private String ruiSn;
 	@Column("rui_type")
 	private String ruiType;
-	public int getId() {
-		return id;
+	
+	
+	public int getSparkId() {
+		return sparkId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setSparkId(int sparkId) {
+		this.sparkId = sparkId;
 	}
 	public int getBrandId() {
 		return brandId;
@@ -47,17 +61,53 @@ public class SparkPlug {
 	public void setBrandId(int brandId) {
 		this.brandId = brandId;
 	}
+	public String getBrandName() {
+		return brandName;
+	}
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
+	public String getBrandImg() {
+		return brandImg;
+	}
+	public void setBrandImg(String brandImg) {
+		this.brandImg = brandImg;
+	}
 	public int getStyleId() {
 		return styleId;
 	}
 	public void setStyleId(int styleId) {
 		this.styleId = styleId;
 	}
+	public String getStyleName() {
+		return styleName;
+	}
+	public void setStyleName(String styleName) {
+		this.styleName = styleName;
+	}
+	public String getStyleImg() {
+		return styleImg;
+	}
+	public void setStyleImg(String styleImg) {
+		this.styleImg = styleImg;
+	}
 	public int getSupplyId() {
 		return supplyId;
 	}
 	public void setSupplyId(int supplyId) {
 		this.supplyId = supplyId;
+	}
+	public String getSupplyName() {
+		return supplyName;
+	}
+	public void setSupplyName(String supplyName) {
+		this.supplyName = supplyName;
+	}
+	public String getSupplyImg() {
+		return supplyImg;
+	}
+	public void setSupplyImg(String supplyImg) {
+		this.supplyImg = supplyImg;
 	}
 	public String getOutputVolumn() {
 		return outputVolumn;
@@ -119,6 +169,7 @@ public class SparkPlug {
 	public void setRuiType(String ruiType) {
 		this.ruiType = ruiType;
 	}
-
 	
+	
+
 }
