@@ -39,6 +39,11 @@
             <result name="success">spark_list.jsp</result>
             <result name="input">spark_add.jsp</result>
         </action>
+        
+        <action name="query" class="org.cheyou.web.QueryAction">
+            <result name="success">index.jsp</result>
+            <result name="input">index.jsp</result>
+        </action>
     </package>
 </struts>
 

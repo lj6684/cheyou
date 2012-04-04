@@ -5,7 +5,7 @@ import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.View;
 
 @View("filter_view")
-public class FilterView {
+public class FilterView implements Cloneable {
 	
 	@Id
 	@Column("filter_id")

@@ -25,5 +25,10 @@ public class StyleService extends IdNameEntityService<Style> {
 		Condition c = Cnd.where("bid", "=", brandId);
 		return this.query(c, null);
 	}
+	
+	public List<Style> query(String name) {
+		Condition c = Cnd.where("style_name", "like", "%" + name + "%");
+		return this.query(c, null);
+	}
 
 }

@@ -5,6 +5,7 @@ DROP TABLE style;
 DROP VIEW filter_view;
 DROP TABLE spark;
 DROP VIEW spark_view;
+DROP VIEW style_view;
 
 
 CREATE TABLE filter
@@ -81,4 +82,11 @@ FROM ((spark spk
 INNER JOIN supply sp ON spk.supply_id = sp.supply_id)
 INNER JOIN style st ON spk.style_id = st.style_id)
 INNER JOIN brand b ON spk.brand_id = b.brand_id
+);
+
+CREATE VIEW style_view AS
+(
+SELECT st.style_id, st.brand_id, st.style_name, st.style_img, b.brand_name, b.brand_img
+FROM style st
+INNER JOIN brand b ON st.brand_id = b.brand_id
 );

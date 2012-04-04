@@ -60,5 +60,14 @@ var ioc = {
 				refer : "dao"
 			}
 		}
+	},
+	
+	styleViewService : {
+		type : "org.cheyou.dao.StyleViewService",
+		fields : {
+			dao : {
+				refer : "dao"
+			}
+		}
 	}
 };

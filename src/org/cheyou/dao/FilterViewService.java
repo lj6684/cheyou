@@ -8,16 +8,41 @@ import java.util.Map;
 import org.cheyou.dao.model.Filter;
 import org.cheyou.dao.model.FilterView;
 import org.cheyou.dao.model.Style;
+import org.cheyou.dao.model.Supply;
 import org.cheyou.util.ContextUtil;
+import org.nutz.dao.Cnd;
+import org.nutz.dao.Condition;
 import org.nutz.service.IdEntityService;
 
 public class FilterViewService extends IdEntityService<FilterView> {
 	
 	private StyleService styleService = ContextUtil.getBean(StyleService.class, "styleService");
 	private FilterService filterService = ContextUtil.getBean(FilterService.class, "filterService");
+	private SupplyService supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
 	
 	public List<FilterView> getAllFilters() {
 		return this.query(null, null);
+	}
+	
+	public Map<String, Map<String, FilterView>> queryFilters(String queryStr) {
+		List<Supply> supplies = supplyService.getAllSupplies();
+		
+		Map<String, Map<String, FilterView>> res = new HashMap<String, Map<String, FilterView>>();
+		List<Style> styles = styleService.query(queryStr);
+		for(Style style : styles) {
+			res.put(style.getName(), createSampleMap(supplies));
+		}
+		
+		Condition c = Cnd.where("style_name", "like", "%" + queryStr + "%");
+		List<FilterView> filters = this.query(c, null);
+		for(FilterView filter : filters) {
+			String styleName = filter.getStyleName();
+			String supplyName = filter.getSupplyName();
+			
+			res.get(styleName).put(supplyName, filter);
+		}
+		
+		return res;
 	}
 	
 	public List<FilterView> getStyleFilters(int brandId, int supplyId) {
@@ -52,6 +77,16 @@ public class FilterViewService extends IdEntityService<FilterView> {
 		
 		List<FilterView> resList = new ArrayList(resMap.values());
 		return resList;
+	}
+	
+	private Map<String, FilterView> createSampleMap(List<Supply> supplies) {
+		Map<String, FilterView> sample = new HashMap<String, FilterView>();
+		for(Supply supply : supplies) {
+			FilterView filterView = new FilterView();
+			filterView.setSupplyImg(supply.getImg());
+			sample.put(supply.getName(), filterView);
+		}
+		return sample;
 	}
 
 }
