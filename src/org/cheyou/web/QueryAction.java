@@ -17,6 +17,8 @@ public class QueryAction extends ActionSupport {
 	private String queryStr;
 	private FilterViewService filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
 	private StyleViewService styleViewService = ContextUtil.getBean(StyleViewService.class, "styleViewService");
+	private String filterId;
+	private String suggestMsg;
 	
 	public String getQueryStr() {
 		return queryStr;
@@ -26,6 +28,7 @@ public class QueryAction extends ActionSupport {
 		this.queryStr = queryStr;
 	}
 
+	// 查询三滤数据
 	@Override
 	public String execute() throws Exception {
 		List<StyleView> styles = styleViewService.query(queryStr);
@@ -33,6 +36,18 @@ public class QueryAction extends ActionSupport {
 		ActionContext context = ActionContext.getContext();
 		context.put("styles", styles);
 		context.put("filters", filters);
+		return SUCCESS;
+	}
+	
+	// 支持
+	public String support() throws Exception {
+		
+		return SUCCESS;
+	}
+	
+	// 建议
+	public String suggest() throws Exception {
+		
 		return SUCCESS;
 	}
 	

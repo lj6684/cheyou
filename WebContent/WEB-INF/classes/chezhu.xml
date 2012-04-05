@@ -5,7 +5,7 @@
 
 <struts>
 
-    <package name="example" extends="struts-default">
+    <package name="cheyzhu" extends="struts-default">
     
         <action name="brand_*" class="org.cheyou.web.BrandAction" method="{1}">
             <result name="success">brand_list.jsp</result>

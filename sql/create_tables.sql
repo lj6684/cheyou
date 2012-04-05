@@ -19,8 +19,19 @@ CREATE TABLE filter
 	fuel_oil VARCHAR(30),
 	air_condition_std VARCHAR(30),
 	air_condition_carbon VARCHAR(30),
+	support_count INT default 0,
+	suggest_count INT default 0,
 	PRIMARY KEY (filter_id)
 );
+
+CREATE TABLE filter_suggest
+(
+	suggest_id INT NOT NULL AUTO_INCREMENT,
+	user_name VARCHAR(30),
+	content VARCHAR(200),
+	PRIMARY KEY (suggest_id)
+)
+
 
 CREATE TABLE supply
 (

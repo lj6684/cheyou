@@ -17,6 +17,6 @@
     
     <constant name="struts.enable.DynamicMethodInvocation" value="false" /> 
 
-    <include file="cheyou.xml"/>
+    <include file="chezhu.xml"/>
 
 </struts>
