@@ -17,12 +17,12 @@
 <script type="text/javascript">
 	$(function() {
 		$.getJSON("query_init.action",
-				null,
-				function(data) {
-					$("#queryStr").autocomplete({
-						source: data
-					})			
-				})
+			null,
+			function(data) {
+				$("#queryStr").autocomplete({
+					source: data
+				})			
+			})
 	})
 </script>
 </head>
