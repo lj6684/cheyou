@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 import org.cheyou.util.ContextUtil;
+import org.cheyou.util.StyleNameCache;
 
 /**
  * Servlet implementation class InitServlet
@@ -24,6 +25,8 @@ public class InitServlet extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		ContextUtil.initIocContext();
+		// 加载缓存
+		StyleNameCache.getInstance().refresh();
 	}
 
 	/**

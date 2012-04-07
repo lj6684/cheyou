@@ -3,16 +3,22 @@ package org.cheyou.web;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.cheyou.dao.FilterViewService;
 import org.cheyou.dao.StyleViewService;
 import org.cheyou.dao.model.FilterView;
 import org.cheyou.dao.model.StyleView;
 import org.cheyou.util.ContextUtil;
+import org.cheyou.util.StyleNameCache;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class QueryAction extends ActionSupport {
+public class QueryAction extends ActionSupport implements ServletResponseAware {
+	
+	private HttpServletResponse response;
 	
 	private String queryStr;
 	private FilterViewService filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
@@ -27,10 +33,21 @@ public class QueryAction extends ActionSupport {
 	public void setQueryStr(String queryStr) {
 		this.queryStr = queryStr;
 	}
+	
+	// 使用Ajax方式查询所有车型列表
+	public String init() throws Exception {
+		String data = StyleNameCache.getInstance().getAllStyleNamesJson();
+		//System.out.println(data);
+		response.setContentType("text/json; charset=UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().println(data);
+		response.getWriter().flush();
+		response.getWriter().close();
+		return SUCCESS;
+	}
 
 	// 查询三滤数据
-	@Override
-	public String execute() throws Exception {
+	public String query() throws Exception {
 		List<StyleView> styles = styleViewService.query(queryStr);
 		Map<String, Map<String, FilterView>> filters = filterViewService.queryFilters(queryStr);
 		ActionContext context = ActionContext.getContext();
@@ -49,6 +66,11 @@ public class QueryAction extends ActionSupport {
 	public String suggest() throws Exception {
 		
 		return SUCCESS;
+	}
+
+	@Override
+	public void setServletResponse(HttpServletResponse response) {
+		this.response = response;
 	}
 	
 	

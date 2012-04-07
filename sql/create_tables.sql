@@ -30,7 +30,7 @@ CREATE TABLE filter_suggest
 	user_name VARCHAR(30),
 	content VARCHAR(200),
 	PRIMARY KEY (suggest_id)
-)
+);
 
 
 CREATE TABLE supply

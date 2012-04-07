@@ -10,13 +10,28 @@
 <meta name="description" content=""/>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/func.js"></script>
+<!-- jQuery -->
+<link href="css/ui-lightness/jquery-ui-autocomplete.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-autocomplete.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$.getJSON("query_init.action",
+				null,
+				function(data) {
+					$("#queryStr").autocomplete({
+						source: data
+					})			
+				})
+	})
+</script>
 </head>
 <body>
 <div class="wrap">
 	<div id="topbar"/></div>
 	<div id="logobar"><a href="/"><img src="images/logo.gif" border="0"/></a></div>
 	<!--search begin-->
-	<form action="query.action" method="post">
+	<form action="query_query.action" method="post">
 	<div id="search_begin">
 		<div class="accessory_item">
 			<ul>
@@ -41,7 +56,7 @@
 		</div>
 
 		<div class="searchbar">
-			<input class="input_type" type="text" size="35" name="queryStr" value="<s:property value='queryStr'/>"/>
+			<input class="input_type" type="text" size="35" name="queryStr" id="queryStr" value="<s:property value='queryStr'/>"/>
 			<input class="submit_btn" type="submit" value="">
 			<div class="clear"></div>
 		</div>

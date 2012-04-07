@@ -3,6 +3,7 @@ package org.cheyou.dao;
 import java.util.List;
 
 import org.cheyou.dao.model.Style;
+import org.cheyou.util.StyleNameCache;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Condition;
 import org.nutz.service.IdNameEntityService;
@@ -10,13 +11,24 @@ import org.nutz.service.IdNameEntityService;
 public class StyleService extends IdNameEntityService<Style> {
 	
 	public Style addStyle(Style style) {
-		return this.dao().insert(style);
+		Style res = this.dao().insert(style);
+		StyleNameCache.getInstance().refresh();
+		return res;
 	}
 	
 	public int updateStyle(Style style) {
-		return this.dao().update(style);
+		int res = this.dao().update(style);
+		StyleNameCache.getInstance().refresh();
+		return res;
 	}
 	
+	@Override
+	public int delete(long id) {
+		int res = super.delete(id);
+		StyleNameCache.getInstance().refresh();
+		return res;
+	}
+
 	public List<Style> getAllStyles() {
 		return this.query(null, null);
 	}

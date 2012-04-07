@@ -40,7 +40,7 @@
             <result name="input">spark_add.jsp</result>
         </action>
         
-        <action name="query" class="org.cheyou.web.QueryAction">
+        <action name="query_*" class="org.cheyou.web.QueryAction" method="{1}">
             <result name="success">index.jsp</result>
             <result name="input">index.jsp</result>
         </action>
