@@ -24,8 +24,17 @@ public class QueryAction extends ActionSupport implements ServletResponseAware {
 	private FilterViewService filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
 	private StyleViewService styleViewService = ContextUtil.getBean(StyleViewService.class, "styleViewService");
 	private String filterId;
-	private String suggestMsg;
+	private List<String> supplyItem;
 	
+	
+	public List<String> getSupplyItem() {
+		return supplyItem;
+	}
+
+	public void setSupplyItem(List<String> supplyItem) {
+		this.supplyItem = supplyItem;
+	}
+
 	public String getQueryStr() {
 		return queryStr;
 	}
@@ -49,7 +58,7 @@ public class QueryAction extends ActionSupport implements ServletResponseAware {
 	// 查询三滤数据
 	public String query() throws Exception {
 		List<StyleView> styles = styleViewService.query(queryStr);
-		Map<String, Map<String, FilterView>> filters = filterViewService.queryFilters(queryStr);
+		Map<String, Map<String, FilterView>> filters = filterViewService.queryFilters(queryStr, supplyItem);
 		ActionContext context = ActionContext.getContext();
 		context.put("styles", styles);
 		context.put("filters", filters);
@@ -68,7 +77,6 @@ public class QueryAction extends ActionSupport implements ServletResponseAware {
 		return SUCCESS;
 	}
 
-	@Override
 	public void setServletResponse(HttpServletResponse response) {
 		this.response = response;
 	}

@@ -29,7 +29,7 @@
 <body>
 <div class="wrap">
 	<div id="topbar"/></div>
-	<div id="logobar"><a href="/"><img src="images/logo.gif" border="0"/></a></div>
+	<div id="logobar"><a href="index.jsp"><img src="images/logo.gif" border="0"/></a></div>
 	<!--search begin-->
 	<form action="query_query.action" method="post">
 	<div id="search_begin">
@@ -44,13 +44,14 @@
 			<div class="clear"></div>
 		</div>
 		<div class="brand_item">
+			<s:set name="supplies" value="#{'2':'原厂', '1':'博世BOSCH', '4':'马勒MAHLE', '3':'索菲玛SOFIMA', '5':'曼牌MANN', '6':'箭牌'}"></s:set>
 			<ul>
-				<li><input type="checkbox" name="brand_item" checked>原厂</li>
-				<li><input type="checkbox" name="brand_item" checked>博世BOSCH</li>
-				<li><input type="checkbox" name="brand_item" checked>马勒MAHLE</li>
-				<li><input type="checkbox" name="brand_item" checked>索菲玛SOFIMA</li>
-				<li><input type="checkbox" name="brand_item">曼牌MANN</li>
-				<li><input type="checkbox" name="brand_item">箭牌</li>
+			<s:if test="supplyItem">
+				<s:checkboxlist list="#supplies" name="supplyItem" theme="simple"></s:checkboxlist>
+			</s:if>
+			<s:else>
+				<s:checkboxlist list="#supplies" name="supplyItem" theme="simple" value="{'1', '2', '3', '4'}"></s:checkboxlist>
+			</s:else>
 			</ul>
 			<div class="clear"></div>
 		</div>

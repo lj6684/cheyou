@@ -24,8 +24,8 @@ public class FilterViewService extends IdEntityService<FilterView> {
 		return this.query(null, null);
 	}
 	
-	public Map<String, Map<String, FilterView>> queryFilters(String queryStr) {
-		List<Supply> supplies = supplyService.getAllSupplies();
+	public Map<String, Map<String, FilterView>> queryFilters(String queryStr, List<String> supplyIds) {
+		List<Supply> supplies = supplyService.getSuppliesById(supplyIds);
 		
 		Map<String, Map<String, FilterView>> res = new HashMap<String, Map<String, FilterView>>();
 		List<Style> styles = styleService.query(queryStr);
@@ -33,7 +33,7 @@ public class FilterViewService extends IdEntityService<FilterView> {
 			res.put(style.getName(), createSampleMap(supplies));
 		}
 		
-		Condition c = Cnd.where("style_name", "like", "%" + queryStr + "%");
+		Condition c = Cnd.where("style_name", "like", "%" + queryStr + "%").and("supply_id", "in", supplyIds);
 		List<FilterView> filters = this.query(c, null);
 		for(FilterView filter : filters) {
 			String styleName = filter.getStyleName();
