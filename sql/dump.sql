@@ -104,11 +104,11 @@ CREATE TABLE `supply` (
   `supply_img` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`supply_id`),
   UNIQUE KEY `supply_name` (`supply_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `supply` */
 
-insert  into `supply`(`supply_id`,`supply_name`,`supply_img`) values (1,'博世','images/bosch.gif'),(2,'原厂','images/genuine.gif'),(3,'索菲玛','images/sofima.gif'),(4,'马勒','images/mahle.gif');
+insert  into `supply`(`supply_id`,`supply_name`,`supply_img`) values (1,'博世','images/bosch.gif'),(2,'原厂','images/genuine.gif'),(3,'索菲玛','images/sofima.gif'),(4,'马勒','images/mahle.gif'),(5,'曼牌MANN',NULL),(6,'箭牌',NULL);
 
 /*Table structure for table `filter_view` */
 
