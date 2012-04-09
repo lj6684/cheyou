@@ -6,39 +6,6 @@
 <struts>
 
     <package name="cheyzhu" extends="struts-default">
-    
-        <action name="brand_*" class="org.cheyou.web.BrandAction" method="{1}">
-            <result name="success">brand_list.jsp</result>
-            <result name="input">brand_modify.jsp</result>
-        </action>
-        
-        <action name="supply_*" class="org.cheyou.web.SupplyAction" method="{1}">
-            <result name="success">supply_list.jsp</result>
-            <result name="input">supply_modify.jsp</result>
-        </action>
-        
-        <action name="style_*" class="org.cheyou.web.StyleAction" method="{1}">
-            <result name="success">style_list.jsp</result>
-            <result name="input">style_modify.jsp</result>
-        </action>
-        
-        <action name="styleFilter_*" class="org.cheyou.web.StyleFilterAction" method="{1}">
-            <result name="success">filter_list.jsp</result>
-        </action>
-        
-        <action name="filter_*" class="org.cheyou.web.FilterAction" method="{1}">
-            <result name="success">filter_list.jsp</result>
-            <result name="input">filter_add.jsp</result>
-        </action>
-        
-        <action name="styleSpark_*" class="org.cheyou.web.StyleSparkAction" method="{1}">
-            <result name="success">spark_list.jsp</result>
-        </action>
-        
-        <action name="spark_*" class="org.cheyou.web.SparkAction" method="{1}">
-            <result name="success">spark_list.jsp</result>
-            <result name="input">spark_add.jsp</result>
-        </action>
         
         <action name="query_*" class="org.cheyou.web.QueryAction" method="{1}">
             <result name="success">index.jsp</result>

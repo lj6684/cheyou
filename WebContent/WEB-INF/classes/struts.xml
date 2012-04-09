@@ -15,8 +15,16 @@
     <constant name="struts.custom.i18n.resources" value="messageResource"/>
     <constant name="struts.i18n.encoding" value="UTF-8"></constant>
     
+
     <constant name="struts.enable.DynamicMethodInvocation" value="false" /> 
+    
+    <constant name="struts.multipart.saveDir" value="struts_temp" />
+    <!-- Struts文件上传大小限制，默认为2M  -->
+    <!--  
+	<constant name="struts.multipart.maxSize" value="2000000" />
+	-->
 
     <include file="chezhu.xml"/>
+    <include file="admin.xml"/>
 
 </struts>
