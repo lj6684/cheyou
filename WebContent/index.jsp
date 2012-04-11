@@ -15,15 +15,33 @@
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-autocomplete.js"></script>
 <script type="text/javascript">
+	// Ajax请求AutoComplet数据
 	$(function() {
 		$.getJSON("query_init.action",
 			null,
 			function(data) {
 				$("#queryStr").autocomplete({
 					source: data
-				})			
-			})
-	})
+				});			
+			});
+	});
+
+	// 检查表单输入，不允许查询条件为空
+	function checkInput () {
+		var queryStr = $("#queryStr").val();
+		if(queryStr == "") {
+			return false;
+		}
+		var checked = false;
+		$(":checkbox[name='supplyItem']").each(function () {
+			if($(this).is(":checked")) {
+				checked = true;
+				return;
+			}
+		})
+
+		return checked;
+	}
 </script>
 </head>
 <body>
@@ -31,7 +49,7 @@
 	<div id="topbar"/></div>
 	<div id="logobar"><a href="index.jsp"><img src="images/logo.gif" border="0"/></a></div>
 	<!--search begin-->
-	<form action="query_query.action" method="post">
+	<form action="query_query.action" method="post" onsubmit="return checkInput();" id="form1">
 	<div id="search_begin">
 		<div class="accessory_item">
 			<ul>
