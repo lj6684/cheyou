@@ -28,6 +28,7 @@ public class BrandAction extends ActionSupport implements ServletContextAware {
 	private String imgFileName;
 	private ServletContext context;
 	
+	// C:\Documents and Settings\jian_li\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\cheyou\img\upload
 	private static final String UPLOAD_FILE_PATH = "img/upload/brands/";
 	
 	
@@ -128,7 +129,7 @@ public class BrandAction extends ActionSupport implements ServletContextAware {
 		Brand brand = brandService.fetch(id);
 		brand.setName(brandName);
 		if(updateImg.equals("1")) {
-			// ѡ�����ͼƬ
+			// 修改图片
 			String imgPath = saveUploadFile();
 			brand.setImg(imgPath);
 		}

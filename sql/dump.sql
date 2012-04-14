@@ -30,7 +30,7 @@ CREATE TABLE `brand` (
 
 /*Data for the table `brand` */
 
-insert  into `brand`(`brand_id`,`brand_name`,`brand_img`) values (1,'奥迪',NULL),(2,'奔驰',NULL),(3,'宝马',NULL),(4,'大众','images/dazhong.gif'),(5,'斯柯达',NULL),(6,'别克',NULL),(7,'雪佛兰',NULL),(8,'中华',NULL),(9,'本田',NULL),(10,'雪铁龙',NULL),(11,'克鲁兹',NULL),(12,'标志',NULL),(13,'MG',NULL),(14,'荣威',NULL),(15,'力帆',NULL),(16,'福特',NULL),(17,'沃尔沃',NULL),(18,'马自达',NULL),(19,'红旗',NULL),(20,'华普',NULL),(21,'现代',NULL),(22,'起亚',NULL),(23,'尼桑',NULL),(24,'比亚迪',NULL),(25,'丰田',NULL),(26,'一汽',NULL),(27,'夏利',NULL),(28,'吉利',NULL),(29,'江淮',NULL),(30,'江铃',NULL),(31,'东南',NULL),(32,'三菱',NULL),(33,'猎豹',NULL),(34,'东风',NULL),(35,'长城',NULL),(36,'奇瑞',NULL),(37,'菲亚特',NULL),(38,'长安铃木',NULL),(39,'昌河铃木',NULL),(40,'哈飞',NULL),(41,'五菱',NULL),(42,'南京',NULL),(43,'中兴',NULL);
+insert  into `brand`(`brand_id`,`brand_name`,`brand_img`) values (1,'奥迪','img/upload/brands/120414194912_8092.jpg'),(2,'奔驰','img/upload/brands/120414192431_6618.jpg'),(3,'宝马','img/upload/brands/120414192445_2581.jpg'),(4,'大众','img/upload/brands/120414192454_93.jpg'),(5,'斯柯达','img/upload/brands/120414192534_4833.jpg'),(6,'别克','img/upload/brands/120414192617_1686.jpg'),(7,'雪佛兰','img/upload/brands/120414192629_8951.jpg'),(8,'中华','img/upload/brands/120414192659_2510.jpg'),(9,'本田','img/upload/brands/120414192735_542.jpg'),(10,'雪铁龙','img/upload/brands/120414192745_5230.jpg'),(11,'克鲁兹',NULL),(12,'标志','img/upload/brands/120414192918_2488.jpg'),(13,'MG','img/upload/brands/120414192935_3805.jpg'),(14,'荣威','img/upload/brands/120414193010_9018.jpg'),(15,'力帆','img/upload/brands/120414193106_8276.jpg'),(16,'福特','img/upload/brands/120414193129_990.jpg'),(17,'沃尔沃','img/upload/brands/120414193253_439.jpg'),(18,'马自达','img/upload/brands/120414193312_4516.jpg'),(19,'红旗','img/upload/brands/120414193330_5381.jpg'),(20,'华普','img/upload/brands/120414193400_6149.jpg'),(21,'现代','img/upload/brands/120414193419_7986.jpg'),(22,'起亚','img/upload/brands/120414193433_5462.jpg'),(23,'尼桑','img/upload/brands/120414193452_4773.jpg'),(24,'比亚迪','img/upload/brands/120414193555_5653.jpg'),(25,'丰田','img/upload/brands/120414193615_2760.jpg'),(26,'一汽','img/upload/brands/120414193633_8843.jpg'),(27,'夏利','img/upload/brands/120414193709_1859.jpg'),(28,'吉利','img/upload/brands/120414193739_9317.jpg'),(29,'江淮','img/upload/brands/120414193829_1065.jpg'),(30,'江铃','img/upload/brands/120414193850_9667.jpg'),(31,'东南','img/upload/brands/120414194006_4766.jpg'),(32,'三菱','img/upload/brands/120414194024_7553.jpg'),(33,'猎豹',NULL),(34,'东风','img/upload/brands/120414194115_1050.jpg'),(35,'长城','img/upload/brands/120414194149_6246.jpg'),(36,'奇瑞','img/upload/brands/120414194219_9289.jpg'),(37,'菲亚特','img/upload/brands/120414194458_8161.jpg'),(38,'长安铃木','img/upload/brands/120414194511_9684.jpg'),(39,'昌河铃木','img/upload/brands/120414194538_6924.jpg'),(40,'哈飞','img/upload/brands/120414194607_1198.jpg'),(41,'五菱','img/upload/brands/120414194751_2447.jpg'),(42,'南京',NULL),(43,'中兴','img/upload/brands/120414194702_3053.jpg');
 
 /*Table structure for table `filter` */
 
@@ -104,7 +104,7 @@ CREATE TABLE `supply` (
   `supply_img` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`supply_id`),
   UNIQUE KEY `supply_name` (`supply_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 /*Data for the table `supply` */
 
