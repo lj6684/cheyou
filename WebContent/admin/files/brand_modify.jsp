@@ -8,9 +8,21 @@
 <title>汽车品牌管理</title>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script>
+<SCRIPT type="text/javascript">
+$(function() {
+	$("#logoCheckbox").click(function () {
+		if($(this).is(":checked")) {
+			$("#fileItem").show();
+		} else {
+			$("#fileItem").hide();
+		}
+	});
+});
+</SCRIPT>
 </head>
 <body>
-<form action="brand_save.action" method="post">
+<form action="brand_save.action" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="id" value="<s:property value="id"/>"/>
 <table width="98%" border="0" cellpadding="0" cellspacing="0"
 	class="CContent">
@@ -20,8 +32,12 @@
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
 		<td style="width: 70%; align: left">品牌名称:&nbsp;<input type="text"
-			name="brandName" style="width: 150px" value="<s:property value="brandName"/>"/>&nbsp;<span class="red">*</span>&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" value="保存"></input></td>
+			name="brandName" style="width: 150px" value="<s:property value="brandName"/>"/>&nbsp;<span class="red">*</span>
+		&nbsp;&nbsp;<img src="../../<s:property value='brandImg'/>"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="保存"></input></td>
+	</tr>
+	<tr style="height: 50px">
+		<td style="width: 1%; align: left">&nbsp;</td>
+		<td style="width: 70%; align: left"><input type="checkbox" name="updateImg" value="1" id="logoCheckbox"/>&nbsp;更换LOGO&nbsp;&nbsp;<span style="display:none" id="fileItem"><input type="file" name="img" /></span></td>
 	</tr>
 </table>
 </form>
