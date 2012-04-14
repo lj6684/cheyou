@@ -27,8 +27,7 @@ public class BrandAction extends ActionSupport implements ServletContextAware {
 	private String imgContentType;
 	private String imgFileName;
 	private ServletContext context;
-	
-	// C:\Documents and Settings\jian_li\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\cheyou\img\upload
+	//C:/Documents and Settings/jian_li/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/cheyou/img/upload
 	private static final String UPLOAD_FILE_PATH = "img/upload/brands/";
 	
 	
