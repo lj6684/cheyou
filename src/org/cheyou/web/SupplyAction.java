@@ -19,6 +19,8 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 	
 	private int id;
 	private String supplyName;
+	private String supplyImg;
+	private String updateImg = "0";
 	private SupplyService supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
 	
 	private File img;
@@ -26,7 +28,25 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 	private String imgFileName;
 	private ServletContext context;
 	
+	private static final String UPLOAD_FILE_PATH = "img/upload/supplies/";
 	
+	
+	public String getUpdateImg() {
+		return updateImg;
+	}
+
+	public void setUpdateImg(String updateImg) {
+		this.updateImg = updateImg;
+	}
+
+	public String getSupplyImg() {
+		return supplyImg;
+	}
+
+	public void setSupplyImg(String supplyImg) {
+		this.supplyImg = supplyImg;
+	}
+
 	public File getImg() {
 		return img;
 	}
@@ -68,15 +88,11 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 	}
 
 	public String add() throws Exception {
-		String targetDir = context.getRealPath("img/upload/supplies");
-		System.out.println(targetDir);
-		String targetFileName = FileTool.generateFileName(imgFileName);
-		File targetFile = new File(targetDir, targetFileName);
-		FileUtils.copyFile(img, targetFile);
+		String imgPath = saveUploadFile();
 		
 		Supply supply = new Supply();
 		supply.setName(supplyName);
-		supply.setImg("img/upload/supplies/" + targetFileName);
+		supply.setImg(imgPath);
 		supplyService.addSupply(supply);
 		
 		List<Supply> supplies = supplyService.getAllSupplies();
@@ -104,6 +120,7 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 	public String view() throws Exception {
 		Supply supply = supplyService.fetch(id);
 		supplyName = supply.getName();
+		supplyImg = supply.getImg();
 		
 		return INPUT;
 	}
@@ -111,6 +128,12 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 	public String save() throws Exception {
 		Supply supply = supplyService.fetch(id);
 		supply.setName(supplyName);
+		if(updateImg.equals("1")) {
+			// 选择更新图片
+			String imgPath = saveUploadFile();
+			supply.setImg(imgPath);
+		}
+		
 		supplyService.updateSupply(supply);
 		
 		List<Supply> supplies = supplyService.getAllSupplies();
@@ -122,5 +145,20 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 	public void setServletContext(ServletContext context) {
 		this.context = context;
 		
+	}
+	
+	private String saveUploadFile() {
+		try {
+			String targetDir = context.getRealPath(UPLOAD_FILE_PATH);
+			//System.out.println(targetDir);
+			String targetFileName = FileTool.generateFileName(imgFileName);
+			File targetFile = new File(targetDir, targetFileName);
+			FileUtils.copyFile(img, targetFile);
+			
+			return UPLOAD_FILE_PATH + targetFileName;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
 	}
 }

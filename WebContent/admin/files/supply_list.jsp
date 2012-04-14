@@ -51,7 +51,7 @@
 	<s:iterator value="#request.supplies" id="supply" status="st">
 	<tr bgcolor="#FFFFFF">
 		<td height="20"><s:property value="#st.count"></s:property></td>
-		<td><img src="../../<s:property value="img"/>"/> <s:property value="name"/></td>
+		<td><img src="../../<s:property value='img'/>"/> <s:property value="name"/></td>
 		<td><a href="supply_view.action?id=<s:property value="id"/>">修改</a>&nbsp;|&nbsp;<a href="supply_delete.action?id=<s:property value="id"/>">删除</a></td>
 	</tr>
 	</s:iterator>
