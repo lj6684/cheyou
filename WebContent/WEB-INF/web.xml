@@ -29,7 +29,7 @@
     <description></description>
     <display-name>InitServlet</display-name>
     <servlet-name>InitServlet</servlet-name>
-    <servlet-class>org.cheyou.web.InitServlet</servlet-class>
+    <servlet-class>com.chezhu.web.InitServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
