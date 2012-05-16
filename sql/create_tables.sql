@@ -1,3 +1,4 @@
+DROP TABLE test;
 DROP TABLE filter;
 DROP TABLE supply;
 DROP TABLE brand;
@@ -7,6 +8,10 @@ DROP TABLE spark;
 DROP VIEW spark_view;
 DROP VIEW style_view;
 
+CREATE TABLE test
+(
+	a CHAR(1)
+);
 
 CREATE TABLE filter
 (
