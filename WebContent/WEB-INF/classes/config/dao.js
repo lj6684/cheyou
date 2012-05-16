@@ -17,7 +17,10 @@ var ioc = {
             minPoolSize: "1",
             maxPoolSize: "30",
             maxStatements: "50",
-            maxIdleTime: "60"
+            maxIdleTime: "60",
+            idleConnectionTestPeriod: "60",
+            testConnectionOnCheckin: "true",
+            automaticTestTable: "test"
         }
     },
 	

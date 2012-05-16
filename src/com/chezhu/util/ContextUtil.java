@@ -17,8 +17,8 @@ public class ContextUtil {
 	
     public static void initIocContext() {
     	ioc = new NutIoc(new JsonLoader(
-    			"com/chezhu/config/dao.js",
-    			"com/chezhu/config/ioc.js"
+    			"config/dao.js",
+    			"config/ioc.js"
     			));
     }
 }
