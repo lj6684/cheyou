@@ -6,6 +6,8 @@ var ioc = {
 		}
 	},	
 	
+	/*
+	// C3P0
     dataSource: {
         type: "com.mchange.v2.c3p0.ComboPooledDataSource",
         fields : {
@@ -17,10 +19,26 @@ var ioc = {
             minPoolSize: "1",
             maxPoolSize: "30",
             maxStatements: "50",
-            maxIdleTime: "60",
-            idleConnectionTestPeriod: "60",
+            maxIdleTime: "1800",
+            idleConnectionTestPeriod: "1800",
             testConnectionOnCheckin: "true",
-            automaticTestTable: "test"
+            automaticTestTable: "test",
+        }
+    },
+	*/
+	
+	// proxool
+	dataSource: {
+        type: "org.logicalcobwebs.proxool.ProxoolDataSource",
+        fields : {
+			driver: {java:"$config.get('db.driver')"},
+			driverUrl: {java:"$config.get('db.url')"},
+            user: {java:"$config.get('db.user')"},
+            password: {java:"$config.get('db.password')"},
+			maximumConnectionCount: "30",
+			minimumConnectionCount: "5",
+			houseKeepingTestSql: "SELECT 1",
+			testBeforeUse: "true"
         }
     },
 	
