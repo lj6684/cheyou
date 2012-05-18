@@ -2,9 +2,9 @@ package com.chezhu.dao.model;
 
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
-import org.nutz.dao.entity.annotation.View;
+import org.nutz.dao.entity.annotation.Table;
 
-@View("filter_view")
+@Table("")
 public class FilterView implements Cloneable {
 	
 	@Id

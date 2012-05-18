@@ -1,17 +1,8 @@
-DROP TABLE test;
 DROP TABLE filter;
 DROP TABLE supply;
 DROP TABLE brand;
 DROP TABLE style;
-DROP VIEW filter_view;
 DROP TABLE spark;
-DROP VIEW spark_view;
-DROP VIEW style_view;
-
-CREATE TABLE test
-(
-	a CHAR(1)
-);
 
 CREATE TABLE filter
 (
@@ -63,15 +54,6 @@ CREATE TABLE style
 	PRIMARY KEY(style_id)
 );
 
-CREATE VIEW filter_view AS
-(
-SELECT f.filter_id, sp.supply_id, sp.supply_name, sp.supply_img, b.brand_id, b.brand_name, b.brand_img, st.style_id, st.style_name, st.style_img, f.air, f.machine_oil, f.fuel_oil, f.air_condition_std, f.air_condition_carbon
-FROM ((filter f
-INNER JOIN supply sp ON f.supply_id = sp.supply_id)
-INNER JOIN style st ON f.style_id = st.style_id)
-INNER JOIN brand b ON f.brand_id = b.brand_id
-);
-
 CREATE TABLE spark
 (
 	spark_id INT NOT NULL AUTO_INCREMENT,
@@ -91,6 +73,20 @@ CREATE TABLE spark
 	PRIMARY KEY (spark_id)
 );
 
+/*
+DROP VIEW filter_view;
+DROP VIEW spark_view;
+DROP VIEW style_view;
+
+CREATE VIEW filter_view AS
+(
+SELECT f.filter_id, sp.supply_id, sp.supply_name, sp.supply_img, b.brand_id, b.brand_name, b.brand_img, st.style_id, st.style_name, st.style_img, f.air, f.machine_oil, f.fuel_oil, f.air_condition_std, f.air_condition_carbon
+FROM ((filter f
+INNER JOIN supply sp ON f.supply_id = sp.supply_id)
+INNER JOIN style st ON f.style_id = st.style_id)
+INNER JOIN brand b ON f.brand_id = b.brand_id
+);
+
 CREATE VIEW spark_view AS
 (
 SELECT spk.spark_id, spk.supply_id, sp.supply_name, sp.supply_img, spk.brand_id, b.brand_name, b.brand_img, spk.style_id, st.style_name, st.style_img, spk.output_volumn, spk.motor, spk.year, spk.remark, spk.xun_sn, spk.xun_type, spk.chao_sn, spk.chao_type, spk.rui_sn, spk.rui_type
@@ -106,3 +102,4 @@ SELECT st.style_id, st.brand_id, st.style_name, st.style_img, b.brand_name, b.br
 FROM style st
 INNER JOIN brand b ON st.brand_id = b.brand_id
 );
+*/

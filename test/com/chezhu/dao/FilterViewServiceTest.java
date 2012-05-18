@@ -1,5 +1,6 @@
 package com.chezhu.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -8,7 +9,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.chezhu.dao.FilterViewService;
 import com.chezhu.dao.model.FilterView;
 import com.chezhu.util.ContextUtil;
 
@@ -30,8 +30,12 @@ public class FilterViewServiceTest {
 	}
 
 	@Test
-	public void test_get_all_filters() {
-		List<FilterView> list = service.getAllFilters();
+	public void test_query_filters() {
+		List<String> supplyIds = new ArrayList<String>();
+		supplyIds.add("1");
+		supplyIds.add("2");
+		supplyIds.add("3");
+		List<FilterView> list = service.queryFilterView("速腾", supplyIds);
 		Assert.assertTrue(list.size() > 0);
 	}
 

@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.nutz.service.IdEntityService;
+import org.nutz.service.EntityService;
 
 import com.chezhu.dao.model.Spark;
 import com.chezhu.dao.model.SparkView;
 import com.chezhu.dao.model.Style;
 import com.chezhu.util.ContextUtil;
 
-public class SparkViewService extends IdEntityService<SparkView> {
+public class SparkViewService extends EntityService<SparkView> {
 	
 	private StyleService styleService = ContextUtil.getBean(StyleService.class, "styleService");
 	private SparkService sparkService = ContextUtil.getBean(SparkService.class, "sparkService");
@@ -53,7 +53,7 @@ public class SparkViewService extends IdEntityService<SparkView> {
 			resMap.put(styleId, sparkView);
 		}
 		
-		List<SparkView> resList = new ArrayList(resMap.values());
+		List<SparkView> resList = new ArrayList<SparkView>(resMap.values());
 		return resList;
 	}
 

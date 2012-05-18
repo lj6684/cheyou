@@ -2,9 +2,9 @@ package com.chezhu.dao.model;
 
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
-import org.nutz.dao.entity.annotation.View;
+import org.nutz.dao.entity.annotation.Table;
 
-@View("style_view")
+@Table("")
 public class StyleView {
 	@Id
 	@Column("style_id")
