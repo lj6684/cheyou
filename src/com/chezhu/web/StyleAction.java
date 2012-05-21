@@ -58,11 +58,11 @@ public class StyleAction extends ActionSupport {
 	public String add() throws Exception {
 		Style style = new Style();
 		style.setBid(brandId);
-		style.setName(styleName);
+		Brand brand = brandService.fetchLinks(brandId);
+		style.setName(brand.getName() + " " + styleName);
 		styleService.addStyle(style);
 		
 		List<Brand> brands = brandService.getAllBrands();
-		Brand brand = brandService.fetchLinks(brandId);
 		List<Style> styles = brand.getStyles();
 		
 		ActionContext ctx = ActionContext.getContext();
@@ -123,17 +123,18 @@ public class StyleAction extends ActionSupport {
 	
 	public String save() throws Exception {
 		Style style = styleService.fetch(id);
-		style.setName(styleName);
+		Brand brand = brandService.fetchLinks(brandId);
+		style.setName(brand.getName() + " " + styleName);
 		styleService.updateStyle(style);
 		
 		brandId = style.getBid();
 		
 		List<Brand> brands = brandService.getAllBrands();
-		Brand brand = brandService.fetchLinks(brandId);
+		List<Style> styles = brand.getStyles();
 		
 		ActionContext ctx = ActionContext.getContext();
 		ctx.put("brands", brands);
-		ctx.put("styles", brand.getStyles());
+		ctx.put("styles", styles);
 		
 		return SUCCESS;
 	}
