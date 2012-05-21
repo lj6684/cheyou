@@ -42,6 +42,13 @@
 
 		return checked;
 	}
+
+	function clearSuggest() {
+		if($("#queryStr").val() == "请输入您的车型,如 速腾") {
+			$("#queryStr").val("");
+			$("#queryStr").css("color", "black");
+		}
+	}
 </script>
 </head>
 <body>
@@ -75,7 +82,12 @@
 		</div>
 
 		<div class="searchbar">
-			<input class="input_type" type="text" size="35" name="queryStr" id="queryStr" value="<s:property value='queryStr'/>"/>
+			<s:if test="queryStr != null">
+				<input class="input_type" type="text" size="35" name="queryStr" id="queryStr" value="<s:property value='queryStr'/>"/>
+			</s:if>
+			<s:else>
+				<input class="input_suggest" type="text" size="35" name="queryStr" id="queryStr" value="请输入您的车型,如 速腾" onclick="clearSuggest();"/>
+			</s:else>
 			<input class="submit_btn" type="submit" value="">
 			<div class="clear"></div>
 		</div>

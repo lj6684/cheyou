@@ -1,5 +1,5 @@
 @charset "utf-8";
-*{word-break:break-all} /*Ç¿ÖÆ»»ÐÐ*/
+*{word-break:break-all} /*Ç¿ï¿½Æ»ï¿½ï¿½ï¿½*/
 body{color:#000;font-family:Tahoma,Arial,monospace;padding:0px;margin:0px auto;}
 .wrap{padding:0px;width:100%;background:white; margin:0px auto;padding-top:20px;}
 input {}
@@ -28,6 +28,7 @@ input {}
 
 	.searchbar {margin:30px auto;width:354px;paddgin:0;}
 	.input_type {margin: 0;_line-height:32px;_vertical-align: middle;border-width:0;background: url(../images/input_background.gif) no-repeat left top;height:35px;width:270px;font-size:14px;float:left;text-indent:6px;}
+	.input_suggest {color:gray;margin: 0;_line-height:32px;_vertical-align: middle;border-width:0;background: url(../images/input_background.gif) no-repeat left top;height:35px;width:270px;font-size:14px;float:left;text-indent:6px;}
 	.submit_btn {border:none;background:url(../images/search_btn.gif) no-repeat left top;width:74px; height:35px;float:left; cursor:pointer;margin-left:2px;}
 
 
