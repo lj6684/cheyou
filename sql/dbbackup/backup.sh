@@ -1,1 +1,1 @@
-mysqldump -h mysql5-g4.xincache.cn -u net41435719 -pJtsy8TXO net41435719 > $(date +%Y%m%d).sql
+mysqldump -h 127.0.0.1 -u user -11111111 chezhu > $(date +%Y%m%d).sql
