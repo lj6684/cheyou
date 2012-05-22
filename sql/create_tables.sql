@@ -34,6 +34,7 @@ CREATE TABLE supply
 	supply_id INT NOT NULL AUTO_INCREMENT,
 	supply_name VARCHAR(50) NOT NULL UNIQUE,
 	supply_img VARCHAR(100),
+	order_index INT(2) NOT NULL,
 	PRIMARY KEY(supply_id)
 );
 

@@ -45,6 +45,12 @@ public class FilterViewService extends EntityService<FilterView> {
 		return res;
 	}
 	
+	/**
+	 * 根据queryStr和supplyId列表查询符合结果滤清器集合
+	 * @param queryStr
+	 * @param supplyIds
+	 * @return Map<styleName, Map<supplyName, filter>>
+	 */
 	public Map<String, Map<String, FilterView>> queryFilters(String queryStr, List<String> supplyIds) {
 		List<Supply> supplies = supplyService.getSuppliesById(supplyIds);
 		
@@ -65,6 +71,12 @@ public class FilterViewService extends EntityService<FilterView> {
 		return res;
 	}
 	
+	/**
+	 * 根据brandId和supplyId查询滤清器列表
+	 * @param brandId
+	 * @param supplyId
+	 * @return
+	 */
 	public List<FilterView> getStyleFilters(int brandId, int supplyId) {
 		List<Style> styles = styleService.getStyles(brandId);
 		

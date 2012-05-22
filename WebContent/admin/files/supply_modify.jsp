@@ -27,17 +27,27 @@ $(function() {
 <table width="98%" border="0" cellpadding="0" cellspacing="0"
 	class="CContent">
 	<tr>
-		<th class="tablestyle_title" colspan="2">修改品牌信息</th>
+		<th class="tablestyle_title" colspan="2">修改供货商信息</th>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">品牌名称:&nbsp;<input type="text"
+		<td style="width: 70%; align: left">供货商序号:&nbsp;<input type="text"
+			name="orderIndex" style="width: 150px" value="<s:property value="orderIndex"/>"/>&nbsp;<span class="red">*</span>
+		</td>
+	</tr>
+	<tr style="height: 50px">
+		<td style="width: 1%; align: left">&nbsp;</td>
+		<td style="width: 70%; align: left">供货商名称:&nbsp;<input type="text"
 			name="supplyName" style="width: 150px" value="<s:property value="supplyName"/>"/>&nbsp;<span class="red">*</span>
-		&nbsp;&nbsp;<img src="../../<s:property value='supplyImg'/>"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="保存"></input></td>
+		&nbsp;&nbsp;<img src="../../<s:property value='supplyImg'/>"/></td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
 		<td style="width: 70%; align: left"><input type="checkbox" name="updateImg" value="1" id="logoCheckbox"/>&nbsp;更换LOGO&nbsp;&nbsp;<span style="display:none" id="fileItem"><input type="file" name="img" /></span></td>
+	</tr>
+	<tr style="height: 50px">
+		<td style="width: 1%; align: left">&nbsp;</td>
+		<td style="width: 70%; align: left"><input type="submit" value="保存"></input></td>
 	</tr>
 </table>
 </form>

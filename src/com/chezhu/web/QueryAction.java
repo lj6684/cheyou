@@ -9,8 +9,10 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 
 import com.chezhu.dao.FilterViewService;
 import com.chezhu.dao.StyleViewService;
+import com.chezhu.dao.SupplyService;
 import com.chezhu.dao.model.FilterView;
 import com.chezhu.dao.model.StyleView;
+import com.chezhu.dao.model.Supply;
 import com.chezhu.util.ContextUtil;
 import com.chezhu.util.StyleNameCache;
 import com.opensymphony.xwork2.ActionContext;
@@ -23,6 +25,7 @@ public class QueryAction extends ActionSupport implements ServletResponseAware {
 	private String queryStr;
 	private FilterViewService filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
 	private StyleViewService styleViewService = ContextUtil.getBean(StyleViewService.class, "styleViewService");
+	private SupplyService supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
 	private String filterId;
 	private List<String> supplyItem;
 	
@@ -59,9 +62,13 @@ public class QueryAction extends ActionSupport implements ServletResponseAware {
 	public String query() throws Exception {
 		List<StyleView> styles = styleViewService.query(queryStr);
 		Map<String, Map<String, FilterView>> filters = filterViewService.queryFilters(queryStr, supplyItem);
+		// 为前台页面显示结果排序用，后期可以考虑优化为内存提取数据
+		List<Supply> supplies = supplyService.getSuppliesById(supplyItem);
+		
 		ActionContext context = ActionContext.getContext();
 		context.put("styles", styles);
 		context.put("filters", filters);
+		context.put("orderSupplies", supplies);
 		return SUCCESS;
 	}
 	

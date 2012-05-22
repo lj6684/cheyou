@@ -19,11 +19,11 @@ public class SupplyService extends IdNameEntityService<Supply> {
 	}
 	
 	public List<Supply> getAllSupplies() {
-		return this.query(null, null);
+		return this.query(Cnd.orderBy().asc("order_index"), null);
 	}
 	
 	public List<Supply> getSuppliesById(List<String> supplyIds) {
-		Condition c = Cnd.where("supply_id", "in", supplyIds);
+		Condition c = Cnd.where("supply_id", "in", supplyIds).asc("order_index");
 		return this.query(c, null);
 	}
 

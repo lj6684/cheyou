@@ -15,8 +15,16 @@ public class Supply {
 	private String name;
 	@Column("supply_img")
 	private String img;
+	@Column("order_index")
+	private int orderIndex;
 	
 	
+	public int getOrderIndex() {
+		return orderIndex;
+	}
+	public void setOrderIndex(int orderIndex) {
+		this.orderIndex = orderIndex;
+	}
 	public int getId() {
 		return id;
 	}

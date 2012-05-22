@@ -18,6 +18,7 @@ public class Style {
 	@Column("style_img")
 	private String img;	
 	
+	
 	public int getBid() {
 		return bid;
 	}

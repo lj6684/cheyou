@@ -20,6 +20,7 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 	private int id;
 	private String supplyName;
 	private String supplyImg;
+	private int orderIndex;
 	private String updateImg = "0";
 	private SupplyService supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
 	
@@ -31,6 +32,15 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 	private static final String UPLOAD_FILE_PATH = "img/upload/supplies/";
 	
 	
+	
+	public int getOrderIndex() {
+		return orderIndex;
+	}
+
+	public void setOrderIndex(int orderIndex) {
+		this.orderIndex = orderIndex;
+	}
+
 	public String getUpdateImg() {
 		return updateImg;
 	}
@@ -93,6 +103,7 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 		Supply supply = new Supply();
 		supply.setName(supplyName);
 		supply.setImg(imgPath);
+		supply.setOrderIndex(orderIndex);
 		supplyService.addSupply(supply);
 		
 		List<Supply> supplies = supplyService.getAllSupplies();
@@ -121,6 +132,7 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 		Supply supply = supplyService.fetch(id);
 		supplyName = supply.getName();
 		supplyImg = supply.getImg();
+		orderIndex = supply.getOrderIndex();
 		
 		return INPUT;
 	}
@@ -128,6 +140,7 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 	public String save() throws Exception {
 		Supply supply = supplyService.fetch(id);
 		supply.setName(supplyName);
+		supply.setOrderIndex(orderIndex);
 		if(updateImg.equals("1")) {
 			// 选择更新图片
 			String imgPath = saveUploadFile();
@@ -151,6 +164,9 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 		try {
 			String targetDir = context.getRealPath(UPLOAD_FILE_PATH);
 			//System.out.println(targetDir);
+			if(imgFileName == null || imgFileName.trim().equals("")) {
+				return null;
+			}
 			String targetFileName = FileTool.generateFileName(imgFileName);
 			File targetFile = new File(targetDir, targetFileName);
 			FileUtils.copyFile(img, targetFile);

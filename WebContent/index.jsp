@@ -115,14 +115,14 @@
 					<td>XXX</td>
 					<td colspan="6">
 						<table cellspacing="0" id="smalltable">
-							<s:iterator value="#request.filters[styleName]" id="supply" status="sts">
-							<tr>
-								<td class="td_lft"><img src="<s:property value='value.supplyImg'/>" align="middle" alt="<s:property value='key'/>" border="0"></td>
-								<td><s:if test="value.machineOil != null"><s:property value="value.machineOil"/></s:if><s:else>-</s:else></td>
-								<td><s:if test="value.air != null"><s:property value="value.air"/></s:if><s:else>-</s:else></td>
-								<td><s:if test="value.fuelOil != null"><s:property value="value.fuelOil"/></s:if><s:else>-</s:else></td>
+							<s:iterator value="#request.orderSupplies" id="sp" status="sts">
+							<tr> 
+								<td class="td_lft"><img src="<s:property value='#request.filters[styleName][name].supplyImg'/>" align="middle" alt="<s:property value='name'/>" border="0"></td>
+								<td><s:if test="#request.filters[styleName][name].machineOil != null"><s:property value="#request.filters[styleName][name].machineOil"/></s:if><s:else>-</s:else></td>
+								<td><s:if test="#request.filters[styleName][name].air != null"><s:property value="#request.filters[styleName][name].air"/></s:if><s:else>-</s:else></td>
+								<td><s:if test="#request.filters[styleName][name].fuelOil.fuelOil != null"><s:property value="#request.filters[styleName][name].fuelOil"/></s:if><s:else>-</s:else></td>
 								<td>
-									<s:if test="value.airConditionStd != null"><s:property value="value.airConditionStd"/></s:if><s:else>-</s:else>
+									<s:if test="#request.filters[styleName][name].airConditionStd != null"><s:property value="#request.filters[styleName][name].airConditionStd"/></s:if><s:else>-</s:else>
 									<!--  
 									<s:if test="value.airConditionCarbon != null"><s:property value="value.airConditionCarbon"/></s:if><s:else>-</s:else>
 									-->
