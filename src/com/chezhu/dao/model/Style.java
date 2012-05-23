@@ -17,8 +17,16 @@ public class Style {
 	private int bid;
 	@Column("style_img")
 	private String img;	
+	@Column("motor")
+	private String motor;
 	
 	
+	public String getMotor() {
+		return motor;
+	}
+	public void setMotor(String motor) {
+		this.motor = motor;
+	}
 	public int getBid() {
 		return bid;
 	}

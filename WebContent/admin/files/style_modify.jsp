@@ -12,6 +12,7 @@
 <body>
 <form action="style_save.action" method="post">
 	<input type="hidden" name="id" value="<s:property value="id"/>"/>
+	<input type="hidden" name="brandId" value="<s:property value="brandId"/>"/>
 <table width="98%" border="0" cellpadding="0" cellspacing="0"
 	class="CContent">
 	<tr>
@@ -25,6 +26,11 @@
 		<td style="width:1%; align:left">&nbsp;</td>
 		<td style="width:70%; align:left">汽车型号:&nbsp;<input type="text"
 			name="styleName" style="width: 150px" value="<s:property value="styleName"/>"/>&nbsp;<span class="red">*</span></td>
+	</tr>
+	<tr style="height: 50px">
+		<td style="width:1%; align:left">&nbsp;</td>
+		<td style="width:70%; align:left">发动机型号:&nbsp;<input type="text"
+			name="motor" style="width: 150px" value="<s:property value="motor"/>"/></td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width:1%; align:left">&nbsp;</td>

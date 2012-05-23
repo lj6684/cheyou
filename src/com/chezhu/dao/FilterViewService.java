@@ -31,7 +31,7 @@ public class FilterViewService extends EntityService<FilterView> {
 			}
 		}
 		ids += ")";
-		Sql sql = Sqls.create("SELECT f.filter_id, sp.supply_id, sp.supply_name, sp.supply_img, b.brand_id, b.brand_name, b.brand_img, st.style_id, st.style_name, st.style_img, f.air, f.machine_oil, f.fuel_oil, f.air_condition_std, f.air_condition_carbon " +
+		Sql sql = Sqls.create("SELECT f.filter_id, sp.supply_id, sp.supply_name, sp.supply_img, b.brand_id, b.brand_name, b.brand_img, st.style_id, st.style_name, st.style_img, st.motor, f.air, f.machine_oil, f.fuel_oil, f.air_condition_std, f.air_condition_carbon " +
 				"FROM ((filter f " +
 				"INNER JOIN supply sp ON f.supply_id = sp.supply_id) " +
 				"INNER JOIN style st ON f.style_id = st.style_id) " + 
@@ -86,6 +86,7 @@ public class FilterViewService extends EntityService<FilterView> {
 			filterView.setStyleId(style.getId());
 			filterView.setStyleName(style.getName());
 			filterView.setStyleImg(style.getImg());
+			filterView.setMotor(style.getMotor());
 			filterView.setBrandId(style.getBid());
 			filterView.setSupplyId(supplyId);
 			resMap.put(style.getId(), filterView);

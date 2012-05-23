@@ -112,7 +112,14 @@
 				<tr>
 					<td><img src="<s:property value='brandImg'/>"/></td>
 					<td><s:property value="styleName"/></td>
-					<td>XXX</td>
+					<td>
+						<s:if test="motor != null">
+							<s:property value="motor"/>
+						</s:if>
+						<s:else>
+							-
+						</s:else>
+					</td>
 					<td colspan="6">
 						<table cellspacing="0" id="smalltable">
 							<s:iterator value="#request.orderSupplies" id="sp" status="sts">

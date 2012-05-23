@@ -19,7 +19,16 @@ public class StyleView {
 	private String styleImg;
 	@Column("brand_img")
 	private String brandImg;
+	@Column("motor")
+	private String motor;
 	
+	
+	public String getMotor() {
+		return motor;
+	}
+	public void setMotor(String motor) {
+		this.motor = motor;
+	}
 	public int getStyleId() {
 		return styleId;
 	}

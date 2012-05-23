@@ -18,10 +18,20 @@ public class StyleAction extends ActionSupport {
 	private int brandId;
 	private String brandName;
 	private String styleName;
+	private String motor;
 	private BrandService brandService = ContextUtil.getBean(BrandService.class, "brandService");
 	private StyleService styleService = ContextUtil.getBean(StyleService.class, "styleService");
 	
 	
+	
+	public String getMotor() {
+		return motor;
+	}
+
+	public void setMotor(String motor) {
+		this.motor = motor;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -58,10 +68,12 @@ public class StyleAction extends ActionSupport {
 	public String add() throws Exception {
 		Style style = new Style();
 		style.setBid(brandId);
-		Brand brand = brandService.fetchLinks(brandId);
+		Brand brand = brandService.fetch(brandId);
 		style.setName(brand.getName() + " " + styleName);
+		style.setMotor(motor);
 		styleService.addStyle(style);
 		
+		brand = brandService.fetchLinks(brandId);
 		List<Brand> brands = brandService.getAllBrands();
 		List<Style> styles = brand.getStyles();
 		
@@ -113,22 +125,26 @@ public class StyleAction extends ActionSupport {
 	
 	public String view() throws Exception {
 		Style style = styleService.fetch(id);
-		styleName = style.getName();
-		int bid = style.getBid();
-		Brand brand = brandService.fetch(bid);
+		motor = style.getMotor();
+		brandId = style.getBid();
+		Brand brand = brandService.fetch(brandId);
 		brandName = brand.getName();
+		// 显示车型信息时不包括品牌信息，防止品牌信息添加重复
+		styleName = style.getName().substring(brandName.length() + 1);
 		
 		return INPUT;
 	}
 	
 	public String save() throws Exception {
 		Style style = styleService.fetch(id);
-		Brand brand = brandService.fetchLinks(brandId);
+		Brand brand = brandService.fetch(brandId);
 		style.setName(brand.getName() + " " + styleName);
+		style.setMotor(motor);
 		styleService.updateStyle(style);
 		
 		brandId = style.getBid();
 		
+		brand = brandService.fetchLinks(brandId);
 		List<Brand> brands = brandService.getAllBrands();
 		List<Style> styles = brand.getStyles();
 		
