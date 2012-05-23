@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>车主网</title>
-<meta name="keywords" content=""/>
-<meta name="description" content=""/>
+<title>车主网-汽车三滤 火花塞大全 雨刷型号等汽车易损件查询</title>
+<meta name="keywords" content="三滤大全,三滤,火花塞,雨刷"/>
+<meta name="description" content="车主网提供车主三滤型号查询、机油型号查询、火花塞型号查询等汽车易损件查询"/>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/func.js"></script>
 <!-- jQuery -->
@@ -44,7 +44,7 @@
 	}
 
 	function clearSuggest() {
-		if($("#queryStr").val() == "请输入您的车型,如 速腾") {
+		if($("#queryStr").val() == "请输入您的车型，如速腾") {
 			$("#queryStr").val("");
 			$("#queryStr").css("color", "black");
 		}
@@ -60,7 +60,7 @@
 	<div id="search_begin">
 		<div class="accessory_item">
 			<ul>
-				<li id="nav1"><a href="index.html" class="current">三滤+空调滤<span></span></a></li>
+				<li id="nav1"><a href="/" class="current">三滤+空调滤<span></span></a></li>
 				<li id="nav2"><a href="#">机油<span></span></a></li>
 				<li id="nav2"><a href="#">火花塞<span></span></a></li>
 				<li id="nav2"><a href="#">雨刷<span></span></a></li>
@@ -86,7 +86,7 @@
 				<input class="input_type" type="text" size="35" name="queryStr" id="queryStr" value="<s:property value='queryStr'/>"/>
 			</s:if>
 			<s:else>
-				<input class="input_suggest" type="text" size="35" name="queryStr" id="queryStr" value="请输入您的车型,如 速腾" onclick="clearSuggest();"/>
+				<input class="input_suggest" type="text" size="35" name="queryStr" id="queryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>
 			</s:else>
 			<input class="submit_btn" type="submit" value="">
 			<div class="clear"></div>
@@ -137,7 +137,7 @@
 		</table>
 	</div>
 	</s:if>
-	<div id="footer"/>Copyright &copy; 2012 Chezhu5.com <a href="#">提意见</a></div>
+	<div id="footer"/>车主网致力于为车主免费提供<b>汽车三滤 火花塞 雨刷片 刹车片</b>等易损件配件自助查询服务!<br/>Copyrights &copy; 2012 Chezhu5.com 车主网 京ICP备1201703 <a href="#">提意见</a></div>
 </div>
 </body>
 </html>
