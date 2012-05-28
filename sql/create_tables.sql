@@ -52,7 +52,8 @@ CREATE TABLE style
 	brand_id INT NOT NULL,
 	style_name VARCHAR(100) NOT NULL UNIQUE,
 	style_img VARCHAR(100),
-	motor VARCHAR(100),
+	motor VARCHAR(30),
+	outter VARCHAR(30),
 	PRIMARY KEY(style_id)
 );
 

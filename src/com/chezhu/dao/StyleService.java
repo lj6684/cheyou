@@ -40,7 +40,7 @@ public class StyleService extends IdNameEntityService<Style> {
 	}
 	
 	public List<Style> query(String name) {
-		Condition c = Cnd.where("style_name", "like", "%" + name + "%");
+		Condition c = Cnd.where("style_fullname", "like", "%" + name + "%");
 		return this.query(c, null);
 	}
 

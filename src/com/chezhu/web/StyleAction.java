@@ -19,11 +19,20 @@ public class StyleAction extends ActionSupport {
 	private String brandName;
 	private String styleName;
 	private String motor;
+	private String outter;
 	private BrandService brandService = ContextUtil.getBean(BrandService.class, "brandService");
 	private StyleService styleService = ContextUtil.getBean(StyleService.class, "styleService");
 	
 	
 	
+	public String getOutter() {
+		return outter;
+	}
+
+	public void setOutter(String outter) {
+		this.outter = outter;
+	}
+
 	public String getMotor() {
 		return motor;
 	}
@@ -69,8 +78,10 @@ public class StyleAction extends ActionSupport {
 		Style style = new Style();
 		style.setBid(brandId);
 		Brand brand = brandService.fetch(brandId);
-		style.setName(brand.getName() + " " + styleName);
+		style.setName(styleName);
+		style.setOutter(outter);
 		style.setMotor(motor);
+		style.setFullName(brand.getName() + " " + styleName + " " + outter + " " + motor);
 		styleService.addStyle(style);
 		
 		brand = brandService.fetchLinks(brandId);
@@ -126,11 +137,11 @@ public class StyleAction extends ActionSupport {
 	public String view() throws Exception {
 		Style style = styleService.fetch(id);
 		motor = style.getMotor();
+		outter = style.getOutter();
 		brandId = style.getBid();
 		Brand brand = brandService.fetch(brandId);
 		brandName = brand.getName();
-		// 显示车型信息时不包括品牌信息，防止品牌信息添加重复
-		styleName = style.getName().substring(brandName.length() + 1);
+		styleName = style.getName();
 		
 		return INPUT;
 	}
@@ -138,8 +149,10 @@ public class StyleAction extends ActionSupport {
 	public String save() throws Exception {
 		Style style = styleService.fetch(id);
 		Brand brand = brandService.fetch(brandId);
-		style.setName(brand.getName() + " " + styleName);
+		style.setName(styleName);
 		style.setMotor(motor);
+		style.setOutter(outter);
+		style.setFullName(brand.getName() + " " + styleName + " " + outter + " " + motor);
 		styleService.updateStyle(style);
 		
 		brandId = style.getBid();

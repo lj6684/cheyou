@@ -34,7 +34,7 @@ public class StyleNameCache {
 		List<Style> styles = styleService.getAllStyles();
 		names = new ArrayList<String>();
 		for(Style style : styles) {
-			names.add(style.getName());
+			names.add(style.getFullName());
 		}
 		
 		jsonStr = JSON.toJSONString(names);

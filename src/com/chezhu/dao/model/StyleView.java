@@ -21,8 +21,25 @@ public class StyleView {
 	private String brandImg;
 	@Column("motor")
 	private String motor;
+	@Column("outter")
+	private String outter;
+	@Column("style_fullname")
+	private String fullName;
 	
 	
+	
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	public String getOutter() {
+		return outter;
+	}
+	public void setOutter(String outter) {
+		this.outter = outter;
+	}
 	public String getMotor() {
 		return motor;
 	}

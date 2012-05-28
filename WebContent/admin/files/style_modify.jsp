@@ -29,6 +29,11 @@
 	</tr>
 	<tr style="height: 50px">
 		<td style="width:1%; align:left">&nbsp;</td>
+		<td style="width:70%; align:left">排量:&nbsp;<input type="text"
+			name="outter" style="width: 150px" value="<s:property value="outter"/>"/>&nbsp;<span class="red">*</span></td>
+	</tr>
+	<tr style="height: 50px">
+		<td style="width:1%; align:left">&nbsp;</td>
 		<td style="width:70%; align:left">发动机型号:&nbsp;<input type="text"
 			name="motor" style="width: 150px" value="<s:property value="motor"/>"/></td>
 	</tr>
