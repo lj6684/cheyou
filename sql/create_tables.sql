@@ -50,10 +50,11 @@ CREATE TABLE style
 (
 	style_id INT NOT NULL AUTO_INCREMENT,
 	brand_id INT NOT NULL,
-	style_name VARCHAR(100) NOT NULL UNIQUE,
+	style_name VARCHAR(50) NOT NULL UNIQUE,
 	style_img VARCHAR(100),
 	motor VARCHAR(30),
 	outter VARCHAR(30),
+	style_fullname VARCHAR(100),
 	PRIMARY KEY(style_id)
 );
 
