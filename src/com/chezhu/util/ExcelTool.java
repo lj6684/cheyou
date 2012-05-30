@@ -3,12 +3,12 @@ package com.chezhu.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -31,7 +31,7 @@ public class ExcelTool {
 		supplyMap.put("原厂", 2);
 		supplyMap.put("索菲玛", 3);
 		supplyMap.put("马勒", 4);
-		supplyMap.put("曼牌MANN", 5);
+		supplyMap.put("曼牌", 5);
 		supplyMap.put("箭牌", 6);
 		
 		try {
@@ -92,9 +92,9 @@ public class ExcelTool {
 		}
 	}
 
-	public void readFilterFile(String supplyName, int sheetIndex) {
+	public void readSheet(String supplyName, int sheetIndex) {
 		try {
-			InputStream is = new FileInputStream(new File("/Users/lijian/filter.xls"));
+			InputStream is = new FileInputStream(new File("c:/大众.xls"));
 			// 根据输入流创建Workbook对象
 			Workbook wb = WorkbookFactory.create(is);
 			// get到Sheet对象
@@ -118,15 +118,15 @@ public class ExcelTool {
 				Cell airConditionStdCell = row.getCell(7);
 				Cell airConditionCarbonCell = row.getCell(8);
 				
-				String brand = brandCell != null ? brandCell.getRichStringCellValue().getString() : "";
-				String style = styleCell != null ? styleCell.getRichStringCellValue().getString() : "";
-				String outter = outterCell != null ? outterCell.getRichStringCellValue().getString() : "";
-				String motor = motorCell != null ? motorCell.getRichStringCellValue().getString() : "";
-				String machineOil = machineOilCell != null ? machineOilCell.getRichStringCellValue().getString() : "";
-				String fuelOil = fuelOilCell != null ? fuelOilCell.getRichStringCellValue().getString() : "";
-				String air = airCell != null ? airCell.getRichStringCellValue().getString() : "";
-				String airConditionStd = airConditionStdCell != null ? airConditionStdCell.getRichStringCellValue().getString() : "";
-				String airConditionCarbon = airConditionCarbonCell != null ? airConditionCarbonCell.getRichStringCellValue().getString() : "";
+				String brand = getCellValue(brandCell);
+				String style = getCellValue(styleCell);
+				String outter = getCellValue(outterCell);
+				String motor = getCellValue(motorCell);
+				String machineOil = getCellValue(machineOilCell);
+				String fuelOil = getCellValue(fuelOilCell);
+				String air = getCellValue(airCell);
+				String airConditionStd = getCellValue(airConditionStdCell);
+				String airConditionCarbon = getCellValue(airConditionCarbonCell);
 
 				int brandId = 0;
 				if(brandMap.containsKey(brand)) {
@@ -135,6 +135,7 @@ public class ExcelTool {
 					brandIndex++;
 					brandId = brandIndex;
 					logger.error("INSERT INTO brand(brand_id, brand_name) VALUES(" + brandId + ", '" + brand + "');");
+					brandMap.put(brand, brandIndex);
 				}
 				
 				int styleId = 0;
@@ -144,19 +145,62 @@ public class ExcelTool {
 				} else {
 					styleIndex++;
 					styleId = styleIndex;
-					logger.error("INSERT INTO style(style_id, brand_id, style_name, outter, motor, style_fullname) VALUES(" + styleId + ", " + brandId + "' + style + ', '" + outter + "', '" + motor + "', '" + styleFullName + "')");
+					logger.error("INSERT INTO style(style_id, brand_id, style_name, outter, motor, style_fullname) VALUES(" + styleId + ", " + brandId + ", '" + style + "', '" + outter + "', '" + motor + "', '" + styleFullName + "');");
+					styleMap.put(styleFullName, styleIndex);
 				}
 				
-				logger.error("INSERT INTO filter(supply_id, brand_id, style_id, air, machine_oil, fuel_oil, air_condition_std, air_condition_carbon) VALUES()");
+				logger.error("INSERT INTO filter(supply_id, brand_id, style_id, air, machine_oil, fuel_oil, air_condition_std, air_condition_carbon) VALUES(" + supplyId +", " + brandId + ", " + styleId + ", '" + air + "', '" + machineOil + "', '" + fuelOil + "', '" + airConditionStd + "', '" + airConditionCarbon + "');");
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
+	
+	private String getCellValue(Cell cell) {
+		if(cell == null) {
+			return "";
+		}
+		String res = null;
+		switch (cell.getCellType()) {
+		case Cell.CELL_TYPE_BOOLEAN:
+			// 得到Boolean对象的方法
+			System.out.print(cell.getBooleanCellValue() + " ");
+			break;
+		case Cell.CELL_TYPE_NUMERIC:
+			// 先看是否是日期格式
+			if (DateUtil.isCellDateFormatted(cell)) {
+				// 读取日期格式
+				System.out.print(cell.getDateCellValue() + " ");
+			} else {
+				// 读取数字
+				System.out.print(cell.getNumericCellValue() + " ");
+			}
+			break;
+		case Cell.CELL_TYPE_FORMULA:
+			// 读取公式
+			System.out.print(cell.getCellFormula() + " ");
+			break;
+		case Cell.CELL_TYPE_STRING:
+			// 读取String
+			System.out.print(cell.getRichStringCellValue().toString() + " ");
+			break;
+		}
+		return res;
+	}
+	
+	public void readExcel() {
+		readSheet("索菲玛", 0);
+		readSheet("博世", 1);
+		readSheet("马勒", 2);
+		readSheet("曼牌", 3);
+		readSheet("原厂", 4);
+		
+	}
 
 	public static void main(String[] args) {
 		ExcelTool exTool = new ExcelTool();
 		//exTool.readTest();
+		exTool.readExcel();
 	}
 
 }
