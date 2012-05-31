@@ -104,7 +104,7 @@
 		<table cellspacing="0" class="bigtable">
 			<tr>
 				<td class="brand"><img src="<s:property value='brandImg'/>"/></td>
-				<td class="title"><s:property value='styleName'/><s:property value='styleOutter'/></td>
+				<td class="title"><s:property value='styleName'/>&nbsp;<s:property value='styleOutter'/></td>
 				<td class="others">发动机型号：<span class="fdj"><s:property value='styleMotor'/></span></td>
 			</tr>
 		</table>
@@ -121,11 +121,11 @@
 			<s:iterator value="#request.orderSupplies" id="sp" status="sts">
 			<tr>
 				<td style="text-align:left;text-indent:4px;"><img src="<s:property value='#request.filters[styleFullName][name].supplyImg'/>" align="absmiddle" alt="<s:property value='name'/>" border="0"></td>
-				<td><s:if test="#request.filters[styleFullName][name].machineOil != null"><s:property value="#request.filters[styleFullName][name].machineOil"/></s:if><s:else>-</s:else></td>
-				<td><s:if test="#request.filters[styleFullName][name].air != null"><s:property value="#request.filters[styleFullName][name].air"/></s:if><s:else>-</s:else></td>
-				<td><s:if test="#request.filters[styleFullName][name].fuelOil.fuelOil != null"><s:property value="#request.filters[styleFullName][name].fuelOil"/></s:if><s:else>-</s:else></td>
-				<td><s:if test="#request.filters[styleFullName][name].airConditionStd != null"><s:property value="#request.filters[styleFullName][name].airConditionStd"/></s:if><s:else>-</s:else></td>
-				<td><s:if test="#request.filters[styleFullName][name].airConditionCarbon != null"><s:property value="#request.filters[styleFullName][name].airConditionCarbon"/></s:if><s:else>-</s:else></td>
+				<td><s:if test="#request.filters[styleFullName][name].machineOil != null && #request.filters[styleFullName][name].machineOil != ''"><s:property value="#request.filters[styleFullName][name].machineOil"/></s:if><s:else>&nbsp;</s:else></td>
+				<td><s:if test="#request.filters[styleFullName][name].air != null && #request.filters[styleFullName][name].air != ''"><s:property value="#request.filters[styleFullName][name].air"/></s:if><s:else>&nbsp;</s:else></td>
+				<td><s:if test="#request.filters[styleFullName][name].fuelOil != null && #request.filters[styleFullName][name].fuelOil != ''"><s:property value="#request.filters[styleFullName][name].fuelOil"/></s:if><s:else>&nbsp;</s:else></td>
+				<td><s:if test="#request.filters[styleFullName][name].airConditionStd != null && #request.filters[styleFullName][name].airConditionStd != ''"><s:property value="#request.filters[styleFullName][name].airConditionStd"/></s:if><s:else>&nbsp;</s:else></td>
+				<td><s:if test="#request.filters[styleFullName][name].airConditionCarbon != null && #request.filters[styleFullName][name].airConditionCarbon != ''"><s:property value="#request.filters[styleFullName][name].airConditionCarbon"/></s:if><s:else>&nbsp;</s:else></td>
 				<td class="td_rgt"><a href="detail.html">详情>></a></td>
 			</tr>
 			</s:iterator>
