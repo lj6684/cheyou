@@ -8,7 +8,6 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -35,10 +34,6 @@ public class ExcelTool {
 		supplyMap.put("箭牌", 6);
 		
 		try {
-			File file = new File("./sql/excel_filter.sql");
-			file.delete();
-			file.createNewFile();
-			
 			logger.error("truncate table brand;");
 			logger.error("truncate table style;");
 			logger.error("truncate table filter;");
@@ -74,7 +69,7 @@ public class ExcelTool {
 							// 读取数字
 							System.out.print(cell.getNumericCellValue() + " ");
 						}
-						break;
+						//break;
 					case Cell.CELL_TYPE_FORMULA:
 						// 读取公式
 						System.out.print(cell.getCellFormula() + " ");
@@ -94,7 +89,8 @@ public class ExcelTool {
 
 	public void readSheet(String supplyName, int sheetIndex) {
 		try {
-			InputStream is = new FileInputStream(new File("c:/大众.xls"));
+			//InputStream is = new FileInputStream(new File("c:/大众.xls"));
+			InputStream is = new FileInputStream(new File("/Users/lijian/filter.xls"));
 			// 根据输入流创建Workbook对象
 			Workbook wb = WorkbookFactory.create(is);
 			// get到Sheet对象
@@ -160,31 +156,9 @@ public class ExcelTool {
 		if(cell == null) {
 			return "";
 		}
-		String res = null;
-		switch (cell.getCellType()) {
-		case Cell.CELL_TYPE_BOOLEAN:
-			// 得到Boolean对象的方法
-			System.out.print(cell.getBooleanCellValue() + " ");
-			break;
-		case Cell.CELL_TYPE_NUMERIC:
-			// 先看是否是日期格式
-			if (DateUtil.isCellDateFormatted(cell)) {
-				// 读取日期格式
-				System.out.print(cell.getDateCellValue() + " ");
-			} else {
-				// 读取数字
-				System.out.print(cell.getNumericCellValue() + " ");
-			}
-			break;
-		case Cell.CELL_TYPE_FORMULA:
-			// 读取公式
-			System.out.print(cell.getCellFormula() + " ");
-			break;
-		case Cell.CELL_TYPE_STRING:
-			// 读取String
-			System.out.print(cell.getRichStringCellValue().toString() + " ");
-			break;
-		}
+		cell.setCellType(Cell.CELL_TYPE_STRING);
+		String res = cell.getRichStringCellValue().toString().trim();
+
 		return res;
 	}
 	
