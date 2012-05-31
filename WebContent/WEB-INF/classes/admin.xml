@@ -28,7 +28,7 @@
         
         <action name="filter_*" class="com.chezhu.web.FilterAction" method="{1}">
             <result name="success">filter_list.jsp</result>
-            <result name="input">filter_add.jsp</result>
+            <result name="input">filter_modify.jsp</result>
         </action>
         
         <action name="styleSpark_*" class="com.chezhu.web.StyleSparkAction" method="{1}">

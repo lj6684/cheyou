@@ -11,11 +11,11 @@ import com.chezhu.dao.model.StyleView;
 public class StyleViewService extends EntityService<StyleView> {
 	
 	public List<StyleView> query(String name) {
-		Sql sql = Sqls.create("SELECT st.style_id, st.brand_id, st.style_name, st.style_img, st.motor, st.outter, st.style_fullname, b.brand_name, b.brand_img " +
+		Sql sql = Sqls.create("SELECT st.style_id, st.brand_id, st.style_name, st.style_img, st.style_motor, st.style_outter, st.style_fullname, b.brand_name, b.brand_img " +
 				"FROM style st " +
 				"INNER JOIN brand b ON st.brand_id = b.brand_id " +
-				"WHERE st.style_fullname LIKE @name");
-		sql.params().set("name", "%" + name + "%");
+				"WHERE st.style_fullname LIKE @fullName");
+		sql.params().set("fullName", "%" + name + "%");
 		sql.setCallback(Sqls.callback.entities());
 		sql.setEntity(this.dao().getEntity(StyleView.class));
 		this.dao().execute(sql);

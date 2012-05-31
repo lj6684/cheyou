@@ -18,27 +18,42 @@ public class StyleAction extends ActionSupport {
 	private int brandId;
 	private String brandName;
 	private String styleName;
-	private String motor;
-	private String outter;
+	private String styleMotor;
+	private String styleOutter;
 	private BrandService brandService = ContextUtil.getBean(BrandService.class, "brandService");
 	private StyleService styleService = ContextUtil.getBean(StyleService.class, "styleService");
 	
 	
-	
-	public String getOutter() {
-		return outter;
+	public String getStyleMotor() {
+		return styleMotor;
 	}
 
-	public void setOutter(String outter) {
-		this.outter = outter;
+	public void setStyleMotor(String styleMotor) {
+		this.styleMotor = styleMotor;
 	}
 
-	public String getMotor() {
-		return motor;
+	public String getStyleOutter() {
+		return styleOutter;
 	}
 
-	public void setMotor(String motor) {
-		this.motor = motor;
+	public void setStyleOutter(String styleOutter) {
+		this.styleOutter = styleOutter;
+	}
+
+	public BrandService getBrandService() {
+		return brandService;
+	}
+
+	public void setBrandService(BrandService brandService) {
+		this.brandService = brandService;
+	}
+
+	public StyleService getStyleService() {
+		return styleService;
+	}
+
+	public void setStyleService(StyleService styleService) {
+		this.styleService = styleService;
 	}
 
 	public int getId() {
@@ -79,9 +94,9 @@ public class StyleAction extends ActionSupport {
 		style.setBid(brandId);
 		Brand brand = brandService.fetch(brandId);
 		style.setName(styleName);
-		style.setOutter(outter);
-		style.setMotor(motor);
-		style.setFullName(brand.getName() + " " + styleName + " " + outter + " " + motor);
+		style.setOutter(styleOutter);
+		style.setMotor(styleMotor);
+		style.setFullName(brand.getName() + " " + styleName + " " + styleOutter + " " + styleMotor);
 		styleService.addStyle(style);
 		
 		brand = brandService.fetchLinks(brandId);
@@ -136,8 +151,8 @@ public class StyleAction extends ActionSupport {
 	
 	public String view() throws Exception {
 		Style style = styleService.fetch(id);
-		motor = style.getMotor();
-		outter = style.getOutter();
+		styleMotor = style.getMotor();
+		styleOutter = style.getOutter();
 		brandId = style.getBid();
 		Brand brand = brandService.fetch(brandId);
 		brandName = brand.getName();
@@ -150,9 +165,9 @@ public class StyleAction extends ActionSupport {
 		Style style = styleService.fetch(id);
 		Brand brand = brandService.fetch(brandId);
 		style.setName(styleName);
-		style.setMotor(motor);
-		style.setOutter(outter);
-		style.setFullName(brand.getName() + " " + styleName + " " + outter + " " + motor);
+		style.setMotor(styleMotor);
+		style.setOutter(styleOutter);
+		style.setFullName(brand.getName() + " " + styleName + " " + styleOutter + " " + styleMotor);
 		styleService.updateStyle(style);
 		
 		brandId = style.getBid();

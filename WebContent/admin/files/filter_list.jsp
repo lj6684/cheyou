@@ -30,12 +30,11 @@
 <table width="98%" border="0" cellpadding="4" cellspacing="1"
 	bgcolor="#464646" class="newfont03">
 	<tr class="CTitle">
-		<td height="22" colspan="9" align="center" style="font-size: 16px">车型列表</td>
+		<td height="22" colspan="8" align="center" style="font-size: 16px">车型列表</td>
 	</tr>
 	<tr bgcolor="#EEEEEE">
 		<td width="3%" align="center" height="30">No.</td>
 		<td width="30%">车型描述</td>
-		<td width="10%">发动机型号</td>
 		<td width="10%">空气滤清器</td>
 		<td width="10%">机油滤清器</td>
 		<td width="10%">燃油滤清器</td>
@@ -52,8 +51,7 @@
 		</s:else>
 	
 		<td height="20"><s:property value="#st.count"></s:property></td>
-		<td><s:property value="styleName"/></td>
-		<td><s:property value="motor"/></td>
+		<td><s:property value="styleFullName"/></td>
 		<td><s:property value="air"/></td>
 		<td><s:property value="machineOil"/></td>
 		<td><s:property value="fuelOil"/></td>

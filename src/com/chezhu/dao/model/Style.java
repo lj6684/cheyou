@@ -17,9 +17,9 @@ public class Style {
 	private int bid;
 	@Column("style_img")
 	private String img;	
-	@Column("motor")
+	@Column("style_motor")
 	private String motor;
-	@Column("outter")
+	@Column("style_outter")
 	private String outter;
 	@Column("style_fullname")
 	private String fullName;

@@ -24,7 +24,7 @@ public class FilterAction extends ActionSupport {
 	private int supplyId;
 	private String supplyName;
 	private int styleId;
-	private String styleName;
+	private String styleFullName;
 	private int filterId;
 	
 	private String act;
@@ -37,6 +37,15 @@ public class FilterAction extends ActionSupport {
 	private FilterViewService FilterService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
 	
 	
+	
+	public String getStyleFullName() {
+		return styleFullName;
+	}
+
+	public void setStyleFullName(String styleFullName) {
+		this.styleFullName = styleFullName;
+	}
+
 	public int getBrandId() {
 		return brandId;
 	}
@@ -77,14 +86,6 @@ public class FilterAction extends ActionSupport {
 		this.styleId = styleId;
 	}
 
-	public String getStyleName() {
-		return styleName;
-	}
-
-	public void setStyleName(String styleName) {
-		this.styleName = styleName;
-	}
-
 	public int getFilterId() {
 		return filterId;
 	}
@@ -121,7 +122,7 @@ public class FilterAction extends ActionSupport {
 		Brand brand = brandService.fetch(brandId);
 		brandName = brand.getName();
 		Style style = styleService.fetch(styleId);
-		styleName = style.getName();
+		styleFullName = style.getFullName();
 		Supply supply = supplyService.fetch(supplyId);
 		supplyName = supply.getName();
 		

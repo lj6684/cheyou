@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>车主网</title>
+<title>车主网-汽车三滤 火花塞大全 雨刷型号等汽车易损件查询</title>
 <meta name="keywords" content="三滤大全,三滤,火花塞,雨刷"/>
 <meta name="description" content="车主网提供车主三滤型号查询、机油型号查询、火花塞型号查询等汽车易损件查询"/>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -58,10 +58,9 @@
 	<!--search begin-->
 	<form action="query_query.action" method="post" onsubmit="return checkInput();" id="form1">
 	<div id="search_begin">
-				
 		<div class="accessory_item">
 			<ul>
-				<li id="nav1"><a href="index.jsp" class="current">三滤+空调滤<span></span></a></li>
+				<li id="nav1"><a href="/" class="current">三滤+空调滤<span></span></a></li>
 				<li id="nav2"><a href="#">机油<span></span></a></li>
 				<li id="nav2"><a href="#">火花塞<span></span></a></li>
 				<li id="nav2"><a href="#">雨刷<span></span></a></li>
@@ -69,9 +68,8 @@
 			</ul>
 			<div class="clear"></div>
 		</div>
-				
 		<div class="brand_item">
-			<s:set name="supplies" value="#{'2':'原厂', '1':'博世BOSCH', '4':'马勒MAHLE', '3':'索菲玛SOFIMA', '5':'曼牌MANN', '6':'豹王'}"></s:set>
+			<s:set name="supplies" value="#{'2':'原厂', '1':'博世BOSCH', '4':'马勒MAHLE', '3':'索菲玛SOFIMA', '5':'曼牌MANN', '6':'箭牌'}"></s:set>
 			<ul>
 			<s:if test="supplyItem">
 				<s:checkboxlist list="#supplies" name="supplyItem" theme="simple"></s:checkboxlist>
@@ -88,57 +86,65 @@
 				<input class="input_type" type="text" size="35" name="queryStr" id="queryStr" value="<s:property value='queryStr'/>"/>
 			</s:if>
 			<s:else>
-				<input class="input_type" type="text" size="35" name="queryStr" id="queryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>
+				<input class="input_suggest" type="text" size="35" name="queryStr" id="queryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>
 			</s:else>
 			<input class="submit_btn" type="submit" value="">
 			<div class="clear"></div>
 		</div>
 	</div>
 	</form>
-	
 	<s:if test="#request.styles != null">
 	<!--search result-->
 	<div id="search_result">
-		<!--new search_result area--->
-		<s:iterator value="#request.styles" id="style" status="st">
-		<table cellspacing="0" class="bigtable">
+		<table cellspacing="0" id="bigtable">
 			<tr>
-				<td class="brand"><img src="<s:property value='brandImg'/>"/></td>
-				<td class="title"><s:property value='styleName'/><s:property value='styleOutter'/></td>
-				<td class="others">发动机型号：<span class="fdj"><s:property value='styleMotor'/></span></td>
+				<th width="40px">品牌</th>
+				<th width="120px">车型/参数</th>
+				<th width="140px">发动机型号</th>
+				<th width="100px">配件品牌</th>
+				<th width="100px">机油滤芯</th>
+				<th width="100px">空气滤芯</th>
+				<th width="100px">燃油滤芯</th>
+				<th width="100px">空调滤芯</th>
+				<th width="100px">车友验证</th>
 			</tr>
-		</table>
-		<table cellspacing="0" class="detailtb">
-			<tr>
-				<th width="50px" style="text-align:left;text-indent:4px;">品牌</th>
-				<th width="130px">机油滤芯</th>
-				<th width="130px">空气滤芯</th>
-				<th width="130px">燃油滤芯</th>
-				<th width="130px">空调滤(标准)</th>
-				<th width="130px">空调滤(活性碳)</th>
-				<th width="60px">&nbsp;</th>
-			</tr>
-			<s:iterator value="#request.orderSupplies" id="sp" status="sts">
-			<tr>
-				<td style="text-align:left;text-indent:4px;"><img src="<s:property value='#request.filters[styleFullName][name].supplyImg'/>" align="absmiddle" alt="<s:property value='name'/>" border="0"></td>
-				<td><s:if test="#request.filters[styleFullName][name].machineOil != null"><s:property value="#request.filters[styleFullName][name].machineOil"/></s:if><s:else>-</s:else></td>
-				<td><s:if test="#request.filters[styleFullName][name].air != null"><s:property value="#request.filters[styleFullName][name].air"/></s:if><s:else>-</s:else></td>
-				<td><s:if test="#request.filters[styleFullName][name].fuelOil.fuelOil != null"><s:property value="#request.filters[styleFullName][name].fuelOil"/></s:if><s:else>-</s:else></td>
-				<td><s:if test="#request.filters[styleFullName][name].airConditionStd != null"><s:property value="#request.filters[styleFullName][name].airConditionStd"/></s:if><s:else>-</s:else></td>
-				<td><s:if test="#request.filters[styleFullName][name].airConditionCarbon != null"><s:property value="#request.filters[styleFullName][name].airConditionCarbon"/></s:if><s:else>-</s:else></td>
-				<td class="td_rgt"><a href="detail.html">详情>></a></td>
-			</tr>
+			<s:iterator value="#request.styles" id="style" status="st">
+				<tr>
+					<td><img src="<s:property value='brandImg'/>"/></td>
+					<td><s:property value="styleName"/></td>
+					<td>
+						<s:if test="motor != null">
+							<s:property value="motor"/>
+						</s:if>
+						<s:else>
+							-
+						</s:else>
+					</td>
+					<td colspan="6">
+						<table cellspacing="0" id="smalltable">
+							<s:iterator value="#request.orderSupplies" id="sp" status="sts">
+							<tr> 
+								<td class="td_lft"><img src="<s:property value='#request.filters[styleName][name].supplyImg'/>" align="middle" alt="<s:property value='name'/>" border="0"></td>
+								<td><s:if test="#request.filters[styleName][name].machineOil != null"><s:property value="#request.filters[styleName][name].machineOil"/></s:if><s:else>-</s:else></td>
+								<td><s:if test="#request.filters[styleName][name].air != null"><s:property value="#request.filters[styleName][name].air"/></s:if><s:else>-</s:else></td>
+								<td><s:if test="#request.filters[styleName][name].fuelOil.fuelOil != null"><s:property value="#request.filters[styleName][name].fuelOil"/></s:if><s:else>-</s:else></td>
+								<td>
+									<s:if test="#request.filters[styleName][name].airConditionStd != null"><s:property value="#request.filters[styleName][name].airConditionStd"/></s:if><s:else>-</s:else>
+									<!--  
+									<s:if test="value.airConditionCarbon != null"><s:property value="value.airConditionCarbon"/></s:if><s:else>-</s:else>
+									-->
+								</td>
+								<td>&nbsp;</td>
+							</tr>
+							</s:iterator>
+						</table>
+					</td>
+				</tr>
 			</s:iterator>
 		</table>
-
-		<!--hr with many results, if only one item need remove hr-->
-		<s:if test="!#st.last">
-			<hr/>
-		</s:if>
-		</s:iterator>
 	</div>
 	</s:if>
-	<div id="footer"/>Copyright &copy; 2012 Chezhu5.com <a href="#">提意见</a></div>
+	<div id="footer"/>车主网致力于为车主免费提供<b>汽车三滤 火花塞 雨刷片 刹车片</b>等易损件配件自助查询服务!<br/>Copyrights &copy; 2012 Chezhu5.com 车主网 京ICP备1201703 <a href="#">提意见</a></div>
 </div>
 </body>
 </html>

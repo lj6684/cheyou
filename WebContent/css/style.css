@@ -1,12 +1,13 @@
 @charset "utf-8";
-*{word-break:break-all} /*ǿ�ƻ���*/
+*{word-break:break-all}
 body{color:#000;font-family:Tahoma,Arial,monospace;padding:0px;margin:0px auto;}
 .wrap{padding:0px;width:100%;background:white; margin:0px auto;padding-top:20px;}
 input {}
 .clear {clear:both;height:0px;overflow: hidden;margin:0;padding:0;font-size:0}
+form {padding:0;margin:0;}
 
-#topbar {margin-top:70px;}
-#logobar {text-align:center;padding:0;}
+#topbar {margin-top:65px;}
+#logobar {text-align:center;padding:0;height:80px;}
 
 #search_begin {width: 660px;margin: 0 auto;}
 #search_begin .accessory_item {}
@@ -21,24 +22,30 @@ input {}
 
 	
 #search_begin .brand_item {width:631px;padding:10px 0 0 0;margin:0;background:url(../images/brandtab_back.gif) no-repeat center top;}
-#search_begin .brand_item ul {width:520px;list-style:none;padding:0;margin:0 auto;font-size:14px;color:#636465;}
+#search_begin .brand_item ul {width:550px;list-style:none;padding:0;margin:0 auto;font-size:14px;color:#636465;}
 
 #search_begin .brand_item li {float:left;padding: 0 3px;margin:0;}
 #search_begin .brand_item a {font-size:12px;line-height:180%;}
 
 	.searchbar {margin:30px auto;width:354px;paddgin:0;}
-	.input_type {margin: 0;_line-height:32px;_vertical-align: middle;border-width:0;background: url(../images/input_background.gif) no-repeat left top;height:35px;width:270px;font-size:14px;float:left;text-indent:6px;}
-	.input_suggest {color:gray;margin: 0;_line-height:32px;_vertical-align: middle;border-width:0;background: url(../images/input_background.gif) no-repeat left top;height:35px;width:270px;font-size:14px;float:left;text-indent:6px;}
+	.input_type {margin: 0;_line-height:32px;vertical-align: middle;border-width:0;background: url(../images/input_background.gif) no-repeat left top;height:35px;width:270px;font-size:14px;float:left;text-indent:6px;}
+	.input_type:focus{outline:none;}
 	.submit_btn {border:none;background:url(../images/search_btn.gif) no-repeat left top;width:74px; height:35px;float:left; cursor:pointer;margin-left:2px;}
 
 
-#search_result {width:900px;margin:10px auto 0 auto;text-align:center;}
+#search_result {width:762px;margin:10px auto 0 auto;}
 #search_result table {width: 100%;margin:0;padding:0;}
-#search_result th {font-size:14px; text-align:center;color:white;font-weight:normal;line-height:175%;background: #9C9C9C;}
-#bigtable td {font-size:14px;background:url(../images/bigtable_back.gif) no-repeat left bottom;}
-#smalltable td {width:100px;font-size:12px;line-height:200%;border-bottom:solid 1px #D8DEE2;background:none;}
-.td_lft {text-align:left;padding-left:0;text-indent:4px;}
+.bigtable .brand {background:#9c9c9c;width:24px;height:24px}
+.bigtable .title {font-size:18px;background:#9c9c9c;color:white;padding-top:5px; padding-bottom:4px;width:178px;text-indent:4px;}
+.bigtable .others {font-size:13px;color:#444444;padding-left:10px; padding-top:2px;border-bottom:solid 1px #DFDFDF;border-top:solid 1px #DFDFDF;background:#eeeeee}
 
+.detailtb th {font-size:14px; text-align:right;color:#999999;font-weight:normal;line-height:175%;background: #FAFAFA;border-bottom:solid 1px #DFE4E7;padding-top:3px; padding-bottom:2px;}
+.detailtb td {font-size:12px;line-height:150%;border-bottom:solid 1px #DFDFDF;background:none;padding-top:5px;padding-bottom:5px;color:#333;text-align:right;}
+.td_lft {padding-left:0;text-indent:4px;}
+.td_rgt {padding-right:4px;}
 .hot {font-size:12px;padding-top:8px;color:gray;}
+.fdj {font-size:18px;font-weight: bold;}
+
+hr {height:3px;color:#DDD;margin: 10px 0;}
 
 #footer {margin-top:80px;font-size:12px;text-align:center;color: gray;line-height:150%;}

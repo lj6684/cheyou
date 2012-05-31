@@ -28,7 +28,7 @@
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">汽车型号:&nbsp;<s:property value="styleName"/></td>
+		<td style="width: 70%; align: left">汽车型号:&nbsp;<s:property value="styleFullName"/></td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>

@@ -31,13 +31,13 @@ public class FilterViewService extends EntityService<FilterView> {
 			}
 		}
 		ids += ")";
-		Sql sql = Sqls.create("SELECT f.filter_id, sp.supply_id, sp.supply_name, sp.supply_img, b.brand_id, b.brand_name, b.brand_img, st.style_id, st.style_name, st.style_img, st.motor, st.outter, f.air, f.machine_oil, f.fuel_oil, f.air_condition_std, f.air_condition_carbon " +
+		Sql sql = Sqls.create("SELECT f.filter_id, sp.supply_id, sp.supply_name, sp.supply_img, b.brand_id, b.brand_name, b.brand_img, st.style_id, st.style_name, st.style_img, st.style_motor, st.style_outter, st.style_fullname, f.air, f.machine_oil, f.fuel_oil, f.air_condition_std, f.air_condition_carbon " +
 				"FROM ((filter f " +
 				"INNER JOIN supply sp ON f.supply_id = sp.supply_id) " +
 				"INNER JOIN style st ON f.style_id = st.style_id) " + 
 				"INNER JOIN brand b ON f.brand_id = b.brand_id " +
-				"WHERE st.style_name LIKE @name AND sp.supply_id IN " + ids);
-		sql.params().set("name", "%" + queryStr + "%");
+				"WHERE st.style_fullname LIKE @fullName AND sp.supply_id IN " + ids);
+		sql.params().set("fullName", "%" + queryStr + "%");
 		sql.setCallback(Sqls.callback.entities());
 		sql.setEntity(this.dao().getEntity(FilterView.class));
 		this.dao().execute(sql);
@@ -49,7 +49,7 @@ public class FilterViewService extends EntityService<FilterView> {
 	 * 根据queryStr和supplyId列表查询符合结果滤清器集合
 	 * @param queryStr
 	 * @param supplyIds
-	 * @return Map<styleName, Map<supplyName, filter>>
+	 * @return Map<styleFullName, Map<supplyName, filter>>
 	 */
 	public Map<String, Map<String, FilterView>> queryFilters(String queryStr, List<String> supplyIds) {
 		List<Supply> supplies = supplyService.getSuppliesById(supplyIds);
@@ -57,15 +57,15 @@ public class FilterViewService extends EntityService<FilterView> {
 		Map<String, Map<String, FilterView>> res = new HashMap<String, Map<String, FilterView>>();
 		List<Style> styles = styleService.query(queryStr);
 		for(Style style : styles) {
-			res.put(style.getName(), createSampleMap(supplies));
+			res.put(style.getFullName(), createSampleMap(supplies));
 		}
 		
 		List<FilterView> filters = this.queryFilterView(queryStr, supplyIds);
 		for(FilterView filter : filters) {
-			String styleName = filter.getStyleName();
+			String styleFullName = filter.getStyleFullName();
 			String supplyName = filter.getSupplyName();
 			
-			res.get(styleName).put(supplyName, filter);
+			res.get(styleFullName).put(supplyName, filter);
 		}
 		
 		return res;
@@ -86,7 +86,9 @@ public class FilterViewService extends EntityService<FilterView> {
 			filterView.setStyleId(style.getId());
 			filterView.setStyleName(style.getName());
 			filterView.setStyleImg(style.getImg());
-			filterView.setMotor(style.getMotor());
+			filterView.setStyleMotor(style.getMotor());
+			filterView.setStyleOutter(style.getOutter());
+			filterView.setStyleFullName(style.getFullName());
 			filterView.setBrandId(style.getBid());
 			filterView.setSupplyId(supplyId);
 			resMap.put(style.getId(), filterView);

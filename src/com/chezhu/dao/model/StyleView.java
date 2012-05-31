@@ -19,32 +19,31 @@ public class StyleView {
 	private String styleImg;
 	@Column("brand_img")
 	private String brandImg;
-	@Column("motor")
-	private String motor;
-	@Column("outter")
-	private String outter;
+	@Column("style_motor")
+	private String styleMotor;
+	@Column("style_outter")
+	private String styleOutter;
 	@Column("style_fullname")
-	private String fullName;
+	private String styleFullName;
 	
 	
-	
-	public String getFullName() {
-		return fullName;
+	public String getStyleMotor() {
+		return styleMotor;
 	}
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setStyleMotor(String styleMotor) {
+		this.styleMotor = styleMotor;
 	}
-	public String getOutter() {
-		return outter;
+	public String getStyleOutter() {
+		return styleOutter;
 	}
-	public void setOutter(String outter) {
-		this.outter = outter;
+	public void setStyleOutter(String styleOutter) {
+		this.styleOutter = styleOutter;
 	}
-	public String getMotor() {
-		return motor;
+	public String getStyleFullName() {
+		return styleFullName;
 	}
-	public void setMotor(String motor) {
-		this.motor = motor;
+	public void setStyleFullName(String styleFullName) {
+		this.styleFullName = styleFullName;
 	}
 	public int getStyleId() {
 		return styleId;

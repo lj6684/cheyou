@@ -28,10 +28,12 @@ public class FilterView implements Cloneable {
 	private String styleName;
 	@Column("style_img")
 	private String styleImg;
-	@Column("motor")
-	private String motor;
-	@Column("outter")
-	private String outter;
+	@Column("style_motor")
+	private String styleMotor;
+	@Column("style_outter")
+	private String styleOutter;
+	@Column("style_fullname")
+	private String styleFullName;
 	@Column("air")
 	private String air;
 	@Column("machine_oil")
@@ -44,17 +46,24 @@ public class FilterView implements Cloneable {
 	private String airConditionCarbon;
 	
 	
-	public String getOutter() {
-		return outter;
+	
+	public String getStyleFullName() {
+		return styleFullName;
 	}
-	public void setOutter(String outter) {
-		this.outter = outter;
+	public void setStyleFullName(String styleFullName) {
+		this.styleFullName = styleFullName;
 	}
-	public String getMotor() {
-		return motor;
+	public String getStyleMotor() {
+		return styleMotor;
 	}
-	public void setMotor(String motor) {
-		this.motor = motor;
+	public void setStyleMotor(String styleMotor) {
+		this.styleMotor = styleMotor;
+	}
+	public String getStyleOutter() {
+		return styleOutter;
+	}
+	public void setStyleOutter(String styleOutter) {
+		this.styleOutter = styleOutter;
 	}
 	public int getSupplyId() {
 		return supplyId;
