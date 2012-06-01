@@ -110,7 +110,7 @@
 		</table>
 		<table cellspacing="0" class="detailtb">
 			<tr>
-				<th width="50px" style="text-align:left;text-indent:4px;">品牌</th>
+				<th width="80px" style="text-align:left;text-indent:8px;">品牌</th>
 				<th width="130px">机油滤芯</th>
 				<th width="130px">空气滤芯</th>
 				<th width="130px">燃油滤芯</th>

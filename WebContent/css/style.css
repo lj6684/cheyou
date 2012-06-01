@@ -31,21 +31,21 @@ form {padding:0;margin:0;}
 	.input_type {margin: 0;line-height:35px;vertical-align: middle;border-width:0;background: url(../images/input_background.gif) no-repeat left top;height:35px;width:270px;font-size:14px;float:left;text-indent:6px;}
 	.input_suggest {color:gray;margin: 0;line-height:35px;vertical-align: middle;border-width:0;background: url(../images/input_background.gif) no-repeat left top;height:35px;width:270px;font-size:14px;float:left;text-indent:6px;}
 	.input_type:focus{outline:none;}
-	.input_sugges:focus{outline:none;}
+	.input_suggest:focus{outline:none;}
 	.submit_btn {border:none;background:url(../images/search_btn.gif) no-repeat left top;width:74px; height:35px;float:left; cursor:pointer;margin-left:2px;}
 
 
-#search_result {width:762px;margin:10px auto 0 auto;}
+#search_result {width:804px;margin:10px auto 0 auto;}
 #search_result table {width: 100%;margin:0;padding:0;}
 .bigtable {width: 100%;margin:0;padding:0;}
 .bigtable .brand {background:#9c9c9c;width:24px;}
-.bigtable .title {font-size:18px;background:#9c9c9c;color:white;padding-top:5px; padding-bottom:4px;width:178px;text-indent:4px;}
-.bigtable .others {font-size:13px;color:#444444;padding-left:10px; padding-top:2px;border-bottom:solid 1px #DFDFDF;border-top:solid 1px #DFDFDF;background:#eeeeee}
+.bigtable .title {font-size:18px;background:#9c9c9c;color:white;padding-top:5px; padding-bottom:4px;width:188px;text-indent:4px;}
+.bigtable .others {font-size:13px;color:#444444;text-indent:10px; padding-top:2px;border-bottom:solid 1px #DFDFDF;border-top:solid 1px #DFDFDF;background:#eeeeee}
 
 .detailtb {table-layout: fixed;}
 .detailtb th {font-size:14px; text-align:right;color:#999999;font-weight:normal;line-height:175%;background: #FAFAFA;border-bottom:solid 1px #DFE4E7;padding-top:3px; padding-bottom:2px;}
-.detailtb td {font-size:12px;line-height:150%;border-bottom:solid 1px #DFDFDF;background:none;padding-top:5px;padding-bottom:5px;color:#333;text-align:right;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;}
-.td_lft {padding-left:0;text-indent:4px;}
+.detailtb td {font-size:12px;line-height:150%;border-bottom:solid 1px #DFDFDF;background:none;padding-top:5px;padding-bottom:5px;color:#333;text-align:right;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;text-indent:8px;}
+.td_lft {padding-left:0;}
 .td_rgt {padding-right:4px;}
 .hot {font-size:12px;padding-top:8px;color:gray;}
 .fdj {font-size:18px;font-weight: bold;}
