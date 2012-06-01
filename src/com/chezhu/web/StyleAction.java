@@ -96,7 +96,7 @@ public class StyleAction extends ActionSupport {
 		style.setName(styleName);
 		style.setOutter(styleOutter);
 		style.setMotor(styleMotor);
-		style.setFullName(brand.getName() + " " + styleName + " " + styleOutter + " " + styleMotor);
+		style.setFullName(styleName + styleOutter);
 		styleService.addStyle(style);
 		
 		brand = brandService.fetchLinks(brandId);
@@ -167,7 +167,7 @@ public class StyleAction extends ActionSupport {
 		style.setName(styleName);
 		style.setMotor(styleMotor);
 		style.setOutter(styleOutter);
-		style.setFullName(brand.getName() + " " + styleName + " " + styleOutter + " " + styleMotor);
+		style.setFullName(styleName + styleOutter);
 		styleService.updateStyle(style);
 		
 		brandId = style.getBid();
