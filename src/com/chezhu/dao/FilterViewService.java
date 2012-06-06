@@ -21,6 +21,68 @@ public class FilterViewService extends EntityService<FilterView> {
 	private FilterService filterService = ContextUtil.getBean(FilterService.class, "filterService");
 	private SupplyService supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
 	
+	private String querySQL =  "SELECT f.filter_id, sp.supply_id, sp.supply_name, sp.supply_img, b.brand_id, b.brand_name, b.brand_img, st.style_id, st.style_name, st.style_img, st.style_motor, st.style_outter, st.style_fullname, f.air, f.machine_oil, f.fuel_oil, f.air_condition_std, f.air_condition_carbon " +
+			"FROM ((filter f " +
+			"INNER JOIN supply sp ON f.supply_id = sp.supply_id) " +
+			"INNER JOIN style st ON f.style_id = st.style_id) " + 
+			"INNER JOIN brand b ON f.brand_id = b.brand_id ";
+	
+	/**
+	 * 根据ID查FilterView
+	 * 生成详细页面使用
+	 * @param filterId
+	 * @return
+	 */
+	public FilterView fetch(long filterId) {
+		Sql sql = Sqls.create(querySQL + "WHERE f.filter_id=@filterId");
+		sql.params().set("filterId", filterId);
+		sql.setCallback(Sqls.callback.entities());
+		sql.setEntity(this.dao().getEntity(FilterView.class));
+		this.dao().execute(sql);
+		return sql.getObject(FilterView.class);
+	}
+	
+	/**
+	 * 查询全部FilterView集合
+	 * 生成详细页面使用
+	 * @return
+	 */
+	public List<FilterView> getAllFilterViews() {
+		Sql sql = Sqls.create(querySQL);
+		sql.setCallback(Sqls.callback.entities());
+		sql.setEntity(this.dao().getEntity(FilterView.class));
+		this.dao().execute(sql);
+		return sql.getList(FilterView.class);
+	}
+	
+	/**
+	 * 根据车型查询同类FilterView集合
+	 * 生成详细页面使用
+	 * @param id
+	 */
+	public List<FilterView> queryFilterViewByStyle(long id) {
+		Sql sql = Sqls.create(querySQL + "WHERE st.style_id=@id");
+		sql.params().set("id", id);
+		sql.setCallback(Sqls.callback.entities());
+		sql.setEntity(this.dao().getEntity(FilterView.class));
+		this.dao().execute(sql);
+		return sql.getList(FilterView.class);
+	}
+	
+	/**
+	 * 根据品牌&供应商查询同类FilterView集合
+	 * 生成详细页面使用
+	 */
+	public List<FilterView> queryFilterViewByBrandSP(long brandId, long supplyId) {
+		Sql sql = Sqls.create(querySQL + "WHERE b.brand_id=@brandId AND sp.supply_id=@supplyId");
+		sql.params().set("brandId", brandId);
+		sql.params().set("supplyId", supplyId);
+		sql.setCallback(Sqls.callback.entities());
+		sql.setEntity(this.dao().getEntity(FilterView.class));
+		this.dao().execute(sql);
+		return sql.getList(FilterView.class);
+	}
+	
 	public List<FilterView> queryFilterView(String queryStr, List<String> supplyIds) {
 		String ids = "(";
 		for(int i = 0; i < supplyIds.size(); i++) {
@@ -31,11 +93,7 @@ public class FilterViewService extends EntityService<FilterView> {
 			}
 		}
 		ids += ")";
-		Sql sql = Sqls.create("SELECT f.filter_id, sp.supply_id, sp.supply_name, sp.supply_img, b.brand_id, b.brand_name, b.brand_img, st.style_id, st.style_name, st.style_img, st.style_motor, st.style_outter, st.style_fullname, f.air, f.machine_oil, f.fuel_oil, f.air_condition_std, f.air_condition_carbon " +
-				"FROM ((filter f " +
-				"INNER JOIN supply sp ON f.supply_id = sp.supply_id) " +
-				"INNER JOIN style st ON f.style_id = st.style_id) " + 
-				"INNER JOIN brand b ON f.brand_id = b.brand_id " +
+		Sql sql = Sqls.create(querySQL +
 				"WHERE st.style_fullname LIKE @fullName AND sp.supply_id IN " + ids);
 		sql.params().set("fullName", "%" + queryStr + "%");
 		sql.setCallback(Sqls.callback.entities());

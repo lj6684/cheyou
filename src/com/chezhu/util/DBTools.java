@@ -7,7 +7,7 @@ import com.chezhu.dao.model.Brand;
 
 public class DBTools {
 	
-	static {
+	public DBTools() {
 		ContextUtil.initIocContext();
 	}
 	

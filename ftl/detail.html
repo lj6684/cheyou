@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dth XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dth/xhtml1-transitional.dth">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>车主网</title>
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/func.js"></script>
+</head>
+<body>
+<div class="wrap_detail">
+	<div id="logobar_detail"><a href="/"><img src="../images/logo.gif" border="0"/></a></div>
+	<div class="searchbar_detail">
+			<input class="input_type" type="text" size="35" name="model" value="请输入车型 如波罗" style="color:gray;"/>
+			<input class="submit_btn" type="submit" value="" onclick="window.location.href='index2.html';">
+			<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	<div class="navbar">${styleFullName}三滤型号对照表含机油滤清器(又称机滤) 空气滤清器(空滤) 燃油滤清器(汽滤) 空调滤清器(空调滤)也称机油格 空气格 燃油格 冷气格等所有三滤型号的对照明细。</div>
+<!--left body begin-->
+<div class="lft_detail">
+	<h1>${styleFullName} 三滤型号对照表 博世品牌</h1>
+		<table cellspacing="0" class="bigtable">
+			<tr>
+				<td class="brand"><img src="images/dazhong.gif"/></td>
+				<td class="title">${styleFullName}</td>
+				<td class="others">发动机型号：<span class="fdj">${styleMottor}</span></td>
+			</tr>
+		</table>
+		<table cellspacing="0" class="detailtb">
+			<tr>
+				<th width="50px" style="text-align:left;text-indent:4px;">品牌</th>
+				<th width="130px">机油滤芯</th>
+				<th width="130px">空气滤芯</th>
+				<th width="130px">燃油滤芯</th>
+				<th width="130px">空调滤(标准)</th>
+				<th width="130px">空调滤(活性碳)</th>
+			</tr>
+			<tr>
+				<td style="text-align:left;text-indent:4px"><a href="#"><img src="../${supplyImg}" align="absmiddle" alt="${supplyName}" border="0"></a></td>
+				<td>${machineOil}</td>
+				<td>${air}</td>
+				<td>${fuelOil}</td>
+				<td>${airConditionStd}</td>
+				<td>${airConditionCarbon}</td>
+			</tr>
+		</table>
+	<h3>${styleFullName}其他品牌三滤型号</h2>
+	<div class="area">
+		<ul class="brand_link">			<#list otherSupplies as f>
+			<li><a href="detail_${f.filterId}.html"><img src="../${f.supplyImg}" border="0"/></a></li>			</#list>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<h2>${styleFullName}${supplyName}品牌三滤图片</h2>
+	<div class="area">
+	图片展示：图文
+	</div>
+	<h2>博世品牌介绍</h2>
+	<div class="area">
+	博世品牌介绍：图文
+	</div>
+
+</div>
+
+<!--left body end--->
+
+<!--right link begin-->
+<div class="rgt_detail">
+	其他${brandName}车型${supplyName}品牌三滤型号对照表
+	<ul class="text_link">		<#list otherStyles as f>
+		<li><a href="detail_${f.filterId}.html">${f.styleFullName}</a></li>		</#list>
+	</ul>
+</div>
+<div class="clear"></div>
+<!--right link end--->
+
+<div id="footer"/>车主网致力于为车主免费提供<b>汽车三滤 火花塞 雨刷片 刹车片</b>等易损件配件自助查询服务!<br/>Copyrights &copy; 2012 Chezhu5.com 车主网 京ICP备1201703 <a href="#">提意见</a></div>
+</div>
+</body>
+</html>
