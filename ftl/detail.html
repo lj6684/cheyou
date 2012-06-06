@@ -6,15 +6,13 @@
 <meta name="keywords" content=""/>
 <meta name="description" content=""/>
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../js/func.js"></script>
+<script type="text/javascript" src="../js/func.js"></script><!-- jQuery --><link href="../css/ui-lightness/jquery-ui-autocomplete.css" rel="stylesheet" type="text/css" /><script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script><script type="text/javascript" src="../js/jquery-ui-autocomplete.js"></script><script type="text/javascript">	// Ajax请求AutoComplet数据	$(function() {		$.getJSON("../query_init.action",			null,			function(data) {				$("#queryStr").autocomplete({					source: data				});						});	});	function clearSuggest() {		if($("#queryStr").val() == "请输入您的车型，如速腾") {			$("#queryStr").val("");			$("#queryStr").css("color", "black");		}	}</script>
 </head>
 <body>
 <div class="wrap_detail">
 	<div id="logobar_detail"><a href="/"><img src="../images/logo.gif" border="0"/></a></div>
-	<div class="searchbar_detail">
-			<input class="input_type" type="text" size="35" name="model" value="请输入车型 如波罗" style="color:gray;"/>
-			<input class="submit_btn" type="submit" value="" onclick="window.location.href='index2.html';">
-			<div class="clear"></div>
+	<div class="searchbar_detail">		<form action="../query_query.action" method="post" id="form1">			<div style="display:none;">				<input type="checkbox" name="supplyItem" value="1" checked="checked"/>				<input type="checkbox" name="supplyItem" value="2" checked="checked"/>				<input type="checkbox" name="supplyItem" value="3" checked="checked"/>				<input type="checkbox" name="supplyItem" value="4" checked="checked"/>				<input type="checkbox" name="supplyItem" value="5" checked="checked"/>			</div>
+			<input class="input_suggest" type="text" size="35" name="queryStr" id="queryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>			<input class="submit_btn" type="submit" value="">			<div class="clear"></div>		</form>
 	</div>
 	<div class="clear"></div>
 	<div class="navbar">${styleFullName}三滤型号对照表含机油滤清器(又称机滤) 空气滤清器(空滤) 燃油滤清器(汽滤) 空调滤清器(空调滤)也称机油格 空气格 燃油格 冷气格等所有三滤型号的对照明细。</div>
@@ -23,7 +21,7 @@
 	<h1>${styleFullName} 三滤型号对照表 博世品牌</h1>
 		<table cellspacing="0" class="bigtable">
 			<tr>
-				<td class="brand"><img src="images/dazhong.gif"/></td>
+				<td class="brand"><img src="../${brandImg}"/></td>
 				<td class="title">${styleFullName}</td>
 				<td class="others">发动机型号：<span class="fdj">${styleMottor}</span></td>
 			</tr>

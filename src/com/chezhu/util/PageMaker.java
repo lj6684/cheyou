@@ -24,6 +24,8 @@ public class PageMaker {
 	
 	public void makeFilterPage() {
 		try {
+			boolean once = false;
+			
 			FilterViewService filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
 			
 			List<FilterView> all = filterViewService.getAllFilterViews();
@@ -37,6 +39,7 @@ public class PageMaker {
 			for(FilterView filterView : all) {
 				// 可以考虑使用工具自动处理
 				Map data = new HashMap();
+				data.put("brandImg", filterView.getBrandImg());
 				data.put("styleFullName", filterView.getStyleFullName());
 				data.put("styleMottor", filterView.getStyleMotor());
 				data.put("supplyName", filterView.getSupplyName());
@@ -57,6 +60,10 @@ public class PageMaker {
 				template.process(data, writer);
 				writer.flush();
 				writer.close();
+				
+				if(once) {
+					break;
+				}
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();

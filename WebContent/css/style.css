@@ -43,8 +43,8 @@ form {padding:0;margin:0;}
 .bigtable .others {font-size:13px;color:#444444;text-indent:10px; padding-top:2px;border-bottom:solid 1px #DFDFDF;border-top:solid 1px #DFDFDF;background:#eeeeee}
 
 .detailtb {table-layout: fixed;}
-.detailtb th {font-size:14px; text-align:right;color:#999999;font-weight:normal;line-height:175%;background: #FAFAFA;border-bottom:solid 1px #DFE4E7;padding-top:3px; padding-bottom:2px;}
-.detailtb td {font-size:12px;line-height:150%;border-bottom:solid 1px #DFDFDF;background:none;padding-top:5px;padding-bottom:5px;color:#333;text-align:right;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;text-indent:8px;}
+.detailtb tr th {font-size:14px; text-align:right;color:#999999;font-weight:normal;line-height:175%;background: #FAFAFA;border-bottom:solid 1px #DFE4E7;padding-top:3px; padding-bottom:2px;}
+.detailtb tr td {font-size:12px;line-height:150%;border-bottom:solid 1px #DFDFDF;background:none;padding-top:5px;padding-bottom:5px;color:#333;text-align:right;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;text-indent:8px;}
 .td_lft {padding-left:0;}
 .td_rgt {padding-right:4px;}
 .hot {font-size:12px;padding-top:8px;color:gray;}
