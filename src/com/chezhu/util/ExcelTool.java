@@ -45,7 +45,8 @@ public class ExcelTool {
 	
 	public void readTest() {
 		try {
-			InputStream is = new FileInputStream(new File("/Users/lijian/filter.xls"));
+			//InputStream is = new FileInputStream(new File("/Users/lijian/filter.xls"));
+			InputStream is = new FileInputStream(new File("c:/filter.xls"));
 			// 根据输入流创建Workbook对象
 			Workbook wb = WorkbookFactory.create(is);
 			// get到Sheet对象
@@ -89,8 +90,8 @@ public class ExcelTool {
 
 	public void readSheet(String supplyName, int sheetIndex) {
 		try {
-			//InputStream is = new FileInputStream(new File("c:/大众.xls"));
-			InputStream is = new FileInputStream(new File("/Users/lijian/filter.xls"));
+			InputStream is = new FileInputStream(new File("c:/filter.xls"));
+			//InputStream is = new FileInputStream(new File("/Users/lijian/filter.xls"));
 			// 根据输入流创建Workbook对象
 			Workbook wb = WorkbookFactory.create(is);
 			// get到Sheet对象
@@ -135,13 +136,13 @@ public class ExcelTool {
 				}
 				
 				int styleId = 0;
-				String styleFullName = brand + " " + style + " " + outter + " " + motor;
+				String styleFullName = style + outter;
 				if(styleMap.containsKey(styleFullName)) {
 					styleId = styleMap.get(styleFullName);
 				} else {
 					styleIndex++;
 					styleId = styleIndex;
-					logger.error("INSERT INTO style(style_id, brand_id, style_name, outter, motor, style_fullname) VALUES(" + styleId + ", " + brandId + ", '" + style + "', '" + outter + "', '" + motor + "', '" + styleFullName + "');");
+					logger.error("INSERT INTO style(style_id, brand_id, style_name, style_outter, style_motor, style_fullname) VALUES(" + styleId + ", " + brandId + ", '" + style + "', '" + outter + "', '" + motor + "', '" + styleFullName + "');");
 					styleMap.put(styleFullName, styleIndex);
 				}
 				
