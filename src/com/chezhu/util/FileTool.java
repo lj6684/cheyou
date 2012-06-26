@@ -35,6 +35,14 @@ public class FileTool {
 	 * @return
 	 */
 	public static String generatePinyinFileName(String name, String fileName) {
+		String res = getPinyin(name);
+		int position = fileName.lastIndexOf(".");
+		String extension = fileName.substring(position);
+		
+		return res + extension;
+	}
+	
+	public static String getPinyin(String name) {
 		HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
 		format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
 		String res = "";
@@ -46,10 +54,7 @@ public class FileTool {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		int position = fileName.lastIndexOf(".");
-		String extension = fileName.substring(position);
-		
-		return res + extension;
+		return res;
 	}
 
 }

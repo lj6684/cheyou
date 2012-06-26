@@ -131,7 +131,7 @@ public class ExcelTool {
 				} else {
 					brandIndex++;
 					brandId = brandIndex;
-					//logger.error("INSERT INTO brand(brand_id, brand_name) VALUES(" + brandId + ", '" + brand + "');");
+					logger.error("INSERT INTO brand(brand_id, brand_name, brand_img) VALUES(" + brandId + ", '" + brand + "', 'images/brand/" + FileTool.getPinyin(brand) + ".jpg');");
 					brandMap.put(brand, brandIndex);
 				}
 				
@@ -142,7 +142,7 @@ public class ExcelTool {
 				} else {
 					styleIndex++;
 					styleId = styleIndex;
-					//logger.error("INSERT INTO style(style_id, brand_id, style_name, style_outter, style_motor, style_fullname) VALUES(" + styleId + ", " + brandId + ", '" + style + "', '" + outter + "', '" + motor + "', '" + styleFullName + "');");
+					logger.error("INSERT INTO style(style_id, brand_id, style_name, style_outter, style_motor, style_fullname) VALUES(" + styleId + ", " + brandId + ", '" + style + "', '" + outter + "', '" + motor + "', '" + styleFullName + "');");
 					styleMap.put(styleFullName, styleIndex);
 				}
 				
