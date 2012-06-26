@@ -33,7 +33,9 @@ public class PageMaker {
 			Configuration config = new Configuration();
 			config.setDirectoryForTemplateLoading(new File("./ftl"));
 			config.setObjectWrapper(new DefaultObjectWrapper());
-			
+			// 取消数字每3位自动格式化
+			config.setNumberFormat("#");
+			           
 			Template template = config.getTemplate("sanlv.html");
 			
 			for(FilterView filterView : all) {
@@ -72,6 +74,7 @@ public class PageMaker {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		System.out.println("finished.");
 	}
 	
 	/**

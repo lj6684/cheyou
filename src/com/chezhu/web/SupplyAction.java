@@ -29,7 +29,7 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 	private String imgFileName;
 	private ServletContext context;
 	
-	private static final String UPLOAD_FILE_PATH = "img/upload/supplies/";
+	private static final String UPLOAD_FILE_PATH = "images/supply/";
 	
 	
 	
@@ -167,7 +167,7 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 			if(imgFileName == null || imgFileName.trim().equals("")) {
 				return null;
 			}
-			String targetFileName = FileTool.generateFileName(imgFileName);
+			String targetFileName = FileTool.generatePinyinFileName(supplyName, imgFileName);
 			File targetFile = new File(targetDir, targetFileName);
 			FileUtils.copyFile(img, targetFile);
 			

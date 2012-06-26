@@ -5,6 +5,10 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
+import net.sourceforge.pinyin4j.PinyinHelper;
+import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
+import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.util.ServletContextAware;
 
@@ -28,7 +32,7 @@ public class BrandAction extends ActionSupport implements ServletContextAware {
 	private String imgFileName;
 	private ServletContext context;
 	//C:/Documents and Settings/jian_li/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/cheyou/img/upload
-	private static final String UPLOAD_FILE_PATH = "img/upload/brands/";
+	private static final String UPLOAD_FILE_PATH = "images/brand/";
 	
 	
 	public String getUpdateImg() {
@@ -148,7 +152,7 @@ public class BrandAction extends ActionSupport implements ServletContextAware {
 		try {
 			String targetDir = context.getRealPath(UPLOAD_FILE_PATH);
 			//System.out.println(targetDir);
-			String targetFileName = FileTool.generateFileName(imgFileName);
+			String targetFileName = FileTool.generatePinyinFileName(brandName, imgFileName);
 			File targetFile = new File(targetDir, targetFileName);
 			FileUtils.copyFile(img, targetFile);
 			
@@ -157,5 +161,9 @@ public class BrandAction extends ActionSupport implements ServletContextAware {
 			ex.printStackTrace();
 			return null;
 		}
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 }
