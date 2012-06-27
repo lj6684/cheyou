@@ -83,6 +83,20 @@ public class FilterViewService extends EntityService<FilterView> {
 		return sql.getList(FilterView.class);
 	}
 	
+	/**
+	 * 根据车型查询同类FilterView原厂数据(对比显示用)
+	 * 生成详细页面使用
+	 * @param id
+	 */
+	public FilterView queryOriginalFilterViewByStyle(long id) {
+		Sql sql = Sqls.create(querySQL + "WHERE st.style_id=@id AND sp.supply_id=2");
+		sql.params().set("id", id);
+		sql.setCallback(Sqls.callback.entities());
+		sql.setEntity(this.dao().getEntity(FilterView.class));
+		this.dao().execute(sql);
+		return sql.getObject(FilterView.class);
+	}
+	
 	public List<FilterView> queryFilterView(String queryStr, List<String> supplyIds) {
 		String ids = "(";
 		for(int i = 0; i < supplyIds.size(); i++) {
