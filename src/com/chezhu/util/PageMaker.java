@@ -43,21 +43,25 @@ public class PageMaker {
 				System.out.println(filterView.getFilterId());
 				// 可以考虑使用工具自动处理
 				Map data = new HashMap();
-				if(filterView.getBrandImg() != null) {
-					data.put("brandImg", filterView.getBrandImg());
-				} else {
-					data.put("brandImg", "");
+				
+
+				boolean showOriginal = true;
+				if(filterView.getSupplyId() == 2) {
+					// 仅原厂数据
+					showOriginal = false;
 				}
+				data.put("showOriginal", showOriginal);
+				data.put("brandImg", formatImg(filterView.getBrandImg()));
 				data.put("styleFullName", filterView.getStyleFullName());
-				data.put("styleMottor", filterView.getStyleMotor());
+				data.put("styleMottor", formatStr(filterView.getStyleMotor()));
 				data.put("supplyName", filterView.getSupplyName());
-				data.put("supplyImg", filterView.getSupplyImg());
+				data.put("supplyImg", formatImg(filterView.getSupplyImg()));
 				data.put("brandName", filterView.getBrandName());
-				data.put("machineOil", formatConent(filterView.getMachineOil()));
-				data.put("fuelOil", formatConent(filterView.getFuelOil()));
-				data.put("air", formatConent(filterView.getAir()));
-				data.put("airConditionStd", formatConent(filterView.getAirConditionStd()));
-				data.put("airConditionCarbon", formatConent(filterView.getAirConditionCarbon()));
+				data.put("machineOil", formatStr(filterView.getMachineOil()));
+				data.put("fuelOil", formatStr(filterView.getFuelOil()));
+				data.put("air", formatStr(filterView.getAir()));
+				data.put("airConditionStd", formatStr(filterView.getAirConditionStd()));
+				data.put("airConditionCarbon", formatStr(filterView.getAirConditionCarbon()));
 				
 				
 				// 查本车型对应原厂数据(供对比查看)
@@ -141,9 +145,29 @@ public class PageMaker {
 	 * @return
 	 */
 	public String formatConent(String str) {
-		if(str != null && !str.trim().equals("") && str.indexOf("/") > 0) {
-			String res = str.replaceAll("/", "<br/>");
-			return res;
+		if(str == null || str.trim().equals("")) {
+			return "&nbsp;";
+		} else {
+			if(str.indexOf("/") > 0) {
+				String res = str.replaceAll("/", "<br/>");
+				return res;
+			} else {
+				return str;
+			}
+		}
+	}
+	
+	public String formatStr(String str) {
+		if(str == null || str.trim().equals("")) {
+			return "&nbsp;";
+		} else {
+			return str;
+		}
+	}
+	
+	public String formatImg(String str) {
+		if(str == null || str.trim().equals("")) {
+			return "";
 		} else {
 			return str;
 		}
