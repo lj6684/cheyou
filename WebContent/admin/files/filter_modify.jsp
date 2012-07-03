@@ -18,45 +18,62 @@
 	<s:hidden name="filter.styleId" value="%{styleId}"></s:hidden>
 	<s:hidden name="brandId"></s:hidden>
 	<s:hidden name="supplyId"></s:hidden>
-<table width="98%" border="0" cellpadding="0" cellspacing="0" class="CContent">
+<table width="98%" border="0" cellpadding="0" cellspacing="0" id="datatable">
 	<tr>
-		<th class="tablestyle_title" colspan="2">滤清器</th>
+		<th class="tablestyle_title" colspan="4">滤清器</th>
 	</tr>
 	<tr style="height: 50px">
-		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">汽车品牌:&nbsp;<s:property value="brandName"/></td>
+		<td style="width:10px; align:left">&nbsp;</td>
+		<td style="width:100px; align:right;">汽车品牌:</td>
+		<td style="width:400px; align:left;"><s:property value="brandName"/></td>
+		<td style="width:auto; align:left;">&nbsp;</td>
 	</tr>
 	<tr style="height: 50px">
-		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">汽车型号:&nbsp;<s:property value="styleFullName"/></td>
+		<td style="width:10px; align:left">&nbsp;</td>
+		<td style="width:100px; align:right;">汽车型号:</td>
+		<td style="width:400px; align:left;"><s:property value="styleFullName"/></td>
+		<td style="width:auto; align:left;">&nbsp;</td>
 	</tr>
 	<tr style="height: 50px">
-		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">供应商名称:&nbsp;<s:property value="supplyName"/></td>
+		<td style="width:10px; align:left">&nbsp;</td>
+		<td style="width:100px; align:right;">供应商名称:</td>
+		<td style="width:400px; align:left;"><s:property value="supplyName"/></td>
+		<td style="width:auto; align:left;">&nbsp;</td>
 	</tr>
 	<tr style="height: 50px">
-		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">空气滤清器:&nbsp;<s:textfield name="filter.air" theme="simple"></s:textfield> </td>
+		<td style="width:10px; align:left">&nbsp;</td>
+		<td style="width:100px; align:right;">空气滤清器:</td>
+		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.air" theme="simple"></s:textfield></td>
+		<td style="width:auto; align:left;"><s:a href="filter_desc.action">详细描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
-		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">机油滤清器:&nbsp;<s:textfield name="filter.machineOil" theme="simple"></s:textfield> </td>
+		<td style="width:10px; align:left">&nbsp;</td>
+		<td style="width:100px; align:right;">机油滤清器:</td>
+		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.machineOil" theme="simple"></s:textfield></td>
+		<td style="width:auto; align:left;"><s:a href="filter_desc.action">详细描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
-		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">燃油滤清器:&nbsp;<s:textfield name="filter.fuelOil" theme="simple"></s:textfield> </td>
+		<td style="width:10px; align:left">&nbsp;</td>
+		<td style="width:100px; align:right;">燃油滤清器:</td>
+		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.fuelOil" theme="simple"></s:textfield></td>
+		<td style="width:auto; align:left;"><s:a href="filter_desc.action">详细描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
-		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">空调滤(标准):&nbsp;<s:textfield name="filter.airConditionStd" theme="simple"></s:textfield> </td>
+		<td style="width:10px; align:left">&nbsp;</td>
+		<td style="width:100px; align:right;">空调滤(标准):</td>
+		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.airConditionStd" theme="simple"></s:textfield></td>
+		<td style="width:auto; align:left;"><s:a href="filter_desc.action">详细描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
-		<td style="width: 1%; align: left">&nbsp;</td>
-		<td style="width: 70%; align: left">空调滤(活性炭):&nbsp;<s:textfield name="filter.airConditionCarbon" theme="simple"></s:textfield> </td>
+		<td style="width:10px; align:left">&nbsp;</td>
+		<td style="width:100px; align:right;">空调滤(活性炭):</td>
+		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.airConditionCarbon" theme="simple"></s:textfield></td>
+		<td style="width:auto; align:left;"><s:a href="filter_desc.action">详细描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
-		<td style="width: 1%; align: left">&nbsp;</td>
-		<td><input type="submit" value="保存"></input></td>
+		<td>&nbsp;</td>
+		<td colspan="2"><input type="submit" value="保存"></input></td>
+		<td>&nbsp;</td>
 	</tr>
 </table>
 </form>

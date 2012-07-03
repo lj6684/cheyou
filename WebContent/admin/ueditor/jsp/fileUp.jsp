@@ -21,7 +21,7 @@
     <%
     //仅做示例用，请自行修改
     //保存文件路径
-    String filePath = "jsp/upload";
+    String filePath = "upload";
     String realPath = request.getRealPath("\\") + filePath;
     request.setCharacterEncoding("utf-8");
     //判断路径是否存在，不存在则创建

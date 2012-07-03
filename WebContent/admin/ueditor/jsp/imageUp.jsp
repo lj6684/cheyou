@@ -90,7 +90,9 @@
             e.printStackTrace();
         }
     	title = title.replace("&", "&amp;").replace("'", "&qpos;").replace("\"", "&quot;").replace("<", "&lt;").replace(">", "&gt;");
-        response.getWriter().print("{'original':'"+originalName+"','url':'"+filePath.substring(filePath.lastIndexOf("/")+1,filePath.length())+"/"+fileName+"','title':'"+title+"','state':'"+state+"'}");
+    	String resJson = "{'original':'"+originalName+"','url':'"+filePath.substring(filePath.lastIndexOf("/")+1,filePath.length())+"/"+fileName+"','title':'"+title+"','state':'"+state+"'}";
+    	System.out.println(resJson);
+        response.getWriter().print(resJson);
 
     }
     %>

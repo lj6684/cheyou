@@ -144,10 +144,15 @@ public class FilterAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	public String delete() throws Exception{
+	public String delete() throws Exception {
 		filterService.delete(filterId);
 		initData();
 		return SUCCESS;
+	}
+	
+	public String desc() throws Exception {
+		
+		return "desc";
 	}
 	
 	private void initData() {
