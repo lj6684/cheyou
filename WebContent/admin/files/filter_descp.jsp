@@ -1,38 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=8">
-    <title>完整demo</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <script type="text/javascript" charset="utf-8" src="../ueditor/editor_config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../ueditor/editor_all_min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../ueditor/themes/default/ueditor.css"/>
-    <style type="text/css">
-        .clear{
-            clear: both;
-        }
-    </style>
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<title>描述信息</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<script type="text/javascript" charset="utf-8"
+	src="../ueditor/editor_config.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="../ueditor/editor_all_min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../ueditor/themes/default/ueditor.css" />
+<style type="text/css">
+.clear {
+	clear: both;
+}
+</style>
 </head>
 <body>
-<script type="text/plain" id="editor" style="width:1000px;" >
+	<form action="descp_update.action" method="post">
+		<s:hidden name="filterId" value="filterId"></s:hidden>
+		<s:hidden name="type" value="type"></s:hidden>
+		<s:hidden name="descp" value=""></s:hidden>
+	</form>
+	<script type="text/plain" id="editor" style="width:1000px;">
+	<s:property value="descp"/>
 </script>
-<div class="clear"></div>
-<div id="btns">
-    <input type="button" value="获得内容" onclick="getContent()">
-    <input type="button" value="写入内容" onclick="setContent()">
-    <input type="button" value="获得纯文本" onclick="getContentTxt()">
-    <input type="button" value="获得带格式的纯文本" onclick="getPlainTxt()">
-    <input type="button" value="判断是否有内容" onclick="hasContent()">
-    <input type="button" value="使编辑器获得焦点" onclick="setFocus()">
-    <input type="button" value="获得当前选中的文本" onclick="getText()" />
-    <input type="button" value="删除编辑器" onclick="deleteEditor()" />
-    <input id="enable" type="button" value="可以编辑" onclick="setEnabled()" />
-    <input type="button" value="不可编辑" onclick="setDisabled()" />
-    <input type="button" value="隐藏编辑器" onclick="ue.setHide()" />
-    <input type="button" value="显示编辑器" onclick="ue.setShow()" />
-    <!--<input type="button" value="插入html代码" onclick="ue.execCommand('inserthtml','sadfsadfsadf')" />-->
-</div>
+	<div class="clear"></div>
+	<div id="btns">
+		<inpu type="button" value="保存" onclick="submitForm();" />
+		<input type="button" value="获得内容" onclick="getContent()"> <input
+			type="button" value="写入内容" onclick="setContent()"> <input
+			type="button" value="获得纯文本" onclick="getContentTxt()"> <input
+			type="button" value="获得带格式的纯文本" onclick="getPlainTxt()"> <input
+			type="button" value="判断是否有内容" onclick="hasContent()"> <input
+			type="button" value="使编辑器获得焦点" onclick="setFocus()"> <input
+			type="button" value="获得当前选中的文本" onclick="getText()" /> <input
+			type="button" value="删除编辑器" onclick="deleteEditor()" /> <input
+			id="enable" type="button" value="可以编辑" onclick="setEnabled()" /> <input
+			type="button" value="不可编辑" onclick="setDisabled()" /> <input
+			type="button" value="隐藏编辑器" onclick="ue.setHide()" /> <input
+			type="button" value="显示编辑器" onclick="ue.setShow()" />
+		<!--<input type="button" value="插入html代码" onclick="ue.execCommand('inserthtml','sadfsadfsadf')" />-->
+	</div>
 </body>
 <script type="text/javascript">
 //    document.domain = "baidu.con";
@@ -42,9 +55,9 @@
     var state = ue.queryCommandState("source");
     var btndiv = document.getElementById("btns");
     if(btndiv && state==-1){
-        disableBtn("enable");
-    }
-});
+	        disableBtn("enable");
+	    }
+	});
     function getContent(){
         var arr = [];
         arr.push("使用editor.getContent()方法可以获得编辑器的内容");
@@ -59,68 +72,74 @@
         arr.push(ue.getPlainTxt());
         alert(arr.join('\n'))
     }
-function setContent(){
-    var arr = [];
-    arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
-    ue.setContent('欢迎使用ueditor');
-    alert(arr.join("\n"));
-}
-function setDisabled(){
-    ue.setDisabled('fullscreen');
-    disableBtn("enable");
-}
-
-function setEnabled(){
-    ue.setEnabled();
-    enableBtn();
-}
-
-function getText(){
-    //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
-    var range = ue.selection.getRange();
-    range.select();
-    var txt = ue.selection.getText();
-    alert(txt)
-}
-
-function getContentTxt(){
-    var arr = [];
-    arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
-    arr.push("编辑器的纯文本内容为：");
-    arr.push(ue.getContentTxt());
-    alert(arr.join("\n"));
-}
-function hasContent(){
-    var arr = [];
-    arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
-    arr.push("判断结果为：");
-    arr.push(ue.hasContents());
-    alert(arr.join("\n"));
-}
-function setFocus(){
-    ue.focus();
-}
-function deleteEditor(){
-    disableBtn();
-    ue.destroy();
-}
-function disableBtn(str){
-    var div = document.getElementById('btns');
-    var btns = domUtils.getElementsByTagName(div,"input");
-    for(var i=0,btn;btn=btns[i++];){
-        if(btn.id == str){
-            domUtils.removeAttributes(btn,["disabled"]);
-        }else{
-            btn.setAttribute("disabled","true");
-        }
-    }
-}
-function enableBtn(){
-    var div = document.getElementById('btns');
-    var btns = domUtils.getElementsByTagName(div,"input");
-    for(var i=0,btn;btn=btns[i++];){
-        domUtils.removeAttributes(btn,["disabled"]);
-    }
-}
+	function setContent(){
+	    var arr = [];
+	    arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+	    ue.setContent('欢迎使用ueditor');
+	    alert(arr.join("\n"));
+	}
+	function setDisabled(){
+	    ue.setDisabled('fullscreen');
+	    disableBtn("enable");
+	}
+	
+	function setEnabled(){
+	    ue.setEnabled();
+	    enableBtn();
+	}
+	
+	function getText(){
+	    //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+	    var range = ue.selection.getRange();
+	    range.select();
+	    var txt = ue.selection.getText();
+	    alert(txt)
+	}
+	
+	function getContentTxt(){
+	    var arr = [];
+	    arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+	    arr.push("编辑器的纯文本内容为：");
+	    arr.push(ue.getContentTxt());
+	    alert(arr.join("\n"));
+	}
+	function hasContent(){
+	    var arr = [];
+	    arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+	    arr.push("判断结果为：");
+	    arr.push(ue.hasContents());
+	    alert(arr.join("\n"));
+	}
+	function setFocus(){
+	    ue.focus();
+	}
+	function deleteEditor(){
+	    disableBtn();
+	    ue.destroy();
+	}
+	function disableBtn(str){
+	    var div = document.getElementById('btns');
+	    var btns = domUtils.getElementsByTagName(div,"input");
+	    for(var i=0,btn;btn=btns[i++];){
+	        if(btn.id == str){
+	            domUtils.removeAttributes(btn,["disabled"]);
+	        }else{
+	            btn.setAttribute("disabled","true");
+	        }
+	    }
+	}
+	function enableBtn(){
+	    var div = document.getElementById('btns');
+	    var btns = domUtils.getElementsByTagName(div,"input");
+	    for(var i=0,btn;btn=btns[i++];){
+	        domUtils.removeAttributes(btn,["disabled"]);
+	    }
+	}
+	
+	function submitForm() {
+		document.forms[0].descp.value = ue.getContent();
+		alert(document.forms[0].descp.value);
+		document.forms[0].submit();
+	}
 </script>
 </html>

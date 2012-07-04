@@ -14,6 +14,10 @@ import com.chezhu.dao.StyleService;
 import com.chezhu.dao.SupplyService;
 import com.chezhu.dao.model.Brand;
 import com.chezhu.dao.model.DescpAir;
+import com.chezhu.dao.model.DescpAirCdCarbon;
+import com.chezhu.dao.model.DescpAirCdStd;
+import com.chezhu.dao.model.DescpFuelOil;
+import com.chezhu.dao.model.DescpMachineOil;
 import com.chezhu.dao.model.Filter;
 import com.chezhu.dao.model.FilterView;
 import com.chezhu.dao.model.Style;
@@ -45,9 +49,9 @@ public class FilterAction extends ActionSupport {
 	private StyleService styleService = ContextUtil.getBean(StyleService.class, "styleService");
 	private FilterViewService filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
 	private DescpAirService descpAirService = ContextUtil.getBean(DescpAirService.class, "descpAirService");
-	private DescpMachineOilService dscpMachineOilService = ContextUtil.getBean(DescpMachineOilService.class, "descpMachineOilService");
+	private DescpMachineOilService descpMachineOilService = ContextUtil.getBean(DescpMachineOilService.class, "descpMachineOilService");
 	private DescpFuelOilService descpFuelOilService = ContextUtil.getBean(DescpFuelOilService.class, "descpFuelOilService");
-	private DescpAirCdStdService dscpAirCdStdService = ContextUtil.getBean(DescpAirCdStdService.class, "descpAirCdStdService");
+	private DescpAirCdStdService descpAirCdStdService = ContextUtil.getBean(DescpAirCdStdService.class, "descpAirCdStdService");
 	private DescpAirCdCarbonService descpAirCdCarbonService = ContextUtil.getBean(DescpAirCdCarbonService.class, "descpAirCdCarbonService");
 	
 	
@@ -182,19 +186,37 @@ public class FilterAction extends ActionSupport {
 	public String showDescp() throws Exception {
 		// type
 		// { 0:"air", 1:"machineOil", 2:"fuelOil", 3:"airConditionStd", 4:"airConditionCarbon" }
-		String descp = "暂无详细描述";
+		descp = "";
 		switch(type) {
 		case 0:
-			DescpAir air = descpAirService.fetch(filterId);
-			descp = air.getDescp();
+			DescpAir airD = descpAirService.fetch(filterId);
+			if(airD != null) {
+				descp = airD.getDescp();
+			}
 			break;
 		case 1:
+			DescpMachineOil machineOilD = descpMachineOilService.fetch(filterId);
+			if(machineOilD != null) {
+				descp = machineOilD.getDescp();
+			}
 			break;
 		case 2:
+			DescpFuelOil fuelOilD = descpFuelOilService.fetch(filterId);
+			if(fuelOilD != null) {
+				descp = fuelOilD.getDescp();
+			}
 			break;
 		case 3:
+			DescpAirCdStd airCdStdD = descpAirCdStdService.fetch(filterId);
+			if(airCdStdD != null) {
+				descp = airCdStdD.getDescp();
+			}
 			break;
 		case 4:
+			DescpAirCdCarbon airCdCarbonD = descpAirCdCarbonService.fetch(filterId);
+			if(airCdCarbonD != null) {
+				descp = airCdCarbonD.getDescp();
+			}
 			break;
 		}
 		return "descp";
@@ -208,7 +230,7 @@ public class FilterAction extends ActionSupport {
 		List<Supply> supplies = supplyService.getAllSupplies();
 		ctx.put("supplies", supplies);
 		
-		List<FilterView> styleFilters = filterService.getStyleFilters(brandId, supplyId);
+		List<FilterView> styleFilters = filterViewService.getStyleFilters(brandId, supplyId);
 		ctx.put("filters", styleFilters);
 	}
 }

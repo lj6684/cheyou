@@ -5,6 +5,38 @@
 邮件问题结尾，多页面显示
 单项查询（对应套餐查询）
 
-[上传]
-index.jsp
-sanlv/
+[create_table]
+create table descp_air
+(
+	filter_id INT NOT NULL,
+	descp TEXT,
+	PRIMARY KEY(filter_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table descp_machineoil
+(
+	filter_id INT NOT NULL,
+	descp TEXT,
+	PRIMARY KEY(filter_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table descp_fueloil
+(
+	filter_id INT NOT NULL,
+	descp TEXT,
+	PRIMARY KEY(filter_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table descp_aircdstd
+(
+	filter_id INT NOT NULL,
+	descp TEXT,
+	PRIMARY KEY(filter_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+create table descp_aircdcarbon
+(
+	filter_id INT NOT NULL,
+	descp TEXT,
+	PRIMARY KEY(filter_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
