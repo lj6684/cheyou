@@ -4,8 +4,8 @@ import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Table;
 
-@Table("descp_aircarbon")
-public class DescpAirCarbon {
+@Table("descp_aircdstd")
+public class DescpAirCdStd {
 	@Id(auto=false)
 	@Column("filter_id")
 	private int filterId;
@@ -24,6 +24,5 @@ public class DescpAirCarbon {
 	public void setDescp(String descp) {
 		this.descp = descp;
 	}
-	
-	
+
 }

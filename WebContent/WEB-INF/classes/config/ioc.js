@@ -71,6 +71,15 @@ var ioc = {
 		}
 	},
 	
+	descpAirService : {
+		type : "com.chezhu.dao.DescpAirService",
+		fields : {
+			dao : {
+				refer : "dao"
+			}
+		}
+	},
+	
 	descpMachineOilService : {
 		type : "com.chezhu.dao.DescpMachineOilService",
 		fields : {
@@ -89,8 +98,8 @@ var ioc = {
 		}
 	},
 	
-	descpAirStdService : {
-		type : "com.chezhu.dao.DescpAirStdService",
+	descpAirCdStdService : {
+		type : "com.chezhu.dao.DescpAirCdStdService",
 		fields : {
 			dao : {
 				refer : "dao"
@@ -98,8 +107,8 @@ var ioc = {
 		}
 	},
 	
-	descpAirCarbonService : {
-		type : "com.chezhu.dao.DescpAirCarbonService",
+	descpAirCdCarbonService : {
+		type : "com.chezhu.dao.DescpAirCdCarbonService",
 		fields : {
 			dao : {
 				refer : "dao"

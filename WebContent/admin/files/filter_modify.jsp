@@ -44,25 +44,25 @@
 		<td style="width:10px; align:left">&nbsp;</td>
 		<td style="width:100px; align:right;">空气滤清器:</td>
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.air" theme="simple"></s:textfield></td>
-		<td style="width:auto; align:left;"><s:a href="filter_desc.action">详细描述</s:a></td>
+		<td style="width:auto; align:left;"><s:a href="filter_desc.action?id=&type=">详细描述</s:a>&nbsp;&nbsp;<s:a href="#">删除描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width:10px; align:left">&nbsp;</td>
 		<td style="width:100px; align:right;">机油滤清器:</td>
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.machineOil" theme="simple"></s:textfield></td>
-		<td style="width:auto; align:left;"><s:a href="filter_desc.action">详细描述</s:a></td>
+		<td style="width:auto; align:left;"><s:a href="filter_desc.action">详细描述</s:a>&nbsp;&nbsp;<s:a href="#">删除描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width:10px; align:left">&nbsp;</td>
 		<td style="width:100px; align:right;">燃油滤清器:</td>
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.fuelOil" theme="simple"></s:textfield></td>
-		<td style="width:auto; align:left;"><s:a href="filter_desc.action">详细描述</s:a></td>
+		<td style="width:auto; align:left;"><s:a href="filter_desc.action">详细描述</s:a>&nbsp;&nbsp;<s:a href="#">删除描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width:10px; align:left">&nbsp;</td>
 		<td style="width:100px; align:right;">空调滤(标准):</td>
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.airConditionStd" theme="simple"></s:textfield></td>
-		<td style="width:auto; align:left;"><s:a href="filter_desc.action">详细描述</s:a></td>
+		<td style="width:auto; align:left;"><s:a href="filter_desc.action">详细描述</s:a>&nbsp;&nbsp;<s:a href="#">删除描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width:10px; align:left">&nbsp;</td>
