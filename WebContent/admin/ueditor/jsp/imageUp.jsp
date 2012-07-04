@@ -23,7 +23,7 @@
     //保存文件路径
     String filePath = "upload";
     String realPath = request.getRealPath("/") + filePath;
-    System.out.println(realPath);
+    //System.out.println(realPath);
     //判断路径是否存在，不存在则创建
     File dir = new File(realPath);
     if(!dir.isDirectory())
@@ -42,7 +42,7 @@
     	String ftype = "";
 
     	try{
-    		System.out.println(fii.hasNext());
+    		//System.out.println(fii.hasNext());
     	    while(fii.hasNext()){
     	        FileItemStream fis = fii.next();
 
@@ -91,7 +91,7 @@
         }
     	title = title.replace("&", "&amp;").replace("'", "&qpos;").replace("\"", "&quot;").replace("<", "&lt;").replace(">", "&gt;");
     	String resJson = "{'original':'"+originalName+"','url':'"+filePath.substring(filePath.lastIndexOf("/")+1,filePath.length())+"/"+fileName+"','title':'"+title+"','state':'"+state+"'}";
-    	System.out.println(resJson);
+    	//System.out.println(resJson);
         response.getWriter().print(resJson);
 
     }
