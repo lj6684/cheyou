@@ -6,7 +6,7 @@
     <title>完整demo</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <script type="text/javascript" charset="utf-8" src="../ueditor/editor_config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../ueditor/editor_all.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/editor_all_min.js"></script>
     <link rel="stylesheet" type="text/css" href="../ueditor/themes/default/ueditor.css"/>
     <style type="text/css">
         .clear{
