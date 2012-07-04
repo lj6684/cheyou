@@ -2,13 +2,18 @@ package com.chezhu.web;
 
 import java.util.List;
 
-
 import com.chezhu.dao.BrandService;
+import com.chezhu.dao.DescpAirCdCarbonService;
+import com.chezhu.dao.DescpAirCdStdService;
+import com.chezhu.dao.DescpAirService;
+import com.chezhu.dao.DescpFuelOilService;
+import com.chezhu.dao.DescpMachineOilService;
 import com.chezhu.dao.FilterService;
 import com.chezhu.dao.FilterViewService;
 import com.chezhu.dao.StyleService;
 import com.chezhu.dao.SupplyService;
 import com.chezhu.dao.model.Brand;
+import com.chezhu.dao.model.DescpAir;
 import com.chezhu.dao.model.Filter;
 import com.chezhu.dao.model.FilterView;
 import com.chezhu.dao.model.Style;
@@ -27,6 +32,10 @@ public class FilterAction extends ActionSupport {
 	private String styleFullName;
 	private int filterId;
 	
+	// 三滤描述相关
+	private int type;
+	private String descp;
+	
 	private String act;
 	private Filter filter = new Filter();
 	
@@ -34,10 +43,30 @@ public class FilterAction extends ActionSupport {
 	private FilterService filterService = ContextUtil.getBean(FilterService.class, "filterService");
 	private SupplyService supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
 	private StyleService styleService = ContextUtil.getBean(StyleService.class, "styleService");
-	private FilterViewService FilterService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
+	private FilterViewService filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
+	private DescpAirService descpAirService = ContextUtil.getBean(DescpAirService.class, "descpAirService");
+	private DescpMachineOilService dscpMachineOilService = ContextUtil.getBean(DescpMachineOilService.class, "descpMachineOilService");
+	private DescpFuelOilService descpFuelOilService = ContextUtil.getBean(DescpFuelOilService.class, "descpFuelOilService");
+	private DescpAirCdStdService dscpAirCdStdService = ContextUtil.getBean(DescpAirCdStdService.class, "descpAirCdStdService");
+	private DescpAirCdCarbonService descpAirCdCarbonService = ContextUtil.getBean(DescpAirCdCarbonService.class, "descpAirCdCarbonService");
 	
 	
-	
+	public String getDescp() {
+		return descp;
+	}
+
+	public void setDescp(String descp) {
+		this.descp = descp;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
 	public String getStyleFullName() {
 		return styleFullName;
 	}
@@ -150,9 +179,25 @@ public class FilterAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	public String desc() throws Exception {
-		
-		return "desc";
+	public String showDescp() throws Exception {
+		// type
+		// { 0:"air", 1:"machineOil", 2:"fuelOil", 3:"airConditionStd", 4:"airConditionCarbon" }
+		String descp = "暂无详细描述";
+		switch(type) {
+		case 0:
+			DescpAir air = descpAirService.fetch(filterId);
+			descp = air.getDescp();
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		}
+		return "descp";
 	}
 	
 	private void initData() {
@@ -163,7 +208,7 @@ public class FilterAction extends ActionSupport {
 		List<Supply> supplies = supplyService.getAllSupplies();
 		ctx.put("supplies", supplies);
 		
-		List<FilterView> styleFilters = FilterService.getStyleFilters(brandId, supplyId);
+		List<FilterView> styleFilters = filterService.getStyleFilters(brandId, supplyId);
 		ctx.put("filters", styleFilters);
 	}
 }
