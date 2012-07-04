@@ -69,5 +69,41 @@ var ioc = {
 				refer : "dao"
 			}
 		}
+	},
+	
+	descpMachineOilService : {
+		type : "com.chezhu.dao.DescpMachineOilService",
+		fields : {
+			dao : {
+				refer : "dao"
+			}
+		}
+	},
+	
+	descpFuelOilService : {
+		type : "com.chezhu.dao.DescpFuelOilService",
+		fields : {
+			dao : {
+				refer : "dao"
+			}
+		}
+	},
+	
+	descpAirStdService : {
+		type : "com.chezhu.dao.DescpAirStdService",
+		fields : {
+			dao : {
+				refer : "dao"
+			}
+		}
+	},
+	
+	descpAirCarbonService : {
+		type : "com.chezhu.dao.DescpAirCarbonService",
+		fields : {
+			dao : {
+				refer : "dao"
+			}
+		}
 	}
 };

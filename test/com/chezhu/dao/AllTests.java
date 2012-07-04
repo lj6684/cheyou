@@ -9,7 +9,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	SupplyServiceTest.class,
 	BrandServiceTest.class, 
 	StyleServiceTest.class,
-	FilterServiceTest.class
+	FilterServiceTest.class,
+	DescpMachineOilTest.class,
 })
 public class AllTests {
 
