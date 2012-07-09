@@ -44,31 +44,31 @@
 		<td style="width:10px; align:left">&nbsp;</td>
 		<td style="width:100px; align:right;">空气滤清器:</td>
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.air" theme="simple"></s:textfield></td>
-		<td style="width:auto; align:left;"><s:a href="filter_showDescp.action?filterId=%{filterId}&type=0">详细描述</s:a>&nbsp;&nbsp;<s:a href="#">删除描述</s:a></td>
+		<td style="width:auto; align:left;"><s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=0">详细描述</s:a>&nbsp;&nbsp;<s:a href="#">删除描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width:10px; align:left">&nbsp;</td>
 		<td style="width:100px; align:right;">机油滤清器:</td>
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.machineOil" theme="simple"></s:textfield></td>
-		<td style="width:auto; align:left;"><s:a href="filter_showDescp.action?filterId=%{filterId}&type=1">详细描述</s:a>&nbsp;&nbsp;<s:a href="#">删除描述</s:a></td>
+		<td style="width:auto; align:left;"><s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=1">详细描述</s:a>&nbsp;&nbsp;<s:a href="#">删除描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width:10px; align:left">&nbsp;</td>
 		<td style="width:100px; align:right;">燃油滤清器:</td>
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.fuelOil" theme="simple"></s:textfield></td>
-		<td style="width:auto; align:left;"><s:a href="filter_showDescp.action?filterId=%{filterId}&type=2">详细描述</s:a>&nbsp;&nbsp;<s:a href="#">删除描述</s:a></td>
+		<td style="width:auto; align:left;"><s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=2">详细描述</s:a>&nbsp;&nbsp;<s:a href="#">删除描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width:10px; align:left">&nbsp;</td>
 		<td style="width:100px; align:right;">空调滤(标准):</td>
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.airConditionStd" theme="simple"></s:textfield></td>
-		<td style="width:auto; align:left;"><s:a href="filter_showDescp.action?filterId=%{filterId}&type=3">详细描述</s:a>&nbsp;&nbsp;<s:a href="#">删除描述</s:a></td>
+		<td style="width:auto; align:left;"><s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=3">详细描述</s:a>&nbsp;&nbsp;<s:a href="#">删除描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width:10px; align:left">&nbsp;</td>
 		<td style="width:100px; align:right;">空调滤(活性炭):</td>
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.airConditionCarbon" theme="simple"></s:textfield></td>
-		<td style="width:auto; align:left;"><s:a href="filter_showDescp.action?filterId=%{filterId}&type=4">详细描述</s:a></td>
+		<td style="width:auto; align:left;"><s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=4">详细描述</s:a></td>
 	</tr>
 	<tr style="height: 50px">
 		<td>&nbsp;</td>

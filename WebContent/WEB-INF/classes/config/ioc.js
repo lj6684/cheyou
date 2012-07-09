@@ -71,44 +71,8 @@ var ioc = {
 		}
 	},
 	
-	descpAirService : {
-		type : "com.chezhu.dao.DescpAirService",
-		fields : {
-			dao : {
-				refer : "dao"
-			}
-		}
-	},
-	
-	descpMachineOilService : {
-		type : "com.chezhu.dao.DescpMachineOilService",
-		fields : {
-			dao : {
-				refer : "dao"
-			}
-		}
-	},
-	
-	descpFuelOilService : {
-		type : "com.chezhu.dao.DescpFuelOilService",
-		fields : {
-			dao : {
-				refer : "dao"
-			}
-		}
-	},
-	
-	descpAirCdStdService : {
-		type : "com.chezhu.dao.DescpAirCdStdService",
-		fields : {
-			dao : {
-				refer : "dao"
-			}
-		}
-	},
-	
-	descpAirCdCarbonService : {
-		type : "com.chezhu.dao.DescpAirCdCarbonService",
+	filterDescpService : {
+		type : "com.chezhu.dao.FilterDescpService",
 		fields : {
 			dao : {
 				refer : "dao"

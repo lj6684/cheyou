@@ -3,22 +3,14 @@ package com.chezhu.web;
 import java.util.List;
 
 import com.chezhu.dao.BrandService;
-import com.chezhu.dao.DescpAirCdCarbonService;
-import com.chezhu.dao.DescpAirCdStdService;
-import com.chezhu.dao.DescpAirService;
-import com.chezhu.dao.DescpFuelOilService;
-import com.chezhu.dao.DescpMachineOilService;
+import com.chezhu.dao.FilterDescpService;
 import com.chezhu.dao.FilterService;
 import com.chezhu.dao.FilterViewService;
 import com.chezhu.dao.StyleService;
 import com.chezhu.dao.SupplyService;
 import com.chezhu.dao.model.Brand;
-import com.chezhu.dao.model.DescpAir;
-import com.chezhu.dao.model.DescpAirCdCarbon;
-import com.chezhu.dao.model.DescpAirCdStd;
-import com.chezhu.dao.model.DescpFuelOil;
-import com.chezhu.dao.model.DescpMachineOil;
 import com.chezhu.dao.model.Filter;
+import com.chezhu.dao.model.FilterDescp;
 import com.chezhu.dao.model.FilterView;
 import com.chezhu.dao.model.Style;
 import com.chezhu.dao.model.Supply;
@@ -28,17 +20,17 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class FilterAction extends ActionSupport {
 	
-	private int brandId;
+	private Integer brandId;
 	private String brandName;
-	private int supplyId;
+	private Integer supplyId;
 	private String supplyName;
-	private int styleId;
+	private Integer styleId;
 	private String styleFullName;
-	private int filterId;
+	private Integer filterId;
 	
 	// 三滤描述相关
-	private int type;
-	private String descp;
+	private Integer type;
+	private String descp = "请输入详细信息";
 	
 	private String act;
 	private Filter filter = new Filter();
@@ -48,27 +40,24 @@ public class FilterAction extends ActionSupport {
 	private SupplyService supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
 	private StyleService styleService = ContextUtil.getBean(StyleService.class, "styleService");
 	private FilterViewService filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
-	private DescpAirService descpAirService = ContextUtil.getBean(DescpAirService.class, "descpAirService");
-	private DescpMachineOilService descpMachineOilService = ContextUtil.getBean(DescpMachineOilService.class, "descpMachineOilService");
-	private DescpFuelOilService descpFuelOilService = ContextUtil.getBean(DescpFuelOilService.class, "descpFuelOilService");
-	private DescpAirCdStdService descpAirCdStdService = ContextUtil.getBean(DescpAirCdStdService.class, "descpAirCdStdService");
-	private DescpAirCdCarbonService descpAirCdCarbonService = ContextUtil.getBean(DescpAirCdCarbonService.class, "descpAirCdCarbonService");
+	private FilterDescpService filterDescpService = ContextUtil.getBean(FilterDescpService.class, "filterDescpService");
+
 	
-	
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
 	public String getDescp() {
 		return descp;
 	}
 
 	public void setDescp(String descp) {
 		this.descp = descp;
-	}
-
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
 	}
 
 	public String getStyleFullName() {
@@ -79,11 +68,11 @@ public class FilterAction extends ActionSupport {
 		this.styleFullName = styleFullName;
 	}
 
-	public int getBrandId() {
+	public Integer getBrandId() {
 		return brandId;
 	}
 
-	public void setBrandId(int brandId) {
+	public void setBrandId(Integer brandId) {
 		this.brandId = brandId;
 	}
 
@@ -95,11 +84,11 @@ public class FilterAction extends ActionSupport {
 		this.brandName = brandName;
 	}
 
-	public int getSupplyId() {
+	public Integer getSupplyId() {
 		return supplyId;
 	}
 
-	public void setSupplyId(int supplyId) {
+	public void setSupplyId(Integer supplyId) {
 		this.supplyId = supplyId;
 	}
 
@@ -111,19 +100,19 @@ public class FilterAction extends ActionSupport {
 		this.supplyName = supplyName;
 	}
 
-	public int getStyleId() {
+	public Integer getStyleId() {
 		return styleId;
 	}
 
-	public void setStyleId(int styleId) {
+	public void setStyleId(Integer styleId) {
 		this.styleId = styleId;
 	}
 
-	public int getFilterId() {
+	public Integer getFilterId() {
 		return filterId;
 	}
 
-	public void setFilterId(int filterId) {
+	public void setFilterId(Integer filterId) {
 		this.filterId = filterId;
 	}
 
@@ -186,40 +175,35 @@ public class FilterAction extends ActionSupport {
 	public String showDescp() throws Exception {
 		// type
 		// { 0:"air", 1:"machineOil", 2:"fuelOil", 3:"airConditionStd", 4:"airConditionCarbon" }
-		descp = "";
-		switch(type) {
-		case 0:
-			DescpAir airD = descpAirService.fetch(filterId);
-			if(airD != null) {
-				descp = airD.getDescp();
-			}
-			break;
-		case 1:
-			DescpMachineOil machineOilD = descpMachineOilService.fetch(filterId);
-			if(machineOilD != null) {
-				descp = machineOilD.getDescp();
-			}
-			break;
-		case 2:
-			DescpFuelOil fuelOilD = descpFuelOilService.fetch(filterId);
-			if(fuelOilD != null) {
-				descp = fuelOilD.getDescp();
-			}
-			break;
-		case 3:
-			DescpAirCdStd airCdStdD = descpAirCdStdService.fetch(filterId);
-			if(airCdStdD != null) {
-				descp = airCdStdD.getDescp();
-			}
-			break;
-		case 4:
-			DescpAirCdCarbon airCdCarbonD = descpAirCdCarbonService.fetch(filterId);
-			if(airCdCarbonD != null) {
-				descp = airCdCarbonD.getDescp();
-			}
-			break;
+		FilterDescp res = filterDescpService.fetch(filterId, type);
+		if(res != null) {
+			descp = res.getFilterDescp();
 		}
-		return "descp";
+		
+		return "showdescp";
+	}
+	
+	public String saveDescp() {
+		// 先查找是否存在详细描述
+		FilterDescp res = filterDescpService.fetch(filterId, type);
+		if(res != null) {
+			// 存在-更新
+			res.setFilterDescp(descp);
+			filterDescpService.update(res);
+		} else {
+			// 不存在-插入
+			FilterDescp filterDescp = new FilterDescp();
+			filterDescp.setFilterId(filterId);
+			filterDescp.setFilterType(type);
+			filterDescp.setFilterDescp(descp);
+			
+			filterDescpService.insert(filterDescp);
+		}
+		
+		
+		ActionContext.getContext().put("success", true);
+		
+		return "savedescp";
 	}
 	
 	private void initData() {

@@ -21,125 +21,38 @@
 </style>
 </head>
 <body>
-	<form action="descp_update.action" method="post">
-		<s:hidden name="filterId" value="filterId"></s:hidden>
-		<s:hidden name="type" value="type"></s:hidden>
-		<s:hidden name="descp" value=""></s:hidden>
+	<s:if test="#request.success">
+	<script type="text/javascript">
+		alert("保存成功");
+	</script>
+	</s:if>
+	<form name="descpForm" action="filter_saveDescp.action" method="post">
+		<s:hidden name="filterId" value="%{filterId}"></s:hidden>
+		<s:hidden name="brandId" value="%{brandId}"></s:hidden>
+		<s:hidden name="supplyId" value="%{supplyId}"></s:hidden>
+		<s:hidden name="type" value="%{type}"></s:hidden>
+		<s:hidden name="descp"/>
+		<script type="text/plain" id="myeditor" >
+			<s:property value="descp" escape="false"/>
+		</script>
+		<br/>
+		<div align="center">
+		<input type="button" onclick="save();" value="保存"/>&nbsp;&nbsp;<input type="button" onclick="back();" value="返回"/>
+		</div>
 	</form>
-	<script type="text/plain" id="editor" style="width:1000px;">
-	<s:property value="descp"/>
-</script>
-	<div class="clear"></div>
-	<div id="btns">
-		<inpu type="button" value="保存" onclick="submitForm();" />
-		<input type="button" value="获得内容" onclick="getContent()"> <input
-			type="button" value="写入内容" onclick="setContent()"> <input
-			type="button" value="获得纯文本" onclick="getContentTxt()"> <input
-			type="button" value="获得带格式的纯文本" onclick="getPlainTxt()"> <input
-			type="button" value="判断是否有内容" onclick="hasContent()"> <input
-			type="button" value="使编辑器获得焦点" onclick="setFocus()"> <input
-			type="button" value="获得当前选中的文本" onclick="getText()" /> <input
-			type="button" value="删除编辑器" onclick="deleteEditor()" /> <input
-			id="enable" type="button" value="可以编辑" onclick="setEnabled()" /> <input
-			type="button" value="不可编辑" onclick="setDisabled()" /> <input
-			type="button" value="隐藏编辑器" onclick="ue.setHide()" /> <input
-			type="button" value="显示编辑器" onclick="ue.setShow()" />
-		<!--<input type="button" value="插入html代码" onclick="ue.execCommand('inserthtml','sadfsadfsadf')" />-->
-	</div>
-</body>
-<script type="text/javascript">
-//    document.domain = "baidu.con";
-    var ue = new UE.ui.Editor();
-    ue.render('editor');
-    ue.addListener("selectionchange",function(){
-    var state = ue.queryCommandState("source");
-    var btndiv = document.getElementById("btns");
-    if(btndiv && state==-1){
-	        disableBtn("enable");
-	    }
-	});
-    function getContent(){
-        var arr = [];
-        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
-        arr.push("内容为：");
-        arr.push(ue.getContent());
-        alert(arr.join("\n"));
-    }
-    function getPlainTxt(){
-        var arr = [];
-        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
-        arr.push("内容为：");
-        arr.push(ue.getPlainTxt());
-        alert(arr.join('\n'))
-    }
-	function setContent(){
-	    var arr = [];
-	    arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
-	    ue.setContent('欢迎使用ueditor');
-	    alert(arr.join("\n"));
-	}
-	function setDisabled(){
-	    ue.setDisabled('fullscreen');
-	    disableBtn("enable");
-	}
-	
-	function setEnabled(){
-	    ue.setEnabled();
-	    enableBtn();
-	}
-	
-	function getText(){
-	    //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
-	    var range = ue.selection.getRange();
-	    range.select();
-	    var txt = ue.selection.getText();
-	    alert(txt)
-	}
-	
-	function getContentTxt(){
-	    var arr = [];
-	    arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
-	    arr.push("编辑器的纯文本内容为：");
-	    arr.push(ue.getContentTxt());
-	    alert(arr.join("\n"));
-	}
-	function hasContent(){
-	    var arr = [];
-	    arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
-	    arr.push("判断结果为：");
-	    arr.push(ue.hasContents());
-	    alert(arr.join("\n"));
-	}
-	function setFocus(){
-	    ue.focus();
-	}
-	function deleteEditor(){
-	    disableBtn();
-	    ue.destroy();
-	}
-	function disableBtn(str){
-	    var div = document.getElementById('btns');
-	    var btns = domUtils.getElementsByTagName(div,"input");
-	    for(var i=0,btn;btn=btns[i++];){
-	        if(btn.id == str){
-	            domUtils.removeAttributes(btn,["disabled"]);
-	        }else{
-	            btn.setAttribute("disabled","true");
-	        }
-	    }
-	}
-	function enableBtn(){
-	    var div = document.getElementById('btns');
-	    var btns = domUtils.getElementsByTagName(div,"input");
-	    for(var i=0,btn;btn=btns[i++];){
-	        domUtils.removeAttributes(btn,["disabled"]);
-	    }
-	}
-	
-	function submitForm() {
-		document.forms[0].descp.value = ue.getContent();
-		alert(document.forms[0].descp.value);
-		document.forms[0].submit();
-	}
-</script>
+	<script type="text/javascript">
+        //渲染编辑器
+        editor_a.render('myeditor');
+
+        function back() {
+			window.location.href = "filter_init.action?brandId=%{brandId}&styleId=%{styleId}&supplyId=%{supplyId}&filterId=%{filterId}&act=update";
+        }
+
+        function save() {
+            document.descpForm.descp.value = editor_a.getContent();
+            alert(editor_a.getContent());
+            document.descpForm.submit();
+        }
+    </script>
+
 </html>
