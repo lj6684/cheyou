@@ -41,16 +41,18 @@
 		</div>
 	</form>
 	<script type="text/javascript">
+		var editor_a = new baidu.editor.ui.Editor();
+	
         //渲染编辑器
         editor_a.render('myeditor');
 
         function back() {
-			window.location.href = "filter_init.action?brandId=%{brandId}&styleId=%{styleId}&supplyId=%{supplyId}&filterId=%{filterId}&act=update";
+			window.location.href = 'filter_init.action?brandId=<s:property value="brandId"/>&styleId=<s:property value="styleId"/>&supplyId=<s:property value="supplyId"/>&filterId=<s:property value="filterId"/>&act=update';
         }
 
         function save() {
             document.descpForm.descp.value = editor_a.getContent();
-            alert(editor_a.getContent());
+            //alert(editor_a.getContent());
             document.descpForm.submit();
         }
     </script>

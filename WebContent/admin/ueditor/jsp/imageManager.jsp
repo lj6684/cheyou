@@ -34,7 +34,7 @@
     			if(file.isDirectory()){
     				getFiles(file.getAbsolutePath(),files);
     			}else{
-    				Pattern reg=Pattern.compile("[.]jpg|png|jpeg|gif$");
+    				Pattern reg=Pattern.compile("[.]jpg|[.]png|[.]jpeg|[.]gif$");
     				Matcher matcher=reg.matcher(file.getName());
     				if(matcher.find()) {
     					files.add(file);

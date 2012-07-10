@@ -48,7 +48,7 @@
 
     	            if(!fis.isFormField() && fis.getName().length()>0){
     	                fileName = fis.getName();
-    					Pattern reg=Pattern.compile("[.]jpg|png|jpeg|gif$");
+    					Pattern reg=Pattern.compile("[.]jpg|[.]png|[.]jpeg|[.]gif$");
     					Matcher matcher=reg.matcher(fileName);
     					if(!matcher.find()) {
     						state = "文件类型不允许！";

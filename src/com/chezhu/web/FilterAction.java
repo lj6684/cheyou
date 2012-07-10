@@ -20,16 +20,22 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class FilterAction extends ActionSupport {
 	
-	private Integer brandId;
+	private int brandId;
 	private String brandName;
-	private Integer supplyId;
+	private int supplyId;
 	private String supplyName;
-	private Integer styleId;
+	private int styleId;
 	private String styleFullName;
-	private Integer filterId;
+	private int filterId;
 	
 	// 三滤描述相关
-	private Integer type;
+	private boolean hasType0;
+	private boolean hasType1;
+	private boolean hasType2;
+	private boolean hasType3;
+	private boolean hasType4;
+	
+	private int type;
 	private String descp = "请输入详细信息";
 	
 	private String act;
@@ -43,12 +49,51 @@ public class FilterAction extends ActionSupport {
 	private FilterDescpService filterDescpService = ContextUtil.getBean(FilterDescpService.class, "filterDescpService");
 
 	
+	public boolean isHasType0() {
+		return hasType0;
+	}
 
-	public Integer getType() {
+	public void setHasType0(boolean hasType0) {
+		this.hasType0 = hasType0;
+	}
+
+	public boolean isHasType1() {
+		return hasType1;
+	}
+
+	public void setHasType1(boolean hasType1) {
+		this.hasType1 = hasType1;
+	}
+
+	public boolean isHasType2() {
+		return hasType2;
+	}
+
+	public void setHasType2(boolean hasType2) {
+		this.hasType2 = hasType2;
+	}
+
+	public boolean isHasType3() {
+		return hasType3;
+	}
+
+	public void setHasType3(boolean hasType3) {
+		this.hasType3 = hasType3;
+	}
+
+	public boolean isHasType4() {
+		return hasType4;
+	}
+
+	public void setHasType4(boolean hasType4) {
+		this.hasType4 = hasType4;
+	}
+
+	public int getType() {
 		return type;
 	}
 
-	public void setType(Integer type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 
@@ -68,11 +113,11 @@ public class FilterAction extends ActionSupport {
 		this.styleFullName = styleFullName;
 	}
 
-	public Integer getBrandId() {
+	public int getBrandId() {
 		return brandId;
 	}
 
-	public void setBrandId(Integer brandId) {
+	public void setBrandId(int brandId) {
 		this.brandId = brandId;
 	}
 
@@ -84,11 +129,11 @@ public class FilterAction extends ActionSupport {
 		this.brandName = brandName;
 	}
 
-	public Integer getSupplyId() {
+	public int getSupplyId() {
 		return supplyId;
 	}
 
-	public void setSupplyId(Integer supplyId) {
+	public void setSupplyId(int supplyId) {
 		this.supplyId = supplyId;
 	}
 
@@ -100,19 +145,19 @@ public class FilterAction extends ActionSupport {
 		this.supplyName = supplyName;
 	}
 
-	public Integer getStyleId() {
+	public int getStyleId() {
 		return styleId;
 	}
 
-	public void setStyleId(Integer styleId) {
+	public void setStyleId(int styleId) {
 		this.styleId = styleId;
 	}
 
-	public Integer getFilterId() {
+	public int getFilterId() {
 		return filterId;
 	}
 
-	public void setFilterId(Integer filterId) {
+	public void setFilterId(int filterId) {
 		this.filterId = filterId;
 	}
 
@@ -150,6 +195,27 @@ public class FilterAction extends ActionSupport {
 		
 		if(act.equals("update")) {
 			filter = filterService.fetch(filterId);
+			// 检查是否已经存在描述信息
+			FilterDescp filterDescp = filterDescpService.fetch(filterId, 0);
+			if(filterDescp != null) {
+				hasType0 = true;
+			}
+			filterDescp = filterDescpService.fetch(filterId, 1);
+			if(filterDescp != null) {
+				hasType1 = true;
+			}
+			filterDescp = filterDescpService.fetch(filterId, 2);
+			if(filterDescp != null) {
+				hasType2 = true;
+			}
+			filterDescp = filterDescpService.fetch(filterId, 3);
+			if(filterDescp != null) {
+				hasType3 = true;
+			}
+			filterDescp = filterDescpService.fetch(filterId, 4);
+			if(filterDescp != null) {
+				hasType4 = true;
+			}
 		}
 		
 		return INPUT;
@@ -175,9 +241,13 @@ public class FilterAction extends ActionSupport {
 	public String showDescp() throws Exception {
 		// type
 		// { 0:"air", 1:"machineOil", 2:"fuelOil", 3:"airConditionStd", 4:"airConditionCarbon" }
-		FilterDescp res = filterDescpService.fetch(filterId, type);
-		if(res != null) {
-			descp = res.getFilterDescp();
+		if(act.equals("add")) {
+			descp = "请填写详细信息";
+		} else {
+			FilterDescp res = filterDescpService.fetch(filterId, type);
+			if(res != null) {
+				descp = res.getFilterDescp();
+			}
 		}
 		
 		return "showdescp";
