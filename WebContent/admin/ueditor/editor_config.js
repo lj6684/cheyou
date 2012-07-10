@@ -20,6 +20,7 @@
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
 	var BASE = "/cheyou/";
+    //var BASE = "/";
     var URL = BASE + "admin/ueditor/";
 
     /**
