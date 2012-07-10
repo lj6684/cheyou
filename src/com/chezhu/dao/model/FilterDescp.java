@@ -6,26 +6,33 @@ import org.nutz.dao.entity.annotation.Table;
 
 @Table("filter_descp")
 public class FilterDescp {
-	
-	@Id(auto=false)
-	@Column("filter_id")
-	private int filterId;
-	@Column("filter_type")
-	private int filterType;
+	@Id
+	@Column("descp_id")
+	private int descpId;
+	@Column("supply_id")
+	private int supplyId;
+	@Column("filter_code")
+	private String filterCode;
 	@Column("filter_descp")
 	private String filterDescp;
 	
-	public int getFilterId() {
-		return filterId;
+	public int getDescpId() {
+		return descpId;
 	}
-	public void setFilterId(int filterId) {
-		this.filterId = filterId;
+	public void setDescpId(int descpId) {
+		this.descpId = descpId;
 	}
-	public int getFilterType() {
-		return filterType;
+	public int getSupplyId() {
+		return supplyId;
 	}
-	public void setFilterType(int filterType) {
-		this.filterType = filterType;
+	public void setSupplyId(int supplyId) {
+		this.supplyId = supplyId;
+	}
+	public String getFilterCode() {
+		return filterCode;
+	}
+	public void setFilterCode(String filterCode) {
+		this.filterCode = filterCode;
 	}
 	public String getFilterDescp() {
 		return filterDescp;
@@ -33,6 +40,9 @@ public class FilterDescp {
 	public void setFilterDescp(String filterDescp) {
 		this.filterDescp = filterDescp;
 	}
+	
+	
+	
 	
 	
 }

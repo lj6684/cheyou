@@ -34,7 +34,7 @@
 	</tr>
 	<tr bgcolor="#EEEEEE">
 		<td width="3%" align="center" height="30">No.</td>
-		<td width="30%">车型描述</td>
+		<td width="15%">车型描述</td>
 		<td width="10%">空气滤清器</td>
 		<td width="10%">机油滤清器</td>
 		<td width="10%">燃油滤清器</td>

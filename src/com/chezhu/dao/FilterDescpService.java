@@ -11,8 +11,12 @@ import com.chezhu.dao.model.FilterDescp;
 
 public class FilterDescpService extends IdEntityService<FilterDescp> {
 	
-	public FilterDescp fetch(int filterId, int type) {
-		Condition c = Cnd.where("filterId", "=", filterId).and("filterType", "=", type);
+	public FilterDescp fetch(int supplyId, String filterCode) {
+		if(filterCode == null || filterCode.trim().equals("")) {
+			return null;
+		}
+		
+		Condition c = Cnd.where("supplyId", "=", supplyId).and("filterCode", "=", filterCode);
 		List<FilterDescp> resList = this.query(c, null);
 		if(resList != null && resList.size() > 0) {
 			return resList.get(0);

@@ -35,6 +35,13 @@ public class FilterAction extends ActionSupport {
 	private boolean hasType3;
 	private boolean hasType4;
 	
+	private int descpId0;
+	private int descpId1;
+	private int descpId2;
+	private int descpId3;
+	private int descpId4;
+	
+	private int descpId;
 	private int type;
 	private String descp = "请输入详细信息";
 	
@@ -49,6 +56,63 @@ public class FilterAction extends ActionSupport {
 	private FilterDescpService filterDescpService = ContextUtil.getBean(FilterDescpService.class, "filterDescpService");
 
 	
+	
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public int getDescpId() {
+		return descpId;
+	}
+
+	public void setDescpId(int descpId) {
+		this.descpId = descpId;
+	}
+
+	public int getDescpId0() {
+		return descpId0;
+	}
+
+	public void setDescpId0(int descpId0) {
+		this.descpId0 = descpId0;
+	}
+
+	public int getDescpId1() {
+		return descpId1;
+	}
+
+	public void setDescpId1(int descpId1) {
+		this.descpId1 = descpId1;
+	}
+
+	public int getDescpId2() {
+		return descpId2;
+	}
+
+	public void setDescpId2(int descpId2) {
+		this.descpId2 = descpId2;
+	}
+
+	public int getDescpId3() {
+		return descpId3;
+	}
+
+	public void setDescpId3(int descpId3) {
+		this.descpId3 = descpId3;
+	}
+
+	public int getDescpId4() {
+		return descpId4;
+	}
+
+	public void setDescpId4(int descpId4) {
+		this.descpId4 = descpId4;
+	}
+
 	public boolean isHasType0() {
 		return hasType0;
 	}
@@ -87,14 +151,6 @@ public class FilterAction extends ActionSupport {
 
 	public void setHasType4(boolean hasType4) {
 		this.hasType4 = hasType4;
-	}
-
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
 	}
 
 	public String getDescp() {
@@ -185,7 +241,7 @@ public class FilterAction extends ActionSupport {
 		this.styleService = styleService;
 	}
 
-	public String init() throws Exception {
+	public String init() {
 		Brand brand = brandService.fetch(brandId);
 		brandName = brand.getName();
 		Style style = styleService.fetch(styleId);
@@ -195,26 +251,32 @@ public class FilterAction extends ActionSupport {
 		
 		if(act.equals("update")) {
 			filter = filterService.fetch(filterId);
+			
 			// 检查是否已经存在描述信息
-			FilterDescp filterDescp = filterDescpService.fetch(filterId, 0);
+			FilterDescp filterDescp = filterDescpService.fetch(supplyId, filter.getAir());
 			if(filterDescp != null) {
 				hasType0 = true;
+				descpId0 = filterDescp.getDescpId();
 			}
-			filterDescp = filterDescpService.fetch(filterId, 1);
+			filterDescp = filterDescpService.fetch(supplyId, filter.getMachineOil());
 			if(filterDescp != null) {
 				hasType1 = true;
+				descpId1 = filterDescp.getDescpId();
 			}
-			filterDescp = filterDescpService.fetch(filterId, 2);
+			filterDescp = filterDescpService.fetch(supplyId, filter.getFuelOil());
 			if(filterDescp != null) {
 				hasType2 = true;
+				descpId2 = filterDescp.getDescpId();
 			}
-			filterDescp = filterDescpService.fetch(filterId, 3);
+			filterDescp = filterDescpService.fetch(supplyId, filter.getAirConditionStd());
 			if(filterDescp != null) {
 				hasType3 = true;
+				descpId3 = filterDescp.getDescpId();
 			}
-			filterDescp = filterDescpService.fetch(filterId, 4);
+			filterDescp = filterDescpService.fetch(supplyId, filter.getAirConditionCarbon());
 			if(filterDescp != null) {
 				hasType4 = true;
+				descpId4 = filterDescp.getDescpId();
 			}
 		}
 		
@@ -244,36 +306,37 @@ public class FilterAction extends ActionSupport {
 		if(act.equals("add")) {
 			descp = "请填写详细信息";
 		} else {
-			FilterDescp res = filterDescpService.fetch(filterId, type);
-			if(res != null) {
-				descp = res.getFilterDescp();
-			}
+			FilterDescp res = filterDescpService.fetch(descpId);
+			descp = res.getFilterDescp();
 		}
 		
 		return "showdescp";
 	}
 	
 	public String saveDescp() {
-		// 先查找是否存在详细描述
-		FilterDescp res = filterDescpService.fetch(filterId, type);
-		if(res != null) {
-			// 存在-更新
-			res.setFilterDescp(descp);
-			filterDescpService.update(res);
-		} else {
-			// 不存在-插入
+		if(act.equals("add")) {
 			FilterDescp filterDescp = new FilterDescp();
-			filterDescp.setFilterId(filterId);
-			filterDescp.setFilterType(type);
+			filterDescp.setSupplyId(supplyId);
+			String filterCode = getFilterCode(filterId, type);
+			filterDescp.setFilterCode(filterCode);
 			filterDescp.setFilterDescp(descp);
 			
 			filterDescpService.insert(filterDescp);
+		} else {
+			FilterDescp res = filterDescpService.fetch(descpId);
+			res.setFilterDescp(descp);
+			
+			filterDescpService.update(res);
 		}
-		
 		
 		ActionContext.getContext().put("success", true);
 		
 		return "savedescp";
+	}
+	
+	public String deleteDescp() {
+		filterDescpService.delete(descpId);
+		return init();
 	}
 	
 	private void initData() {
@@ -286,5 +349,22 @@ public class FilterAction extends ActionSupport {
 		
 		List<FilterView> styleFilters = filterViewService.getStyleFilters(brandId, supplyId);
 		ctx.put("filters", styleFilters);
+	}
+	
+	private String getFilterCode(int filterId, int type) {
+		Filter filter = filterService.fetch(filterId);
+		if(type == 0) {
+			return filter.getAir();
+		} else if(type == 1) {
+			return filter.getMachineOil();
+		} else if(type == 2) {
+			return filter.getFuelOil();
+		} else if(type == 3) {
+			return filter.getAirConditionStd();
+		} else if(type == 4) {
+			return filter.getAirConditionCarbon();
+		} else {
+			return null;
+		}
 	}
 }

@@ -46,8 +46,8 @@
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.air" theme="simple"></s:textfield></td>
 		<td style="width:auto; align:left;">
 			<s:if test="hasType0">
-				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=0&act=update">修改描述</s:a>&nbsp;&nbsp;
-				<s:a href="#">删除描述</s:a>
+				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=0&act=update&descpId=%{descpId0}">修改描述</s:a>&nbsp;&nbsp;
+				<s:a href="filter_deleteDescp.action?descpId=%{descpId0}&brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&act=update">删除描述</s:a>
 			</s:if>
 			<s:else>
 				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=0&act=add">添加描述</s:a>
@@ -60,8 +60,8 @@
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.machineOil" theme="simple"></s:textfield></td>
 		<td style="width:auto; align:left;">
 			<s:if test="hasType1">
-				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=1&act=update">修改描述</s:a>&nbsp;&nbsp;
-				<s:a href="#">删除描述</s:a>
+				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=1&act=update&descpId=%{descpId1}">修改描述</s:a>&nbsp;&nbsp;
+				<s:a href="filter_deleteDescp.action?descpId=%{descpId1}&brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&act=update">删除描述</s:a>
 			</s:if>
 			<s:else>
 				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=1&act=add">添加描述</s:a>
@@ -74,8 +74,8 @@
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.fuelOil" theme="simple"></s:textfield></td>
 		<td style="width:auto; align:left;">
 			<s:if test="hasType2">
-				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=2&act=update">修改描述</s:a>&nbsp;&nbsp;
-				<s:a href="#">删除描述</s:a>
+				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=2&act=update&descpId=%{descpId2}">修改描述</s:a>&nbsp;&nbsp;
+				<s:a href="filter_deleteDescp.action?descpId=%{descpId2}&brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&act=update">删除描述</s:a>
 			</s:if>
 			<s:else>
 				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=2&act=add">添加描述</s:a>
@@ -88,8 +88,8 @@
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.airConditionStd" theme="simple"></s:textfield></td>
 		<td style="width:auto; align:left;">
 			<s:if test="hasType3">
-				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=3&act=update">修改描述</s:a>&nbsp;&nbsp;
-				<s:a href="#">删除描述</s:a>
+				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=3&act=update&descpId=%{descpId3}">修改描述</s:a>&nbsp;&nbsp;
+				<s:a href="filter_deleteDescp.action?descpId=%{descpId3}&brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&act=update">删除描述</s:a>
 			</s:if>
 			<s:else>
 				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=3&act=add">添加描述</s:a>
@@ -102,8 +102,8 @@
 		<td style="width:400px; align:left;"><s:textfield size="50" name="filter.airConditionCarbon" theme="simple"></s:textfield></td>
 		<td style="width:auto; align:left;">
 		<s:if test="hasType4">
-				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=4&act=update">修改描述</s:a>&nbsp;&nbsp;
-				<s:a href="#">删除描述</s:a>
+				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=4&act=update&descpId=%{descpId4}">修改描述</s:a>&nbsp;&nbsp;
+				<s:a href="filter_deleteDescp.action?descpId=%{descpId4}&brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&act=update">删除描述</s:a>
 			</s:if>
 			<s:else>
 				<s:a href="filter_showDescp.action?brandId=%{brandId}&supplyId=%{supplyId}&styleId=%{styleId}&filterId=%{filterId}&type=4&act=add">添加描述</s:a>
