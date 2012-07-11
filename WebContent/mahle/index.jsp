@@ -5,19 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>马勒三滤型号对照表 机滤|空滤|汽滤|空调滤芯MAHLE_车主网</title>
-<meta name="keywords" content="马勒,马勒三滤,马勒机滤,马勒空滤 马勒三滤型号对照表"/>
-<meta name="description" content="车主网提供马勒三滤型号对照表,马勒三滤查询"/>
-<link href="/css/style.css" rel="stylesheet" type="text/css" />
-<script type="/text/javascript" src="js/func.js"></script>
+<title>博世三滤型号对照表 机滤|空滤|汽滤|空调滤芯BOSCH_车主网</title>
+<meta name="keywords" content="博世,博世三滤,博世机滤,博世空滤 博世三滤型号对照表"/>
+<meta name="description" content="车主网提供博世三滤型号对照表,博世三滤查询"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
 <!-- jQuery -->
-<link href="/css/ui-lightness/jquery-ui-autocomplete.css" rel="stylesheet" type="text/css" />
-<script type="/text/javascript" src="js/jquery-1.7.2.min.js"></script>
-<script type="/text/javascript" src="js/jquery-ui-autocomplete.js"></script>
-<script type="/text/javascript">
+<link href="../css/ui-lightness/jquery-ui-autocomplete.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-autocomplete.js"></script>
+<script type="text/javascript">
 	// Ajax请求AutoComplet数据
 	$(function() {
-		$.getJSON("query_init.action",
+		$.getJSON("../query_init.action",
 			null,
 			function(data) {
 				$("#queryStr").autocomplete({
@@ -54,7 +53,7 @@
 <body>
 <div class="wrap">
 	<div id="topbar"/></div>
-	<div id="logobar"><a href="/mahle/"><img src="/images/mahle.gif" alt="马勒logo" border="0"/></a><a href="/"><img src="/images/logo_fenzhan.gif" alt="点击回首页" border="0"/></a></div>
+	<div id="logobar"><a href="/mahle/"><img src="../images/mahle.gif" alt="马勒logo" border="0"/></a><a href="/"><img src="../images/logo_fenzhan.gif" alt="点击回首页" border="0"/></a></div>
 	<!--search begin-->
 	<form action="query_query.action" method="post" onsubmit="return checkInput();" id="form1">
 	<div id="search_begin">
@@ -71,13 +70,13 @@
 		</div>
 				
 		<div class="brand_item">
-			<s:set name="supplies" value="#{'2':'原厂号', '1':'博世BOSCH', '4':'马勒MAHLE', '3':'马勒mahle', '5':'曼牌MANN', '6':'豹王'}"></s:set>
+			<s:set name="supplies" value="#{'2':'原厂号', '1':'博世BOSCH', '4':'马勒MAHLE', '3':'索菲玛SOFIMA', '5':'曼牌MANN', '6':'豹王'}"></s:set>
 			<ul>
 			<s:if test="supplyItem">
 				<s:checkboxlist list="#supplies" name="supplyItem" theme="simple"></s:checkboxlist>
 			</s:if>
 			<s:else>
-				<s:checkboxlist list="#supplies" name="supplyItem" theme="simple" value="{'1', '2', '3', '4', '5'}"></s:checkboxlist>
+				<s:checkboxlist list="#supplies" name="supplyItem" theme="simple" value="{'2', '4'}"></s:checkboxlist>
 			</s:else>
 			</ul>
 			<div class="clear"></div>
@@ -103,7 +102,7 @@
 		<s:iterator value="#request.styles" id="style" status="st">
 		<table cellspacing="0" class="bigtable">
 			<tr>
-				<td class="brand"><img src="/<s:property value='brandImg'/>"/></td>
+				<td class="brand"><img src="../<s:property value='brandImg'/>"/></td>
 				<td class="title"><s:property value='styleName'/>&nbsp;<s:property value='styleOutter'/></td>
 				<td class="others">发动机型号：<span class="fdj"><s:property value='styleMotor'/></span></td>
 			</tr>
@@ -120,13 +119,13 @@
 			</tr>
 			<s:iterator value="#request.orderSupplies" id="sp" status="sts">
 			<tr>
-				<td style="text-align:left;text-indent:4px;"><img src="/<s:property value='#request.filters[styleFullName][name].supplyImg'/>" align="absmiddle" alt="<s:property value='name'/>" border="0"></td>
+				<td style="text-align:left;text-indent:4px;"><img src="../<s:property value='#request.filters[styleFullName][name].supplyImg'/>" align="absmiddle" alt="<s:property value='name'/>" border="0"></td>
 				<td><s:if test="#request.filters[styleFullName][name].machineOil != null && #request.filters[styleFullName][name].machineOil != ''"><s:property value="#request.filters[styleFullName][name].machineOil"/></s:if><s:else>&nbsp;</s:else></td>
 				<td><s:if test="#request.filters[styleFullName][name].air != null && #request.filters[styleFullName][name].air != ''"><s:property value="#request.filters[styleFullName][name].air"/></s:if><s:else>&nbsp;</s:else></td>
 				<td><s:if test="#request.filters[styleFullName][name].fuelOil != null && #request.filters[styleFullName][name].fuelOil != ''"><s:property value="#request.filters[styleFullName][name].fuelOil"/></s:if><s:else>&nbsp;</s:else></td>
 				<td><s:if test="#request.filters[styleFullName][name].airConditionStd != null && #request.filters[styleFullName][name].airConditionStd != ''"><s:property value="#request.filters[styleFullName][name].airConditionStd"/></s:if><s:else>&nbsp;</s:else></td>
 				<td><s:if test="#request.filters[styleFullName][name].airConditionCarbon != null && #request.filters[styleFullName][name].airConditionCarbon != ''"><s:property value="#request.filters[styleFullName][name].airConditionCarbon"/></s:if><s:else>&nbsp;</s:else></td>
-				<td class="td_rgt"><a href="sanlv/<s:property value="#request.filters[styleFullName][name].filterId"/>/">详情>></a></td>
+				<td class="td_rgt"><a href="../sanlv/<s:property value="#request.filters[styleFullName][name].filterId"/>/">详情>></a></td>
 			</tr>
 			</s:iterator>
 		</table>
@@ -139,7 +138,7 @@
 	</div>
 	</s:if>
 	<div id="footer"/>车主网致力于为车主免费提供<b>汽车三滤 火花塞 雨刷片 刹车片</b>等易损件配件自助查询服务!<br/>
-		车主网提供马勒三滤型号对照表[机滤 空滤 汽滤 空调滤芯]，仅供参考 <a href="/sitemap.html">三滤型号大全</a><br/>
+		车主网提供马勒三滤型号对照表[机滤 空滤 汽滤 空调滤芯]，仅供参考 <a href="../sitemap.html">三滤型号大全</a><br/>
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F8923cc0b97ccc7b4825046ef57ccdbf3' type='text/javascript'%3E%3C/script%3E"));
