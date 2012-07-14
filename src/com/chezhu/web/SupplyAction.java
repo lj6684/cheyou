@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.struts2.util.ServletContextAware;
 
 import com.chezhu.dao.SupplyService;
+import com.chezhu.dao.model.Brand;
 import com.chezhu.dao.model.Supply;
 import com.chezhu.util.ContextUtil;
 import com.chezhu.util.FileTool;
@@ -31,8 +32,17 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 	
 	private static final String UPLOAD_FILE_PATH = "images/supply/";
 	
+	private String descp;
 	
 	
+	public String getDescp() {
+		return descp;
+	}
+
+	public void setDescp(String descp) {
+		this.descp = descp;
+	}
+
 	public int getOrderIndex() {
 		return orderIndex;
 	}
@@ -153,6 +163,26 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 		ActionContext.getContext().put("supplies", supplies);
 		
 		return SUCCESS;
+	}
+	
+	public String showDescp() {
+		Supply supply = supplyService.fetch(id);
+		descp = supply.getDescp();
+		if(descp == null || descp.trim().equals("")) {
+			descp = "请填写详细信息";
+		}
+		
+		return "showdescp";
+	}
+	
+	public String saveDescp() {
+		Supply supply = supplyService.fetch(id);
+		supply.setDescp(descp);
+		supplyService.updateSupply(supply);
+		
+		ActionContext.getContext().put("success", true);
+		
+		return "showdescp";
 	}
 
 	public void setServletContext(ServletContext context) {

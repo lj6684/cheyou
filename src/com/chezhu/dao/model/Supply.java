@@ -17,8 +17,16 @@ public class Supply {
 	private String img;
 	@Column("order_index")
 	private int orderIndex;
+	@Column("supply_descp")
+	private String descp;
 	
 	
+	public String getDescp() {
+		return descp;
+	}
+	public void setDescp(String descp) {
+		this.descp = descp;
+	}
 	public int getOrderIndex() {
 		return orderIndex;
 	}

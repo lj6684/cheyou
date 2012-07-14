@@ -15,6 +15,7 @@
         <action name="supply_*" class="com.chezhu.web.SupplyAction" method="{1}">
             <result name="success">supply_list.jsp</result>
             <result name="input">supply_modify.jsp</result>
+            <result name="showdescp">supply_descp.jsp</result>
         </action>
         
         <action name="style_*" class="com.chezhu.web.StyleAction" method="{1}">
@@ -30,7 +31,6 @@
             <result name="success">filter_list.jsp</result>
             <result name="input">filter_modify.jsp</result>
             <result name="showdescp">filter_descp.jsp</result>
-            <result name="savedescp">filter_descp.jsp</result>
         </action>
         
         <action name="styleSpark_*" class="com.chezhu.web.StyleSparkAction" method="{1}">

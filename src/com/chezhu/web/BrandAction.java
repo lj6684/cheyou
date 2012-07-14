@@ -14,6 +14,7 @@ import org.apache.struts2.util.ServletContextAware;
 
 import com.chezhu.dao.BrandService;
 import com.chezhu.dao.model.Brand;
+import com.chezhu.dao.model.FilterDescp;
 import com.chezhu.util.ContextUtil;
 import com.chezhu.util.FileTool;
 import com.opensymphony.xwork2.ActionContext;
@@ -33,7 +34,6 @@ public class BrandAction extends ActionSupport implements ServletContextAware {
 	private ServletContext context;
 	//C:/Documents and Settings/jian_li/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/cheyou/img/upload
 	private static final String UPLOAD_FILE_PATH = "images/brand/";
-	
 	
 	public String getUpdateImg() {
 		return updateImg;
@@ -143,6 +143,7 @@ public class BrandAction extends ActionSupport implements ServletContextAware {
 		
 		return SUCCESS;
 	}
+	
 	public void setServletContext(ServletContext context) {
 		this.context = context;
 		

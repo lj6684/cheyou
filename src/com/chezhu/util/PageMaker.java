@@ -10,8 +10,10 @@ import java.util.Map;
 
 import com.chezhu.dao.FilterDescpService;
 import com.chezhu.dao.FilterViewService;
+import com.chezhu.dao.SupplyService;
 import com.chezhu.dao.model.FilterDescp;
 import com.chezhu.dao.model.FilterView;
+import com.chezhu.dao.model.Supply;
 
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
@@ -22,6 +24,7 @@ public class PageMaker {
 	private Template template;
 	private FilterViewService filterViewService;
 	private FilterDescpService filterDescpService;
+	private SupplyService supplyService;
 	
 	private String templatePath;
 	private String outputPath;
@@ -31,6 +34,7 @@ public class PageMaker {
 		//ContextUtil.initIocContext();
 		filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
 		filterDescpService = ContextUtil.getBean(FilterDescpService.class, "filterDescpService");
+		supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
 		
 		this.templatePath = templatePath;
 		this.outputPath = outputPath;
@@ -121,6 +125,12 @@ public class PageMaker {
 		data.put("airCdStdDescp", airCdStdDescp);
 		data.put("airCdCarbonDescp", airCdCarbonDescp);
 		
+		String supplyDescp = "";
+		Supply supply = supplyService.fetch(filterView.getSupplyId());
+		if(supply.getDescp() != null) {
+			supplyDescp = supply.getDescp();
+		}
+		data.put("supplyDescp", supplyDescp);
 		
 		// 查本车型对应原厂数据(供对比查看)
 		FilterView orgFilterView = filterViewService.queryOriginalFilterViewByStyle(filterView.getStyleId());

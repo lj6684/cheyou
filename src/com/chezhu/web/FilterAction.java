@@ -352,7 +352,7 @@ public class FilterAction extends ActionSupport implements ServletRequestAware, 
 		
 		ActionContext.getContext().put("success", true);
 		
-		return "savedescp";
+		return "showdescp";
 	}
 	
 	/**

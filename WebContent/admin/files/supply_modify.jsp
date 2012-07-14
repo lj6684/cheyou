@@ -47,6 +47,12 @@ $(function() {
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
+		<td style="width: 70%; align: left">
+		<a href="supply_showDescp.action?id=<s:property value="id"/>"/>修改描述</a>
+		</td>
+	</tr>
+	<tr style="height: 50px">
+		<td style="width: 1%; align: left">&nbsp;</td>
 		<td style="width: 70%; align: left"><input type="submit" value="保存"></input></td>
 	</tr>
 </table>
