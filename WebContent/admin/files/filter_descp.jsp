@@ -30,6 +30,7 @@
 		<s:hidden name="filterId" value="%{filterId}"></s:hidden>
 		<s:hidden name="brandId" value="%{brandId}"></s:hidden>
 		<s:hidden name="supplyId" value="%{supplyId}"></s:hidden>
+		<s:hidden name="styleId" value="%{styleId}"></s:hidden>
 		<s:hidden name="type" value="%{type}"></s:hidden>
 		<s:hidden name="act" value="%{act}"></s:hidden>
 		<s:hidden name="descpId" value="%{descpId}"></s:hidden>

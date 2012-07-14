@@ -1,6 +1,14 @@
 package com.chezhu.web;
 
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.util.ServletContextAware;
 
 import com.chezhu.dao.BrandService;
 import com.chezhu.dao.FilterDescpService;
@@ -15,10 +23,11 @@ import com.chezhu.dao.model.FilterView;
 import com.chezhu.dao.model.Style;
 import com.chezhu.dao.model.Supply;
 import com.chezhu.util.ContextUtil;
+import com.chezhu.util.PageMaker;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class FilterAction extends ActionSupport {
+public class FilterAction extends ActionSupport implements ServletRequestAware, ServletContextAware {
 	
 	private int brandId;
 	private String brandName;
@@ -54,6 +63,9 @@ public class FilterAction extends ActionSupport {
 	private StyleService styleService = ContextUtil.getBean(StyleService.class, "styleService");
 	private FilterViewService filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
 	private FilterDescpService filterDescpService = ContextUtil.getBean(FilterDescpService.class, "filterDescpService");
+	
+	private HttpServletRequest servletRequest;
+	private ServletContext servletContext;
 
 	
 	
@@ -300,6 +312,11 @@ public class FilterAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 查看详细页面
+	 * @return
+	 * @throws Exception
+	 */
 	public String showDescp() throws Exception {
 		// type
 		// { 0:"air", 1:"machineOil", 2:"fuelOil", 3:"airConditionStd", 4:"airConditionCarbon" }
@@ -313,6 +330,10 @@ public class FilterAction extends ActionSupport {
 		return "showdescp";
 	}
 	
+	/**
+	 * 保存详细页面
+	 * @return
+	 */
 	public String saveDescp() {
 		if(act.equals("add")) {
 			FilterDescp filterDescp = new FilterDescp();
@@ -334,8 +355,46 @@ public class FilterAction extends ActionSupport {
 		return "savedescp";
 	}
 	
+	/**
+	 * 删除详细描述
+	 * @return
+	 */
 	public String deleteDescp() {
 		filterDescpService.delete(descpId);
+		return init();
+	}
+	
+	/**
+	 * 产生静态页面
+	 * @return
+	 */
+	public String genPage() {
+		FilterView filterView = filterViewService.fetch(filterId);
+		
+		String classPath = "";
+		try {
+			classPath = Thread.currentThread().getContextClassLoader().getResource("").toURI().getPath();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		//System.out.println(classPath);
+		String templatePath = classPath + "ftl";
+		
+		String webAppPath = servletContext.getRealPath("/");
+		//System.out.println(webAppPath);
+		String outputPath = webAppPath + "sanlv/";
+		
+		// templatePath =
+		// outputPath = 
+		PageMaker pageMaker = new PageMaker(templatePath, outputPath);
+		try {
+			pageMaker.makeFilterPage(filterView);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		ActionContext.getContext().put("genPageSuccess", true);
+		
 		return init();
 	}
 	
@@ -366,5 +425,15 @@ public class FilterAction extends ActionSupport {
 		} else {
 			return null;
 		}
+	}
+
+	public void setServletRequest(HttpServletRequest arg0) {
+		servletRequest = arg0;
+		
+	}
+
+	public void setServletContext(ServletContext arg0) {
+		servletContext = arg0;
+		
 	}
 }

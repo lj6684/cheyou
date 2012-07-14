@@ -10,14 +10,22 @@
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+<s:if test="#request.genPageSuccess">
+<script type="text/javascript">
+	alert("页面产生成功");
+</script>
+</s:if>
 <form action="filter_add.action" method="post">
 	<s:hidden name="act" value="%{act}"></s:hidden>
 	<s:hidden name="filter.id" value="%{filterId}"></s:hidden>
 	<s:hidden name="filter.brandId" value="%{brandId}"></s:hidden>
 	<s:hidden name="filter.supplyId" value="%{supplyId}"></s:hidden>
 	<s:hidden name="filter.styleId" value="%{styleId}"></s:hidden>
-	<s:hidden name="brandId"></s:hidden>
-	<s:hidden name="supplyId"></s:hidden>
+	<s:hidden name="brandId" value="%{brandId}"></s:hidden>
+	<s:hidden name="supplyId" value="%{supplyId}"></s:hidden>
+	<s:hidden name="styleId" value="%{styleId}"></s:hidden>
+	<s:hidden name="filterId" value="%{filterId}"></s:hidden>
+	
 <table width="98%" border="0" cellpadding="0" cellspacing="0" id="datatable">
 	<tr>
 		<th class="tablestyle_title" colspan="4">滤清器</th>
@@ -112,10 +120,24 @@
 	</tr>
 	<tr style="height: 50px">
 		<td>&nbsp;</td>
-		<td colspan="2"><input type="submit" value="保存"></input></td>
+		<td colspan="2"><input type="submit" value="保存"></input>&nbsp;&nbsp;</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="4"><hr/></td>
+	</tr>
+	<tr style="height: 50px">
+		<td>&nbsp;</td>
+		<td colspan="2"><input type="button" value="产生静态页面" onclick="genPage();"/>&nbsp;&nbsp;<font color="gray">仅对保存后的数据生效</font></td>
 		<td>&nbsp;</td>
 	</tr>
 </table>
 </form>
+<SCRIPT type="text/javascript">
+function genPage() {
+	document.forms[0].action = "filter_genPage.action?act=update";
+	document.forms[0].submit();
+}
+</SCRIPT>
 </body>
 </html>
