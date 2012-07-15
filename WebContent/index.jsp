@@ -54,7 +54,7 @@
 <body>
 <div class="wrap">
 	<div id="topbar"/></div>
-	<div id="logobar"><a href="index.jsp"><img src="images/logo.gif" alt="车主网" border="0"/></a></div>
+	<div id="logobar"><a href="./"><img src="images/logo.gif" alt="车主网" border="0"/></a></div>
 	<!--search begin-->
 	<form action="query_query.action" method="post" onsubmit="return checkInput();" id="form1">
 	<div id="search_begin">

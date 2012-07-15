@@ -53,7 +53,7 @@
 <body>
 <div class="wrap">
 	<div id="topbar"/></div>
-	<div id="logobar"><a href="/mann/"><img src="../images/mann.gif" alt="曼牌logo" border="0"/></a><a href="/"><img src="../images/logo_fenzhan.gif" alt="点击回首页" border="0"/></a></div>
+	<div id="logobar"><a href="./"><img src="../images/mann.gif" alt="曼牌logo" border="0"/></a><a href="../"><img src="../images/logo_fenzhan.gif" alt="点击回首页" border="0"/></a></div>
 	<!--search begin-->
 	<form action="query_query.action" method="post" onsubmit="return checkInput();" id="form1">
 	<div id="search_begin">

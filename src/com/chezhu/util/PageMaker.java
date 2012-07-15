@@ -93,6 +93,36 @@ public class PageMaker {
 		data.put("airConditionStd", formatStr(filterView.getAirConditionStd()));
 		data.put("airConditionCarbon", formatStr(filterView.getAirConditionCarbon()));
 		
+		// 供应商主页
+		int supplyId = filterView.getSupplyId();
+		String supplyUrl = "";
+		switch(supplyId) {
+		case 1:
+			// 博世
+			supplyUrl = "../../bosch/";
+			break;
+		case 2:
+			// 原厂
+			supplyUrl = "../../";
+			break;
+		case 3:
+			// 索菲玛
+			supplyUrl = "../../sofima/";
+			break;
+		case 4:
+			// 马勒
+			supplyUrl = "../../mahle/";
+			break;
+		case 5:
+			// 曼牌
+			supplyUrl = "../../mann/";
+			break;
+		default:
+			// 目前未知
+			supplyUrl = "../../";
+		}
+		data.put("supplyUrl", supplyUrl);
+		
 		// 详细描述信息
 		String airDescp = "";
 		String machineOilDescp = "";
