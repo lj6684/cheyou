@@ -103,7 +103,7 @@ public class PageMaker {
 			break;
 		case 2:
 			// 原厂
-			supplyUrl = "../../";
+			supplyUrl = "#";
 			break;
 		case 3:
 			// 索菲玛
@@ -119,7 +119,7 @@ public class PageMaker {
 			break;
 		default:
 			// 目前未知
-			supplyUrl = "../../";
+			supplyUrl = "#";
 		}
 		data.put("supplyUrl", supplyUrl);
 		
