@@ -52,7 +52,7 @@ public class FilterAction extends ActionSupport implements ServletRequestAware, 
 	
 	private int descpId;
 	private int type;
-	private String descp = "请输入详细信息";
+	private String descp = "";
 	
 	private String act;
 	private Filter filter = new Filter();
@@ -321,7 +321,7 @@ public class FilterAction extends ActionSupport implements ServletRequestAware, 
 		// type
 		// { 0:"air", 1:"machineOil", 2:"fuelOil", 3:"airConditionStd", 4:"airConditionCarbon" }
 		if(act.equals("add")) {
-			descp = "请填写详细信息";
+			descp = "";
 		} else {
 			FilterDescp res = filterDescpService.fetch(descpId);
 			descp = res.getFilterDescp();

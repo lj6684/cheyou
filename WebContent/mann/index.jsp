@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>博世三滤型号对照表 机滤|空滤|汽滤|空调滤芯BOSCH_车主网</title>
+<title>曼牌MANN三滤型号对照表 机滤|空滤|汽滤|空调滤芯MANN_车主网</title>
 <meta name="keywords" content="博世,博世三滤,博世机滤,博世空滤 博世三滤型号对照表"/>
 <meta name="description" content="车主网提供博世三滤型号对照表,博世三滤查询"/>
 <link href="../css/style.css" rel="stylesheet" type="text/css" />

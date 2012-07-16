@@ -3652,7 +3652,7 @@ var dtd = dom.dtd = (function() {
         //设置默认的常用属性
         me.setOpt({
             isShow : true,
-            initialContent:'欢迎使用ueditor!',
+            initialContent:'',
             autoClearinitialContent:false,
             iframeCssUrl: me.options.UEDITOR_HOME_URL + '/themes/default/iframe.css',
             textarea:'editorValue',

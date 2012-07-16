@@ -169,7 +169,7 @@ public class SupplyAction extends ActionSupport implements ServletContextAware {
 		Supply supply = supplyService.fetch(id);
 		descp = supply.getDescp();
 		if(descp == null || descp.trim().equals("")) {
-			descp = "请填写详细信息";
+			descp = "";
 		}
 		
 		return "showdescp";
