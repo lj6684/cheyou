@@ -3,8 +3,7 @@ package com.chezhu.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
@@ -14,33 +13,28 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+import com.chezhu.dao.BrandService;
+import com.chezhu.dao.StyleService;
+import com.chezhu.dao.SupplyService;
+import com.chezhu.dao.model.Brand;
+import com.chezhu.dao.model.Style;
+import com.chezhu.dao.model.Supply;
+
 public class ExcelTool {
 	
-	private Map<String, Integer> brandMap = new HashMap<String, Integer>();
-	private Map<String, Integer> supplyMap = new HashMap<String, Integer>();
-	private Map<String, Integer> styleMap = new HashMap<String, Integer>();
+	private BrandService brandService;
+	private SupplyService supplyService;
+	private StyleService styleService;
 	
-	private int brandIndex = 0;
-	private int styleIndex = 0;
 	
 	private Logger logger = Logger.getLogger(ExcelTool.class);
 
 	public ExcelTool() {
-		supplyMap.put("博世", 1);
-		supplyMap.put("原厂", 2);
-		supplyMap.put("索菲玛", 3);
-		supplyMap.put("马勒", 4);
-		supplyMap.put("曼牌", 5);
-		supplyMap.put("箭牌", 6);
+		ContextUtil.initIocContext();
 		
-		try {
-			logger.error("truncate table brand;");
-			logger.error("truncate table style;");
-			logger.error("truncate table filter;");
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		
+		brandService = (BrandService)ContextUtil.getBean(BrandService.class, "brandService");
+		supplyService = (SupplyService)ContextUtil.getBean(SupplyService.class, "supplyService");	
+		styleService = (StyleService)ContextUtil.getBean(StyleService.class, "styleService");
 	}
 	
 	public void readTest() {
@@ -88,20 +82,25 @@ public class ExcelTool {
 		}
 	}
 
-	public void readSheet(String supplyName, int sheetIndex) {
+	public void readSheet(String supplyName, int sheetIndex, int fromIndex) {
 		try {
-			//InputStream is = new FileInputStream(new File("c:/filter.xls"));
-			InputStream is = new FileInputStream(new File("/Users/lijian/filter.xls"));
+			InputStream is = new FileInputStream(new File("c:/filter.xls"));
+			//InputStream is = new FileInputStream(new File("/Users/lijian/filter.xls"));
 			// 根据输入流创建Workbook对象
 			Workbook wb = WorkbookFactory.create(is);
 			// get到Sheet对象
 			Sheet sheet = wb.getSheetAt(sheetIndex);
 			// 这个必须用接口
 			int line = 0;
-			int supplyId = supplyMap.get(supplyName);
+			Supply supplyEntity = supplyService.fetch(supplyName);
+			if(supplyEntity == null) {
+				System.err.println("can't find supply named [" + supplyName + "]");
+				return;
+			}
+			int supplyId = supplyEntity.getId();
 			for (Row row : sheet) {
 				line++;
-				if (line == 1) {
+				if (line < fromIndex) {
 					continue;
 				}
 
@@ -125,25 +124,25 @@ public class ExcelTool {
 				String airConditionStd = getCellValue(airConditionStdCell);
 				String airConditionCarbon = getCellValue(airConditionCarbonCell);
 
-				int brandId = 0;
-				if(brandMap.containsKey(brand)) {
-					brandId = brandMap.get(brand);
-				} else {
-					brandIndex++;
-					brandId = brandIndex;
-					logger.error("INSERT INTO brand(brand_id, brand_name, brand_img) VALUES(" + brandId + ", '" + brand + "', 'images/brand/" + FileTool.getPinyin(brand) + ".jpg');");
-					brandMap.put(brand, brandIndex);
+				Brand brandEntity = brandService.fetch(brand);
+				if(brandEntity == null) {
+					System.err.println("can't find brand named [" + brand + "]");
+					return;
 				}
+				int brandId = brandEntity.getId();
 				
-				int styleId = 0;
 				String styleFullName = style + outter;
-				if(styleMap.containsKey(styleFullName)) {
-					styleId = styleMap.get(styleFullName);
-				} else {
-					styleIndex++;
-					styleId = styleIndex;
+				Style styleEntity = styleService.fetchFullName(styleFullName);
+				int styleId = 0;
+				if(styleEntity == null) {
+					// 此型号不存在
+					List<Style> allStyle = styleService.getAllStyles();
+					int counter = allStyle.size();
+					styleId = counter + 1;
 					logger.error("INSERT INTO style(style_id, brand_id, style_name, style_outter, style_motor, style_fullname) VALUES(" + styleId + ", " + brandId + ", '" + style + "', '" + outter + "', '" + motor + "', '" + styleFullName + "');");
-					styleMap.put(styleFullName, styleIndex);
+				} else {
+					// 此型号已存在
+					styleId = styleEntity.getId();
 				}
 				
 				logger.error("INSERT INTO filter(supply_id, brand_id, style_id, air, machine_oil, fuel_oil, air_condition_std, air_condition_carbon) VALUES(" + supplyId +", " + brandId + ", " + styleId + ", '" + air + "', '" + machineOil + "', '" + fuelOil + "', '" + airConditionStd + "', '" + airConditionCarbon + "');");
@@ -164,12 +163,13 @@ public class ExcelTool {
 	}
 	
 	public void readExcel() {
-		readSheet("索菲玛", 0);
-		readSheet("博世", 1);
-		readSheet("马勒", 2);
-		readSheet("曼牌", 3);
-		readSheet("原厂", 4);
-		
+		readSheet("索菲玛", 0, 338);
+		/*
+		readSheet("博世", 1, 0);
+		readSheet("马勒", 2, 0);
+		readSheet("曼牌", 3, 0);
+		readSheet("原厂", 4, 0);
+		*/
 	}
 
 	public static void main(String[] args) {

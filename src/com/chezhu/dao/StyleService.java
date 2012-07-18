@@ -43,5 +43,15 @@ public class StyleService extends IdNameEntityService<Style> {
 		Condition c = Cnd.where("style_fullname", "like", "%" + name + "%");
 		return this.query(c, null);
 	}
+	
+	public Style fetchFullName(String fullName) {
+		Condition c = Cnd.where("fullName", "=", fullName);
+		List<Style> result = this.query(c, null);
+		if(result != null && result.size() > 0) {
+			return result.get(0);
+		} else {
+			return null;
+		}
+	}
 
 }
