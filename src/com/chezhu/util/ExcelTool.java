@@ -3,7 +3,9 @@ package com.chezhu.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
@@ -25,6 +27,8 @@ public class ExcelTool {
 	private BrandService brandService;
 	private SupplyService supplyService;
 	private StyleService styleService;
+	
+	private Map<String, Integer> styleMap = new HashMap<String, Integer>();
 	
 	
 	private Logger logger = Logger.getLogger(ExcelTool.class);
@@ -84,8 +88,8 @@ public class ExcelTool {
 
 	public void readSheet(String supplyName, int sheetIndex, int fromIndex) {
 		try {
-			InputStream is = new FileInputStream(new File("c:/filter.xls"));
-			//InputStream is = new FileInputStream(new File("/Users/lijian/filter.xls"));
+			//InputStream is = new FileInputStream(new File("c:/filter.xls"));
+			InputStream is = new FileInputStream(new File("/Users/lijian/filter.xls"));
 			// 根据输入流创建Workbook对象
 			Workbook wb = WorkbookFactory.create(is);
 			// get到Sheet对象
@@ -132,17 +136,22 @@ public class ExcelTool {
 				int brandId = brandEntity.getId();
 				
 				String styleFullName = style + outter;
-				Style styleEntity = styleService.fetchFullName(styleFullName);
 				int styleId = 0;
-				if(styleEntity == null) {
-					// 此型号不存在
-					List<Style> allStyle = styleService.getAllStyles();
-					int counter = allStyle.size();
-					styleId = counter + 1;
-					logger.error("INSERT INTO style(style_id, brand_id, style_name, style_outter, style_motor, style_fullname) VALUES(" + styleId + ", " + brandId + ", '" + style + "', '" + outter + "', '" + motor + "', '" + styleFullName + "');");
+				if(styleMap.containsKey(styleFullName)) {
+					styleId = styleMap.get(styleFullName);
 				} else {
-					// 此型号已存在
-					styleId = styleEntity.getId();
+					Style styleEntity = styleService.fetchFullName(styleFullName);
+					if(styleEntity == null) {
+						// 此型号不存在
+						List<Style> allStyle = styleService.getAllStyles();
+						int counter = allStyle.size();
+						styleId = counter + 1 + styleMap.size();
+						logger.error("INSERT INTO style(style_id, brand_id, style_name, style_outter, style_motor, style_fullname) VALUES(" + styleId + ", " + brandId + ", '" + style + "', '" + outter + "', '" + motor + "', '" + styleFullName + "');");
+						styleMap.put(styleFullName, styleId);
+					} else {
+						// 此型号已存在
+						styleId = styleEntity.getId();
+					}
 				}
 				
 				logger.error("INSERT INTO filter(supply_id, brand_id, style_id, air, machine_oil, fuel_oil, air_condition_std, air_condition_carbon) VALUES(" + supplyId +", " + brandId + ", " + styleId + ", '" + air + "', '" + machineOil + "', '" + fuelOil + "', '" + airConditionStd + "', '" + airConditionCarbon + "');");
@@ -163,13 +172,12 @@ public class ExcelTool {
 	}
 	
 	public void readExcel() {
-		readSheet("索菲玛", 0, 338);
-		/*
-		readSheet("博世", 1, 0);
-		readSheet("马勒", 2, 0);
-		readSheet("曼牌", 3, 0);
-		readSheet("原厂", 4, 0);
-		*/
+		int fromIndex = 338;
+		readSheet("索菲玛", 0, fromIndex);
+		readSheet("博世", 1, fromIndex);
+		readSheet("马勒", 2, fromIndex);
+		readSheet("曼牌MANN", 3, fromIndex);
+		readSheet("原厂号", 4, fromIndex);
 	}
 
 	public static void main(String[] args) {

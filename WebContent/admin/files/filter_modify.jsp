@@ -131,13 +131,11 @@
 		<td colspan="2"><input type="button" value="产生静态页面" onclick="genPage();"/>&nbsp;&nbsp;<font color="gray">仅对保存后的数据生效</font></td>
 		<td>&nbsp;</td>
 	</tr>
-	<s:if test="#request.genPageSuccess">
 	<tr style="height: 50px">
 		<td>&nbsp;</td>
 		<td colspan="2"><a href="../../sanlv/<s:property value='filterId'/>/" target="_blank">点击浏览</a></td>
 		<td>&nbsp;</td>
 	</tr>
-	</s:if>
 </table>
 </form>
 <SCRIPT type="text/javascript">

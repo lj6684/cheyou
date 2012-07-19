@@ -40,11 +40,14 @@ public class MyStrutsFilter extends StrutsPrepareAndExecuteFilter {
 		String url = request.getRequestURI();
 		if (url.endsWith(".jsp")) {
 			// 请求JSP页面
-			// 放过UEditor自带JSP处理页面
 			String jspUrl = url.substring(url.lastIndexOf("/") + 1, url.length());
 			if(excludes.contains(jspUrl)) {
+				// 放过UEditor自带JSP处理页面
 				chain.doFilter(req, res);
-			}			
+			} else {
+				// 保持原始Struts处理方式
+				super.doFilter(req, res, chain);
+			}
 		} else {
 			super.doFilter(req, res, chain);
 		}
