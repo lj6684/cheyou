@@ -67,16 +67,10 @@ CREATE TABLE spark
 	brand_id INT NOT NULL,
 	style_id INT NOT NULL,
 	supply_id INT NOT NULL,
-	output_volumn VARCHAR(4) NOT NULL,
-	motor VARCHAR(50) NOT NULL,
-	year VARCHAR(50) NOT NULL,
-	remark VARCHAR(50),
-	xun_sn VARCHAR(50),
-	xun_type VARCHAR(50),
-	chao_sn VARCHAR(50),
-	chao_type VARCHAR(50),
-	rui_sn VARCHAR(50),
-	rui_type VARCHAR(50),
+	standard VARCHAR(50),
+	platinum VARCHAR(50),
+	iridium VARCHAR(50),
+	alloy VARCHAR(50),
 	PRIMARY KEY (spark_id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 

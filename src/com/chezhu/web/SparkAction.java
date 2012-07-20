@@ -150,14 +150,6 @@ public class SparkAction extends ActionSupport {
 	}
 	
 	private void initData() {
-		ActionContext ctx = ActionContext.getContext();
-		List<Brand> brands = brandService.getAllBrands();
-		ctx.put("brands", brands);
-			
-		List<Supply> supplies = supplyService.getAllSupplies();
-		ctx.put("supplies", supplies);
 		
-		List<SparkView> sparks = sparkViewService.getStyleSparks(brandId, supplyId);
-		ctx.put("sparks", sparks);
 	}
 }

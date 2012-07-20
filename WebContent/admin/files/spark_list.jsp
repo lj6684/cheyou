@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>火花塞数据管理</title>
+<title>滤清器数据管理</title>
 <link href="../css/css.css" rel="stylesheet" type="text/css" />
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 </head>
@@ -14,7 +14,7 @@
 <table width="98%" border="0" cellpadding="0" cellspacing="0"
 	class="CContent">
 	<tr>
-		<th class="tablestyle_title" colspan="2">火花塞数据管理</th>
+		<th class="tablestyle_title" colspan="2">滤清器数据管理</th>
 	</tr>
 	<tr style="height: 50px">
 		<td style="width: 1%; align: left">&nbsp;</td>
@@ -30,24 +30,19 @@
 <table width="98%" border="0" cellpadding="4" cellspacing="1"
 	bgcolor="#464646" class="newfont03">
 	<tr class="CTitle">
-		<td height="22" colspan="13" align="center" style="font-size: 16px">车型列表</td>
+		<td height="22" colspan="8" align="center" style="font-size: 16px">车型列表</td>
 	</tr>
 	<tr bgcolor="#EEEEEE">
 		<td width="3%" align="center" height="30">No.</td>
-		<td width="20%">车型描述</td>
-		<td width="5%">排量</td>
-		<td width="5%">发动机</td>
-		<td width="10%">出厂年份</td>
-		<td width="10%">备注</td>
-		<td width="5%">迅能编号</td>
-		<td width="5%">迅能型号</td>
-		<td width="5%">超能编号</td>
-		<td width="5%">超能型号</td>
-		<td width="5%">瑞能编号</td>
-		<td width="5%">瑞能型号</td>
+		<td width="15%">车型描述</td>
+		<td width="10%">空气滤清器</td>
+		<td width="10%">机油滤清器</td>
+		<td width="10%">燃油滤清器</td>
+		<td width="10%">空调滤(标准型)</td>
+		<td width="10%">空调滤(活性炭)</td>
 		<td>操作</td>
 	</tr>
-	<s:iterator value="#request.sparks" id="sparkView" status="st">
+	<s:iterator value="#request.filters" id="filterView" status="st">
 		<s:if test="#st.even">
 			<tr bgcolor="#EFF5FC">
 		</s:if>
@@ -56,25 +51,20 @@
 		</s:else>
 	
 		<td height="20"><s:property value="#st.count"></s:property></td>
-		<td><s:property value="styleName"/></td>
-		<td><s:property value="outputVolumn"/></td>
-		<td><s:property value="motor"/></td>
-		<td><s:property value="year"/></td>
-		<td><s:property value="remark"/></td>
-		<td><s:property value="xunSn"/></td>
-		<td><s:property value="xunType"/></td>
-		<td><s:property value="chaoSn"/></td>
-		<td><s:property value="chaoType"/></td>
-		<td><s:property value="ruiSn"/></td>
-		<td><s:property value="ruiType"/></td>
+		<td><s:property value="styleFullName"/></td>
+		<td><s:property value="air"/></td>
+		<td><s:property value="machineOil"/></td>
+		<td><s:property value="fuelOil"/></td>
+		<td><s:property value="airConditionStd"/></td>
+		<td><s:property value="airConditionCarbon"/></td>
 		<td>
-			<s:if test="sparkId == 0">
-				<a href="spark_init.action?brandId=<s:property value="brandId"/>&styleId=<s:property value="styleId"/>&supplyId=<s:property value="supplyId"/>&act=add">添加数据</a>
+			<s:if test="filterId == 0">
+				<a href="filter_init.action?brandId=<s:property value="brandId"/>&styleId=<s:property value="styleId"/>&supplyId=<s:property value="supplyId"/>&act=add">添加数据</a>
 			</s:if>
 			<s:else>
-				<a href="spark_init.action?brandId=<s:property value="brandId"/>&styleId=<s:property value="styleId"/>&supplyId=<s:property value="supplyId"/>&sparkId=<s:property value="sparkId"/>&act=update">更新数据</a>
+				<a href="filter_init.action?brandId=<s:property value="brandId"/>&styleId=<s:property value="styleId"/>&supplyId=<s:property value="supplyId"/>&filterId=<s:property value="filterId"/>&act=update">更新数据</a>
 				&nbsp;&nbsp;|&nbsp;&nbsp;
-				<a href="spark_delete.action?brandId=<s:property value="brandId"/>&supplyId=<s:property value="supplyId"/>&sparkId=<s:property value="sparkId"/>">删除数据</a>
+				<a href="filter_delete.action?brandId=<s:property value="brandId"/>&supplyId=<s:property value="supplyId"/>&filterId=<s:property value="filterId"/>">删除数据</a>
 			</s:else>
 		</td>
 	</tr>
@@ -84,7 +74,7 @@
 <script type="text/javascript">
 function change() {
 	var form = document.forms[0];
-	form.action = "styleSpark_change.action";
+	form.action = "styleFilter_change.action";
 	form.submit();
 }
 </script>

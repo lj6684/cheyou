@@ -2,13 +2,19 @@ package com.chezhu.dao.model;
 
 import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
-import org.nutz.dao.entity.annotation.View;
+import org.nutz.dao.entity.annotation.Table;
 
-@View("spark_view")
+@Table("")
 public class SparkView {	
 	@Id
-	@Column("sparkId")
+	@Column("spark_id")
 	private int sparkId;
+	@Column("supply_id")
+	private int supplyId;
+	@Column("supply_name")
+	private String supplyName;
+	@Column("supply_img")
+	private String supplyImg;
 	@Column("brand_id")
 	private int brandId;
 	@Column("brand_name")
@@ -21,39 +27,43 @@ public class SparkView {
 	private String styleName;
 	@Column("style_img")
 	private String styleImg;
-	@Column("supply_id")
-	private int supplyId;
-	@Column("supply_name")
-	private String supplyName;
-	@Column("supply_img")
-	private String supplyImg;
-	@Column("output_volumn")
-	private String outputVolumn;
-	@Column("motor")
-	private String motor;
-	@Column("year")
-	private String year;
-	@Column("remark")
-	private String remark;
-	@Column("xun_sn")
-	private String xunSn;
-	@Column("xun_type")
-	private String xunType;
-	@Column("chao_sn")
-	private String chaoSn;
-	@Column("chao_type")
-	private String chaoType;
-	@Column("rui_sn")
-	private String ruiSn;
-	@Column("rui_type")
-	private String ruiType;
-	
-	
+	@Column("style_motor")
+	private String styleMotor;
+	@Column("style_outter")
+	private String styleOutter;
+	@Column("style_fullname")
+	private String styleFullName;
+	@Column("standard")
+	private String standard;
+	@Column("platinum")
+	private String platinum;
+	@Column("iridium")
+	private String iridium;
+	@Column("alloy")
+	private String alloy;
 	public int getSparkId() {
 		return sparkId;
 	}
 	public void setSparkId(int sparkId) {
 		this.sparkId = sparkId;
+	}
+	public int getSupplyId() {
+		return supplyId;
+	}
+	public void setSupplyId(int supplyId) {
+		this.supplyId = supplyId;
+	}
+	public String getSupplyName() {
+		return supplyName;
+	}
+	public void setSupplyName(String supplyName) {
+		this.supplyName = supplyName;
+	}
+	public String getSupplyImg() {
+		return supplyImg;
+	}
+	public void setSupplyImg(String supplyImg) {
+		this.supplyImg = supplyImg;
 	}
 	public int getBrandId() {
 		return brandId;
@@ -91,83 +101,47 @@ public class SparkView {
 	public void setStyleImg(String styleImg) {
 		this.styleImg = styleImg;
 	}
-	public int getSupplyId() {
-		return supplyId;
+	public String getStyleMotor() {
+		return styleMotor;
 	}
-	public void setSupplyId(int supplyId) {
-		this.supplyId = supplyId;
+	public void setStyleMotor(String styleMotor) {
+		this.styleMotor = styleMotor;
 	}
-	public String getSupplyName() {
-		return supplyName;
+	public String getStyleOutter() {
+		return styleOutter;
 	}
-	public void setSupplyName(String supplyName) {
-		this.supplyName = supplyName;
+	public void setStyleOutter(String styleOutter) {
+		this.styleOutter = styleOutter;
 	}
-	public String getSupplyImg() {
-		return supplyImg;
+	public String getStyleFullName() {
+		return styleFullName;
 	}
-	public void setSupplyImg(String supplyImg) {
-		this.supplyImg = supplyImg;
+	public void setStyleFullName(String styleFullName) {
+		this.styleFullName = styleFullName;
 	}
-	public String getOutputVolumn() {
-		return outputVolumn;
+	public String getStandard() {
+		return standard;
 	}
-	public void setOutputVolumn(String outputVolumn) {
-		this.outputVolumn = outputVolumn;
+	public void setStandard(String standard) {
+		this.standard = standard;
 	}
-	public String getMotor() {
-		return motor;
+	public String getPlatinum() {
+		return platinum;
 	}
-	public void setMotor(String motor) {
-		this.motor = motor;
+	public void setPlatinum(String platinum) {
+		this.platinum = platinum;
 	}
-	public String getYear() {
-		return year;
+	public String getIridium() {
+		return iridium;
 	}
-	public void setYear(String year) {
-		this.year = year;
+	public void setIridium(String iridium) {
+		this.iridium = iridium;
 	}
-	public String getRemark() {
-		return remark;
+	public String getAlloy() {
+		return alloy;
 	}
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-	public String getXunSn() {
-		return xunSn;
-	}
-	public void setXunSn(String xunSn) {
-		this.xunSn = xunSn;
-	}
-	public String getXunType() {
-		return xunType;
-	}
-	public void setXunType(String xunType) {
-		this.xunType = xunType;
-	}
-	public String getChaoSn() {
-		return chaoSn;
-	}
-	public void setChaoSn(String chaoSn) {
-		this.chaoSn = chaoSn;
-	}
-	public String getChaoType() {
-		return chaoType;
-	}
-	public void setChaoType(String chaoType) {
-		this.chaoType = chaoType;
-	}
-	public String getRuiSn() {
-		return ruiSn;
-	}
-	public void setRuiSn(String ruiSn) {
-		this.ruiSn = ruiSn;
-	}
-	public String getRuiType() {
-		return ruiType;
-	}
-	public void setRuiType(String ruiType) {
-		this.ruiType = ruiType;
+	public void setAlloy(String alloy) {
+		this.alloy = alloy;
 	}
 	
 	

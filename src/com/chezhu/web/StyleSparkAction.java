@@ -77,33 +77,13 @@ public class StyleSparkAction extends ActionSupport {
 	}
 	
 	public String init() throws Exception {
-		ActionContext ctx = ActionContext.getContext();
-		List<Brand> brands = brandService.getAllBrands();
-		Brand brand = brands.get(0);
-		brandId = brand.getId();
-		ctx.put("brands", brands);
 		
-		List<Supply> supplies = supplyService.getAllSupplies();
-		Supply supply = supplies.get(0);
-		supplyId = supply.getId();
-		ctx.put("supplies", supplies);
-		
-		List<SparkView> sparks = sparkViewService.getStyleSparks(brandId, supplyId);
-		ctx.put("sparks", sparks);
 		
 		return SUCCESS;
 	}
 	
 	public String change() throws Exception {
-		ActionContext ctx = ActionContext.getContext();
-		List<Brand> brands = brandService.getAllBrands();
-		ctx.put("brands", brands);
-			
-		List<Supply> supplies = supplyService.getAllSupplies();
-		ctx.put("supplies", supplies);
 		
-		List<SparkView> sparks = sparkViewService.getStyleSparks(brandId, supplyId);
-		ctx.put("sparks", sparks);
 		
 		return SUCCESS;
 	}

@@ -86,10 +86,10 @@ public class ExcelTool {
 		}
 	}
 
-	public void readSheet(String supplyName, int sheetIndex, int fromIndex) {
+	public void readSheet2Filter(String supplyName, int sheetIndex, int fromIndex) {
 		try {
-			//InputStream is = new FileInputStream(new File("c:/filter.xls"));
-			InputStream is = new FileInputStream(new File("/Users/lijian/filter.xls"));
+			InputStream is = new FileInputStream(new File("c:/filter.xls"));
+			//InputStream is = new FileInputStream(new File("/Users/lijian/filter.xls"));
 			// 根据输入流创建Workbook对象
 			Workbook wb = WorkbookFactory.create(is);
 			// get到Sheet对象
@@ -134,13 +134,17 @@ public class ExcelTool {
 					return;
 				}
 				int brandId = brandEntity.getId();
+
 				
 				String styleFullName = style + outter;
 				int styleId = 0;
+				
+				// 注意:奥迪A6L2.8 FSI型号特殊，有2条记录fullname相同，motor不同BDX/CCE，要考虑额外处理
 				if(styleMap.containsKey(styleFullName)) {
 					styleId = styleMap.get(styleFullName);
 				} else {
 					Style styleEntity = styleService.fetchFullName(styleFullName);
+					styleEntity = null;
 					if(styleEntity == null) {
 						// 此型号不存在
 						List<Style> allStyle = styleService.getAllStyles();
@@ -153,8 +157,72 @@ public class ExcelTool {
 						styleId = styleEntity.getId();
 					}
 				}
-				
+			
 				logger.error("INSERT INTO filter(supply_id, brand_id, style_id, air, machine_oil, fuel_oil, air_condition_std, air_condition_carbon) VALUES(" + supplyId +", " + brandId + ", " + styleId + ", '" + air + "', '" + machineOil + "', '" + fuelOil + "', '" + airConditionStd + "', '" + airConditionCarbon + "');");
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	
+	public void readSheet2Spark(String supplyName, int sheetIndex, int fromIndex) {
+		try {
+			InputStream is = new FileInputStream(new File("c:/filter.xls"));
+			//InputStream is = new FileInputStream(new File("/Users/lijian/filter.xls"));
+			// 根据输入流创建Workbook对象
+			Workbook wb = WorkbookFactory.create(is);
+			// get到Sheet对象
+			Sheet sheet = wb.getSheetAt(sheetIndex);
+			// 这个必须用接口
+			int line = 0;
+			Supply supplyEntity = supplyService.fetch(supplyName);
+			if(supplyEntity == null) {
+				System.err.println("can't find supply named [" + supplyName + "]");
+				return;
+			}
+			int supplyId = supplyEntity.getId();
+			for (Row row : sheet) {
+				line++;
+				if (line < fromIndex) {
+					continue;
+				}
+
+				Cell brandCell = row.getCell(0);
+				Cell styleCell = row.getCell(1);
+				Cell outterCell = row.getCell(2);
+				Cell motorCell = row.getCell(3);
+				Cell standardCell = row.getCell(4);
+				Cell platinumCell = row.getCell(5);
+				Cell iridiumCell = row.getCell(6);
+				Cell alloyCell = row.getCell(7);
+				
+				String brand = getCellValue(brandCell);
+				String style = getCellValue(styleCell);
+				String outter = getCellValue(outterCell);
+				String motor = getCellValue(motorCell);
+				String standard = getCellValue(standardCell);
+				String platinum = getCellValue(platinumCell);
+				String iridium = getCellValue(iridiumCell);
+				String alloy = getCellValue(alloyCell);
+
+				Brand brandEntity = brandService.fetch(brand);
+				if(brandEntity == null) {
+					System.err.println("can't find brand named [" + brand + "]");
+					return;
+				}
+				int brandId = brandEntity.getId();
+				
+				// 注意:奥迪A6L2.8 FSI型号特殊，有2条记录fullname相同，motor不同BDX/CCE，要考虑额外处理
+				String styleFullName = style + outter;
+				Style styleEntity = styleService.fetchFullName(styleFullName);
+				if(styleEntity == null) {
+					System.err.println("can't find style named [" + styleFullName + "]");
+					continue;
+				}
+				int styleId = styleEntity.getId();
+				
+				logger.error("INSERT INTO spark(supply_id, brand_id, style_id, standard, platinum, iridium, alloy) VALUES(" + supplyId +", " + brandId + ", " + styleId + ", '" + standard + "', '" + platinum + "', '" + iridium + "', '" + alloy + "');");
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -172,12 +240,19 @@ public class ExcelTool {
 	}
 	
 	public void readExcel() {
-		int fromIndex = 338;
-		readSheet("索菲玛", 0, fromIndex);
-		readSheet("博世", 1, fromIndex);
-		readSheet("马勒", 2, fromIndex);
-		readSheet("曼牌MANN", 3, fromIndex);
-		readSheet("原厂号", 4, fromIndex);
+		
+		//int fromIndex = 338;
+		//int fromIndex = 2;
+		//readSheet2Filter("索菲玛", 0, fromIndex);
+		//readSheet2Filter("博世", 1, fromIndex);
+		//readSheet2Filter("马勒", 2, fromIndex);
+		//readSheet2Filter("曼牌MANN", 3, fromIndex);
+		//readSheet2Filter("原厂号", 4, fromIndex);
+		
+
+		int fromIndex = 2;
+		readSheet2Spark("NGK", 5, fromIndex);
+		readSheet2Spark("电装", 6, fromIndex);
 	}
 
 	public static void main(String[] args) {

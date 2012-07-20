@@ -15,26 +15,14 @@ public class Spark {
 	private int styleId;
 	@Column("supply_id")
 	private int supplyId;
-	@Column("output_volumn")
-	private String outputVolumn;
-	@Column("motor")
-	private String motor;
-	@Column("year")
-	private String year;
-	@Column("remark")
-	private String remark;
-	@Column("xun_sn")
-	private String xunSn;
-	@Column("xun_type")
-	private String xunType;
-	@Column("chao_sn")
-	private String chaoSn;
-	@Column("chao_type")
-	private String chaoType;
-	@Column("rui_sn")
-	private String ruiSn;
-	@Column("rui_type")
-	private String ruiType;
+	@Column("standard")
+	private String standard;
+	@Column("platinum")
+	private String platinum;
+	@Column("iridium")
+	private String iridium;
+	@Column("alloy")
+	private String alloy;
 	public int getId() {
 		return id;
 	}
@@ -59,66 +47,31 @@ public class Spark {
 	public void setSupplyId(int supplyId) {
 		this.supplyId = supplyId;
 	}
-	public String getOutputVolumn() {
-		return outputVolumn;
+	public String getStandard() {
+		return standard;
 	}
-	public void setOutputVolumn(String outputVolumn) {
-		this.outputVolumn = outputVolumn;
+	public void setStandard(String standard) {
+		this.standard = standard;
 	}
-	public String getMotor() {
-		return motor;
+	public String getPlatinum() {
+		return platinum;
 	}
-	public void setMotor(String motor) {
-		this.motor = motor;
+	public void setPlatinum(String platinum) {
+		this.platinum = platinum;
 	}
-	public String getYear() {
-		return year;
+	public String getIridium() {
+		return iridium;
 	}
-	public void setYear(String year) {
-		this.year = year;
+	public void setIridium(String iridium) {
+		this.iridium = iridium;
 	}
-	public String getRemark() {
-		return remark;
+	public String getAlloy() {
+		return alloy;
 	}
-	public void setRemark(String remark) {
-		this.remark = remark;
+	public void setAlloy(String alloy) {
+		this.alloy = alloy;
 	}
-	public String getXunSn() {
-		return xunSn;
-	}
-	public void setXunSn(String xunSn) {
-		this.xunSn = xunSn;
-	}
-	public String getXunType() {
-		return xunType;
-	}
-	public void setXunType(String xunType) {
-		this.xunType = xunType;
-	}
-	public String getChaoSn() {
-		return chaoSn;
-	}
-	public void setChaoSn(String chaoSn) {
-		this.chaoSn = chaoSn;
-	}
-	public String getChaoType() {
-		return chaoType;
-	}
-	public void setChaoType(String chaoType) {
-		this.chaoType = chaoType;
-	}
-	public String getRuiSn() {
-		return ruiSn;
-	}
-	public void setRuiSn(String ruiSn) {
-		this.ruiSn = ruiSn;
-	}
-	public String getRuiType() {
-		return ruiType;
-	}
-	public void setRuiType(String ruiType) {
-		this.ruiType = ruiType;
-	}
+	
 
 	
 }
