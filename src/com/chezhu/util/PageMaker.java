@@ -10,9 +10,13 @@ import java.util.Map;
 
 import com.chezhu.dao.FilterDescpService;
 import com.chezhu.dao.FilterViewService;
+import com.chezhu.dao.SparkDescpService;
+import com.chezhu.dao.SparkViewService;
 import com.chezhu.dao.SupplyService;
 import com.chezhu.dao.model.FilterDescp;
 import com.chezhu.dao.model.FilterView;
+import com.chezhu.dao.model.SparkDescp;
+import com.chezhu.dao.model.SparkView;
 import com.chezhu.dao.model.Supply;
 
 import freemarker.template.Configuration;
@@ -26,15 +30,20 @@ public class PageMaker {
 	private FilterDescpService filterDescpService;
 	private SupplyService supplyService;
 	
+	private SparkViewService sparkViewService;
+	private SparkDescpService sparkDescpService;
+	
 	private String templatePath;
 	private String outputPath;
 	
-	public PageMaker(String templatePath, String outputPath) {
+	public PageMaker(String templatePath, String templateName, String outputPath) {
 		// 单机运行时需开启
 		//ContextUtil.initIocContext();
 		filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
 		filterDescpService = ContextUtil.getBean(FilterDescpService.class, "filterDescpService");
 		supplyService = ContextUtil.getBean(SupplyService.class, "supplyService");
+		sparkViewService = ContextUtil.getBean(SparkViewService.class, "sparkViewService");
+		sparkDescpService = ContextUtil.getBean(SparkDescpService.class, "sparkDescpService");
 		
 		this.templatePath = templatePath;
 		this.outputPath = outputPath;
@@ -46,7 +55,7 @@ public class PageMaker {
 			// 取消数字每3位自动格式化
 			config.setNumberFormat("#");
 			           
-			template = config.getTemplate("sanlv.html");
+			template = config.getTemplate(templateName);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -199,6 +208,120 @@ public class PageMaker {
 		writer.close();
 	}
 	
+	public void makeSparkPage(SparkView sparkView) throws Exception {
+		// 可以考虑使用工具自动处理
+		Map data = new HashMap();
+
+		boolean showOriginal = true;
+		if(sparkView.getSupplyId() == 2) {
+			// 仅原厂数据
+			showOriginal = false;
+		}
+		data.put("showOriginal", showOriginal);
+		data.put("brandImg", formatImg(sparkView.getBrandImg()));
+		data.put("styleFullName", sparkView.getStyleFullName());
+		data.put("styleMottor", formatStr(sparkView.getStyleMotor()));
+		data.put("supplyName", sparkView.getSupplyName());
+		data.put("supplyImg", formatImg(sparkView.getSupplyImg()));
+		data.put("brandName", sparkView.getBrandName());
+		
+		data.put("standard", formatStr(sparkView.getStandard()));
+		data.put("platinum", formatStr(sparkView.getPlatinum()));
+		data.put("iridium", formatStr(sparkView.getIridium()));
+		data.put("alloy", formatStr(sparkView.getAlloy()));
+		
+		// 供应商主页
+		int supplyId = sparkView.getSupplyId();
+		String supplyUrl = "";
+		switch(supplyId) {
+		case 1:
+			// 博世
+			supplyUrl = "../../bosch/";
+			break;
+		case 7:
+			// NGK
+			supplyUrl = "../../ngk/";
+			break;
+		case 8:
+			// 电装
+			supplyUrl = "../../denso/";
+			break;
+		default:
+			// 目前未知
+			supplyUrl = "#";
+		}
+		data.put("supplyUrl", supplyUrl);
+		
+		// 详细描述信息
+		String standardDescp = "";
+		String platinumDescp = "";
+		String iridiumDescp = "";
+		String alloyDescp = "";
+		SparkDescp descp = sparkDescpService.fetch(sparkView.getSupplyId(), sparkView.getStandard());
+		if(descp != null) {
+			standardDescp = descp.getSparkDescp();
+		}
+		descp = sparkDescpService.fetch(sparkView.getSupplyId(), sparkView.getPlatinum());
+		if(descp != null) {
+			platinumDescp = descp.getSparkDescp();
+		}
+		descp = sparkDescpService.fetch(sparkView.getSupplyId(), sparkView.getIridium());
+		if(descp != null) {
+			iridiumDescp = descp.getSparkDescp();
+		}
+		descp = sparkDescpService.fetch(sparkView.getSupplyId(), sparkView.getAlloy());
+		if(descp != null) {
+			alloyDescp = descp.getSparkDescp();
+		}
+		
+		data.put("standardDescp", standardDescp);
+		data.put("platinumDescp", platinumDescp);
+		data.put("iridiumDescp", iridiumDescp);
+		data.put("alloyDescp", alloyDescp);
+		
+		String supplyDescp = "";
+		Supply supply = supplyService.fetch(sparkView.getSupplyId());
+		if(supply.getDescp() != null) {
+			supplyDescp = supply.getDescp();
+		}
+		data.put("supplyDescp", supplyDescp);
+		
+		// 查本车型对应原厂数据(供对比查看)
+		SparkView orgSparkView = sparkViewService.queryOriginalSparkViewByStyle(sparkView.getStyleId());
+		if(orgSparkView == null) {
+			orgSparkView = new SparkView();
+			orgSparkView.setSupplyName("原厂号");
+			orgSparkView.setSupplyImg("images/supply/genuine.gif");
+			orgSparkView.setStandard("");
+			orgSparkView.setPlatinum("");
+			orgSparkView.setIridium("");
+			orgSparkView.setAlloy("");
+		}
+		data.put("orgSupplyName", orgSparkView.getSupplyName());
+		data.put("orgSupplyImg", orgSparkView.getSupplyImg());
+		
+		data.put("orgStandard", formatConent(orgSparkView.getStandard()));
+		data.put("orgPlatinum", formatConent(orgSparkView.getPlatinum()));
+		data.put("orgIridium", formatConent(orgSparkView.getIridium()));
+		data.put("orgAlloy", formatConent(orgSparkView.getAlloy()));
+		
+		
+		List<SparkView> otherSupplies = sparkViewService.querySparkViewByStyle(orgSparkView.getStyleId());
+		List<SparkView> otherStyles = sparkViewService.querySparkViewByBrandSP(orgSparkView.getBrandId(), orgSparkView.getSupplyId());
+		data.put("otherSupplies", otherSupplies);
+		data.put("otherStyles", otherStyles);
+		
+		File file = new File(this.outputPath + sparkView.getSparkId() + "/");
+		if(!file.exists()) {
+			file.mkdirs();
+		}
+		
+		Writer writer = new OutputStreamWriter(new FileOutputStream(this.outputPath + orgSparkView.getSparkId() + "/index.html"));
+		template.process(data, writer);
+		writer.flush();
+		writer.close();
+	}
+	
 	/**
 	 * 产生全站数据导航页面
 	 */
@@ -263,7 +386,7 @@ public class PageMaker {
 	}
 	
 	public static void main(String[] args) {
-		PageMaker maker = new PageMaker("./ftl", "./WebContent/sanlv/");
+		PageMaker maker = new PageMaker("./ftl", "sanlv.html", "./WebContent/sanlv/");
 		maker.makeFilterPageAll();
 		//maker.makeSiteMapPage();
 	}

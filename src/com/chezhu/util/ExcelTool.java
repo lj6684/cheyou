@@ -252,7 +252,8 @@ public class ExcelTool {
 
 		int fromIndex = 2;
 		readSheet2Spark("NGK", 5, fromIndex);
-		readSheet2Spark("电装", 6, fromIndex);
+		readSheet2Spark("博世", 6, fromIndex);
+		readSheet2Spark("电装", 7, fromIndex);
 	}
 
 	public static void main(String[] args) {

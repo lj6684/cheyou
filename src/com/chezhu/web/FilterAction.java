@@ -379,14 +379,14 @@ public class FilterAction extends ActionSupport implements ServletRequestAware, 
 		}
 		//System.out.println(classPath);
 		String templatePath = classPath + "ftl";
-		
+		String templdateName = "sanlv.html";
 		String webAppPath = servletContext.getRealPath("/");
 		//System.out.println(webAppPath);
 		String outputPath = webAppPath + "sanlv/";
 		
 		// templatePath =
 		// outputPath = 
-		PageMaker pageMaker = new PageMaker(templatePath, outputPath);
+		PageMaker pageMaker = new PageMaker(templatePath, templdateName, outputPath);
 		try {
 			pageMaker.makeFilterPage(filterView);
 		} catch (Exception ex) {

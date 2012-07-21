@@ -61,6 +61,16 @@ CREATE TABLE style
 	PRIMARY KEY(style_id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
+
+CREATE TABLE filter_descp
+(
+	descp_id INT NOT NULL AUTO_INCREMENT,
+	supply_id INT NOT NULL,
+	filter_code VARCHAR(50) NOT NULL,
+	filter_descp TEXT,
+	PRIMARY KEY (descp_id)
+) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
 CREATE TABLE spark
 (
 	spark_id INT NOT NULL AUTO_INCREMENT,
@@ -74,11 +84,11 @@ CREATE TABLE spark
 	PRIMARY KEY (spark_id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-CREATE TABLE filter_descp
+CREATE TABLE spark_descp
 (
 	descp_id INT NOT NULL AUTO_INCREMENT,
 	supply_id INT NOT NULL,
-	filter_code VARCHAR(50) NOT NULL,
-	filter_descp TEXT,
+	spark_code VARCHAR(50) NOT NULL,
+	spark_descp TEXT,
 	PRIMARY KEY (descp_id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
