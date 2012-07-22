@@ -39,7 +39,8 @@
         
         <action name="spark_*" class="com.chezhu.web.SparkAction" method="{1}">
             <result name="success">spark_list.jsp</result>
-            <result name="input">spark_add.jsp</result>
+            <result name="input">spark_modify.jsp</result>
+			<result name="showdescp">spark_descp.jsp</result>
         </action>
     </package>
 </struts>

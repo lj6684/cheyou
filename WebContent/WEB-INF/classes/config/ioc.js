@@ -44,8 +44,8 @@ var ioc = {
 		}
 	},
 	
-	sparkViewService : {
-		type : "com.chezhu.dao.SparkViewService",
+	filterDescpService : {
+		type : "com.chezhu.dao.FilterDescpService",
 		fields : {
 			dao : {
 				refer : "dao"
@@ -62,8 +62,8 @@ var ioc = {
 		}
 	},
 	
-	styleViewService : {
-		type : "com.chezhu.dao.StyleViewService",
+	sparkViewService : {
+		type : "com.chezhu.dao.SparkViewService",
 		fields : {
 			dao : {
 				refer : "dao"
@@ -71,8 +71,17 @@ var ioc = {
 		}
 	},
 	
-	filterDescpService : {
-		type : "com.chezhu.dao.FilterDescpService",
+	sparkDescpService : {
+		type : "com.chezhu.dao.SparkDescpService",
+		fields : {
+			dao : {
+				refer : "dao"
+			}
+		}
+	},
+	
+	styleViewService : {
+		type : "com.chezhu.dao.StyleViewService",
 		fields : {
 			dao : {
 				refer : "dao"

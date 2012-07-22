@@ -192,7 +192,7 @@ public class PageMaker {
 		data.put("orgAirConditionCarbon", formatConent(orgFilterView.getAirConditionCarbon()));
 		
 		
-		List<FilterView> otherSupplies = filterViewService.queryFilterViewByStyle(filterView.getStyleId());
+		List<FilterView> otherSupplies = filterViewService.queryFilterViewByStyle(filterView.getStyleId(), filterView.getSupplyId());
 		List<FilterView> otherStyles = filterViewService.queryFilterViewByBrandSP(filterView.getBrandId(), filterView.getSupplyId());
 		data.put("otherSupplies", otherSupplies);
 		data.put("otherStyles", otherStyles);
@@ -212,11 +212,15 @@ public class PageMaker {
 		// 可以考虑使用工具自动处理
 		Map data = new HashMap();
 
-		boolean showOriginal = true;
+		// 目前火花塞没有可对比原厂数据，暂时先不加
+		boolean showOriginal = false;
+		/*
 		if(sparkView.getSupplyId() == 2) {
 			// 仅原厂数据
 			showOriginal = false;
 		}
+		*/
+		
 		data.put("showOriginal", showOriginal);
 		data.put("brandImg", formatImg(sparkView.getBrandImg()));
 		data.put("styleFullName", sparkView.getStyleFullName());
@@ -287,6 +291,7 @@ public class PageMaker {
 		data.put("supplyDescp", supplyDescp);
 		
 		// 查本车型对应原厂数据(供对比查看)
+		/*
 		SparkView orgSparkView = sparkViewService.queryOriginalSparkViewByStyle(sparkView.getStyleId());
 		if(orgSparkView == null) {
 			orgSparkView = new SparkView();
@@ -297,6 +302,16 @@ public class PageMaker {
 			orgSparkView.setIridium("");
 			orgSparkView.setAlloy("");
 		}
+		*/
+		// 目前火花塞没有可对比原厂数据，暂时先不加
+		SparkView orgSparkView = new SparkView();
+		orgSparkView.setSupplyName("原厂号");
+		orgSparkView.setSupplyImg("images/supply/genuine.gif");
+		orgSparkView.setStandard("");
+		orgSparkView.setPlatinum("");
+		orgSparkView.setIridium("");
+		orgSparkView.setAlloy("");
+		
 		data.put("orgSupplyName", orgSparkView.getSupplyName());
 		data.put("orgSupplyImg", orgSparkView.getSupplyImg());
 		
@@ -306,8 +321,8 @@ public class PageMaker {
 		data.put("orgAlloy", formatConent(orgSparkView.getAlloy()));
 		
 		
-		List<SparkView> otherSupplies = sparkViewService.querySparkViewByStyle(orgSparkView.getStyleId());
-		List<SparkView> otherStyles = sparkViewService.querySparkViewByBrandSP(orgSparkView.getBrandId(), orgSparkView.getSupplyId());
+		List<SparkView> otherSupplies = sparkViewService.querySparkViewByStyle(sparkView.getStyleId(), sparkView.getSupplyId());
+		List<SparkView> otherStyles = sparkViewService.querySparkViewByBrandSP(sparkView.getBrandId(), sparkView.getSupplyId());
 		data.put("otherSupplies", otherSupplies);
 		data.put("otherStyles", otherStyles);
 		
@@ -316,7 +331,7 @@ public class PageMaker {
 			file.mkdirs();
 		}
 		
-		Writer writer = new OutputStreamWriter(new FileOutputStream(this.outputPath + orgSparkView.getSparkId() + "/index.html"));
+		Writer writer = new OutputStreamWriter(new FileOutputStream(this.outputPath + sparkView.getSparkId() + "/index.html"));
 		template.process(data, writer);
 		writer.flush();
 		writer.close();

@@ -26,8 +26,8 @@
 		alert("保存成功");
 	</script>
 	</s:if>
-	<form name="descpForm" action="filter_saveDescp.action" method="post">
-		<s:hidden name="filterId" value="%{filterId}"></s:hidden>
+	<form name="descpForm" action="spark_saveDescp.action" method="post">
+		<s:hidden name="sparkId" value="%{sparkId}"></s:hidden>
 		<s:hidden name="brandId" value="%{brandId}"></s:hidden>
 		<s:hidden name="supplyId" value="%{supplyId}"></s:hidden>
 		<s:hidden name="styleId" value="%{styleId}"></s:hidden>
@@ -50,7 +50,7 @@
         editor_a.render('myeditor');
 
         function back() {
-			window.location.href = 'filter_init.action?brandId=<s:property value="brandId"/>&styleId=<s:property value="styleId"/>&supplyId=<s:property value="supplyId"/>&filterId=<s:property value="filterId"/>&act=update';
+			window.location.href = 'spark_init.action?brandId=<s:property value="brandId"/>&styleId=<s:property value="styleId"/>&supplyId=<s:property value="supplyId"/>&sparkId=<s:property value="sparkId"/>&act=update';
         }
 
         function save() {
