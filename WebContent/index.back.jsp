@@ -9,71 +9,14 @@
 <meta name="keywords" content="三滤大全,三滤,火花塞,雨刷"/>
 <meta name="description" content="车主网提供车主三滤型号查询、机油型号查询、火花塞型号查询等汽车易损件查询"/>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
-<style>
-/* Example Styles for Demo */
-.etabs {
-	margin: 0 auto;
-	padding: 0;
-}
-
-.tab {
-	display: inline-block;
-	zoom: 1;
-	*display: inline;
-	background: #eee;
-	border: solid 1px #999;
-	border-bottom: none;
-	-moz-border-radius: 4px 4px 0 0;
-	-webkit-border-radius: 4px 4px 0 0;
-}
-
-.tab a {
-	font-size: 14px;
-	line-height: 2em;
-	display: block;
-	padding: 0 10px;
-	outline: none;
-}
-
-.tab a:hover {
-	text-decoration: underline;
-}
-
-.tab.active {
-	background: #fff;
-	padding-top: 6px;
-	position: relative;
-	top: 1px;
-	border-color: #666;
-}
-
-.tab a.active {
-	font-weight: bold;
-}
-
-.tab-container .panel-container {
-	background: #fff;
-	border: solid #666 1px;
-	padding: 10px;
-	-moz-border-radius: 0 4px 4px 4px;
-	-webkit-border-radius: 0 4px 4px 4px;
-}
-
-.panel-container {
-	margin-bottom: 10px;
-}
-</style>
+<script type="text/javascript" src="js/func.js"></script>
 <!-- jQuery -->
 <link href="css/ui-lightness/jquery-ui-autocomplete.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-autocomplete.js"></script>
-<script type="text/javascript" src="js/jquery.hashchange.min.js"></script>
-<script type="text/javascript" src="js/jquery.easytabs.min.js"></script>
 <script type="text/javascript">
 	// Ajax请求AutoComplet数据
 	$(function() {
-		$("#tab-container").easytabs();
-	
 		$.getJSON("query_init.action",
 			null,
 			function(data) {
@@ -113,57 +56,45 @@
 	<div id="topbar"/></div>
 	<div id="logobar"><a href="./"><img src="images/logo.gif" alt="车主网" border="0"/></a></div>
 	<!--search begin-->
+	<form action="query_query.action" method="post" onsubmit="return checkInput();" id="form1">
 	<div id="search_begin">
-		<div id="tab-container" class="tab-container">
-			<ul class="etabs">
-				<li class="tab"><a href="#filter-tab">三滤+空调滤</a></li>
-				<li class="tab"><a href="#spark-tab">火花塞</a></li>
-				<li class="tab"><a href="#engineoil-tab">机油</a></li>
-				<li class="tab"><a href="#wipers-tab">雨刷</a></li>
-				<li class="tab"><a href="#brakepads-tab">刹车片</a></li>
+				
+		<div class="accessory_item">
+			<ul>
+				<li id="nav1"><a href="/" class="current">三滤+空调滤<span></span></a></li>
+				<li id="nav2"><a href="#">机油<span></span></a></li>
+				<li id="nav2"><a href="#">火花塞<span></span></a></li>
+				<li id="nav2"><a href="#">雨刷<span></span></a></li>
+				<li id="nav2"><a href="#">刹车片<span></span></a></li>
 			</ul>
 			<div class="clear"></div>
-			<div id="filter-tab">
-				<form action="query_query.action" method="post" onsubmit="return checkInput();" id="form1">		
-				<div class="brand_item">
-					<s:set name="supplies" value="#{'2':'原厂号', '1':'博世BOSCH', '4':'马勒MAHLE', '3':'索菲玛SOFIMA', '5':'曼牌MANN', '6':'豹王'}"></s:set>
-					<ul>
-					<s:if test="supplyItem">
-						<s:checkboxlist list="#supplies" name="supplyItem" theme="simple"></s:checkboxlist>
-					</s:if>
-					<s:else>
-						<s:checkboxlist list="#supplies" name="supplyItem" theme="simple" value="{'1', '2', '3', '4', '5'}"></s:checkboxlist>
-					</s:else>
-					</ul>
-					<div class="clear"></div>
-				</div>
+		</div>
+				
+		<div class="brand_item">
+			<s:set name="supplies" value="#{'2':'原厂号', '1':'博世BOSCH', '4':'马勒MAHLE', '3':'索菲玛SOFIMA', '5':'曼牌MANN', '6':'豹王'}"></s:set>
+			<ul>
+			<s:if test="supplyItem">
+				<s:checkboxlist list="#supplies" name="supplyItem" theme="simple"></s:checkboxlist>
+			</s:if>
+			<s:else>
+				<s:checkboxlist list="#supplies" name="supplyItem" theme="simple" value="{'1', '2', '3', '4', '5'}"></s:checkboxlist>
+			</s:else>
+			</ul>
+			<div class="clear"></div>
+		</div>
 
-				<div class="searchbar">
-					<s:if test="queryStr != null">
-						<input class="input_type" type="text" size="35" name="queryStr" id="queryStr" value="<s:property value='queryStr'/>"/>
-					</s:if>
-					<s:else>
-						<input class="input_suggest" type="text" size="35" name="queryStr" id="queryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>
-					</s:else>
-					<input class="submit_btn" type="submit" value="">
-					<div class="clear"></div>
-				</div>
-				</form>
-			</div>
-			<div id="spark-tab">
-				test
-			</div>
-			<div id="engineoil-tab">
-				即将上线...
-			</div>
-			<div id="wipers-tab">
-				即将上线...
-			</div>
-			<div id="brakepads-tab">
-				即将上线...
-			</div>
+		<div class="searchbar">
+			<s:if test="queryStr != null">
+				<input class="input_type" type="text" size="35" name="queryStr" id="queryStr" value="<s:property value='queryStr'/>"/>
+			</s:if>
+			<s:else>
+				<input class="input_suggest" type="text" size="35" name="queryStr" id="queryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>
+			</s:else>
+			<input class="submit_btn" type="submit" value="">
+			<div class="clear"></div>
 		</div>
 	</div>
+	</form>
 	
 	<s:if test="#request.styles != null">
 	<!--search result-->
