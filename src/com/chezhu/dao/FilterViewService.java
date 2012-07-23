@@ -64,13 +64,15 @@ public class FilterViewService extends EntityService<FilterView> {
 		// 三滤供应商列表 1-博世 2-原厂 3-索菲玛 4-马勒 5-曼牌 6-豹王
 		// 拼接查询条件，不包括当前页面的主供应商
 		int[] supplies = {1,3,4,5,6};
+		boolean first = true;
 		String suppliesStr = "(";
 		for(int i = 0; i < supplies.length; i++) {
 			if(supplies[i] == currentSupplyId) {
 				continue;
 			} else {
-				if(i == 0) {
-					suppliesStr += supplies[0];
+				if(first) {
+					suppliesStr += supplies[i];
+					first = false;
 				} else {
 					suppliesStr += "," + supplies[i];
 				}

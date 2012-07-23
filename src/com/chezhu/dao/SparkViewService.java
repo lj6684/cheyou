@@ -65,12 +65,14 @@ public class SparkViewService extends EntityService<SparkView> {
 		// 拼接查询条件，不包括当前页面的主供应商
 		int[] supplies = {1,7,8};
 		String suppliesStr = "(";
+		boolean first = true;
 		for(int i = 0; i < supplies.length; i++) {
 			if(supplies[i] == currentSupplyId) {
 				continue;
 			} else {
-				if(i == 0) {
-					suppliesStr += supplies[0];
+				if(first) {
+					suppliesStr += supplies[i];
+					first = false;
 				} else {
 					suppliesStr += "," + supplies[i];
 				}
