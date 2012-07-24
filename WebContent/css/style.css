@@ -34,6 +34,7 @@ form {padding:0;margin:0;}
 	.input_suggest:focus{outline:none;}
 	.submit_btn {border:none;background:url(../images/search_btn.gif) no-repeat left top;width:74px; height:35px;float:left; cursor:pointer;margin-left:2px;}
 
+#search_suggest {display:none;width:804px;margin:10px auto 0 auto;font-size:14px;color:gray;}
 
 #search_result {width:804px;margin:10px auto 0 auto;}
 #search_result table {width: 100%;margin:0;padding:0;}

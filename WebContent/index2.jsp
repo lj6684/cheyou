@@ -18,7 +18,7 @@
 
 .tab {
 	display: inline-block;
-	zoom: 1px;
+	zoom: 1;
 	*display: inline;
 	background: #eee;
 	border: solid 1px #999;
@@ -64,6 +64,8 @@
 .panel-container {
 	margin-bottom: 10px;
 }
+
+#filter-tab, #spark-tab, #engineoil-tab, #wipers-tab, #brakepads-tab {background:white;margin:0;padding:0;}
 </style>
 <!-- jQuery -->
 <link href="css/ui-lightness/jquery-ui-autocomplete.css" rel="stylesheet" type="text/css" />
@@ -79,33 +81,75 @@
 		$.getJSON("query_init.action",
 			null,
 			function(data) {
-				$("#queryStr").autocomplete({
+				$("#filterQueryStr").autocomplete({
 					source: data
-				});			
+				});		
+				$("#sparkQueryStr").autocomplete({
+					source: data
+				});	
 			});
 	});
 
 	// 检查表单输入，不允许查询条件为空
-	function checkInput () {
-		var queryStr = $("#queryStr").val();
-		if(queryStr == "") {
+	function checkInput () {		
+		var inputObj;
+		var checkObj;
+		if($("#filter-tab").is(":visible")) {
+			inputObj = $("#filterQueryStr");
+			checkObj = $(":checkbox[name='filterSupplyItem']");
+		} else if($("#spark-tab").is(":visible")) {
+			inputObj = $("#sparkQueryStr");
+			checkObj = $(":checkbox[name='sparkSupplyItem']");
+		} else if($("#engineoil-tab").is(":visible")) {
+			// todo
+		} else if($("#wipers-tab").is(":visible")) {
+			// todo
+		} else if($("#brakepads-tab").is(":visible")) {
+			// todo
+		}
+		
+		// 判断查询条件不允许为空
+		if(inputObj.val() == "") {
 			return false;
 		}
+		// 判断供应商列表不允许为空
 		var checked = false;
-		$(":checkbox[name='supplyItem']").each(function () {
+		checkObj.each(function () {
 			if($(this).is(":checked")) {
 				checked = true;
 				return;
 			}
-		})
+		});
+		// 判断不允许直接输入厂商名字进行查询
+		var inputValue = inputObj.val();
+		var reg = /大众|斯柯达|现代|别克|本田|丰田|福特|海马|起亚|尼桑|日产尼桑|雪佛兰|雪铁龙/;
+		if(reg.test(inputValue)) {
+			$("#search_suggest").show();
+			return false;
+		}
+		
 
 		return checked;
 	}
 
+	// 清除提示信息
 	function clearSuggest() {
-		if($("#queryStr").val() == "请输入您的车型，如速腾") {
-			$("#queryStr").val("");
-			$("#queryStr").css("color", "black");
+		var inputObj;
+		if($("#filter-tab").is(":visible")) {
+			inputObj = $("#filterQueryStr");
+		} else if($("#spark-tab").is(":visible")) {
+			inputObj = $("#sparkQueryStr");
+		} else if($("#engineoil-tab").is(":visible")) {
+			// todo
+		} else if($("#wipers-tab").is(":visible")) {
+			// todo
+		} else if($("#brakepads-tab").is(":visible")) {
+			// todo
+		}
+		
+		if(inputObj.val() == "请输入您的车型，如速腾") {
+			inputObj.val("");
+			inputObj.css("color", "black");
 		}
 	}
 </script>
@@ -128,43 +172,74 @@
 			<div id="filter-tab">
 				<form action="query_query.action" method="post" onsubmit="return checkInput();" id="form1">		
 				<div class="brand_item">
-					<s:set name="supplies" value="#{'2':'原厂号', '1':'博世BOSCH', '4':'马勒MAHLE', '3':'索菲玛SOFIMA', '5':'曼牌MANN', '6':'豹王'}"></s:set>
+					<s:set name="filterSupplies" value="#{'2':'原厂号', '1':'博世BOSCH', '4':'马勒MAHLE', '3':'索菲玛SOFIMA', '5':'曼牌MANN', '6':'豹王'}"></s:set>
 					<ul>
 					<s:if test="supplyItem">
-						<s:checkboxlist list="#supplies" name="supplyItem" theme="simple"></s:checkboxlist>
+						<s:checkboxlist list="#filterSupplies" name="filterSupplyItem" theme="simple"></s:checkboxlist>
 					</s:if>
 					<s:else>
-						<s:checkboxlist list="#supplies" name="supplyItem" theme="simple" value="{'1', '2', '3', '4', '5'}"></s:checkboxlist>
+						<s:checkboxlist list="#filterSupplies" name="filterSupplyItem" theme="simple" value="{'1', '2', '3', '4', '5'}"></s:checkboxlist>
 					</s:else>
 					</ul>
 					<div class="clear"></div>
 				</div>
 
 				<div class="searchbar">
-					<s:if test="queryStr != null">
-						<input class="input_type" type="text" size="35" name="queryStr" id="queryStr" value="<s:property value='queryStr'/>"/>
+					<s:if test="filterQueryStr != null">
+						<input class="input_type" type="text" size="35" name="filterQueryStr" id="filterQueryStr" value="<s:property value='queryStr'/>"/>
 					</s:if>
 					<s:else>
-						<input class="input_suggest" type="text" size="35" name="queryStr" id="queryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>
+						<input class="input_suggest" type="text" size="35" name="filterQueryStr" id="filterQueryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>
 					</s:else>
 					<input class="submit_btn" type="submit" value="">
 					<div class="clear"></div>
 				</div>
 				</form>
 			</div>
-			<div id="spark-tab">
-				test
+			<div id="spark-tab" style="display:none;">
+				<form action="query_querySpark.action" method="post" onsubmit="return checkInput();" id="form2">		
+				<div class="brand_item">
+					<s:set name="sparkSupplies" value="#{'1':'博世BOSCH', '7':'NGK', '8':'电装DENSO'}"></s:set>
+					<ul>
+					<s:if test="supplyItem">
+						<s:checkboxlist list="#sparkSupplies" name="sparkSupplyItem" theme="simple"></s:checkboxlist>
+					</s:if>
+					<s:else>
+						<s:checkboxlist list="#sparkSupplies" name="sparkSupplyItem" theme="simple" value="{'1', '7', '8'}"></s:checkboxlist>
+					</s:else>
+					</ul>
+					<div class="clear"></div>
+				</div>
+
+				<div class="searchbar">
+					<s:if test="sparkQueryStr != null">
+						<input class="input_type" type="text" size="35" name="sparkQueryStr" id="sparkQueryStr" value="<s:property value='queryStr'/>"/>
+					</s:if>
+					<s:else>
+						<input class="input_suggest" type="text" size="35" name="sparkQueryStr" id="sparkQueryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>
+					</s:else>
+					<input class="submit_btn" type="submit" value="">
+					<div class="clear"></div>
+				</div>
+				</form>
 			</div>
-			<div id="engineoil-tab">
-				即将上线...
+			<div id="engineoil-tab" style="display:none;">
+				<div class="brand_item">&nbsp;</div>
+				<div class="searchbar">即将上线...</div>
 			</div>
-			<div id="wipers-tab">
-				即将上线...
+			<div id="wipers-tab" style="display:none;">
+				<div class="brand_item">&nbsp;</div>
+				<div class="searchbar">即将上线...</div>
 			</div>
-			<div id="brakepads-tab">
-				即将上线...
+			<div id="brakepads-tab" style="display:none;">
+				<div class="brand_item">&nbsp;</div>
+				<div class="searchbar">即将上线...</div>
 			</div>
 		</div>
+	</div>
+	
+	<div align="center">
+		<div id="search_suggest">请输入输入具体车型信息便于准确定位，例如 速腾1.6L</div>
 	</div>
 	
 	<s:if test="#request.styles != null">
