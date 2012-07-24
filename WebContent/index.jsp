@@ -12,35 +12,37 @@
 <style>
 /* Example Styles for Demo */
 .etabs {
-	margin: 0 auto;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
 }
 
 .tab {
 	display: inline-block;
-	zoom: 1;
+	zoom: 1px;
 	*display: inline;
 	background: #eee;
 	border: solid 1px #999;
 	border-bottom: none;
-	-moz-border-radius: 4px 4px 0 0;
-	-webkit-border-radius: 4px 4px 0 0;
+	-moz-border-radius: 4px 4px 0px 0px;
+	-webkit-border-radius: 4px 4px 0px 0px;
 }
 
 .tab a {
 	font-size: 14px;
 	line-height: 2em;
 	display: block;
-	padding: 0 10px;
+	padding: 0px 20px;
 	outline: none;
+	color: #222A2E;
+	text-decoration: none;
 }
 
 .tab a:hover {
-	text-decoration: underline;
+	
 }
 
 .tab.active {
-	background: #fff;
+	background: #D9D9D9;
 	padding-top: 6px;
 	position: relative;
 	top: 1px;
@@ -48,15 +50,15 @@
 }
 
 .tab a.active {
-	font-weight: bold;
+	*font-weight: bold;
 }
 
 .tab-container .panel-container {
 	background: #fff;
 	border: solid #666 1px;
 	padding: 10px;
-	-moz-border-radius: 0 4px 4px 4px;
-	-webkit-border-radius: 0 4px 4px 4px;
+	-moz-border-radius: 0px 4px 4px 4px;
+	-webkit-border-radius: 0px 4px 4px 4px;
 }
 
 .panel-container {
@@ -114,7 +116,7 @@
 	<div id="logobar"><a href="./"><img src="images/logo.gif" alt="车主网" border="0"/></a></div>
 	<!--search begin-->
 	<div id="search_begin">
-		<div id="tab-container" class="tab-container">
+		<div id="tab-container" class="tab-container" align="center">
 			<ul class="etabs">
 				<li class="tab"><a href="#filter-tab">三滤+空调滤</a></li>
 				<li class="tab"><a href="#spark-tab">火花塞</a></li>
