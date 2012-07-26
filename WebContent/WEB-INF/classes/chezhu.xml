@@ -9,7 +9,6 @@
         
         <action name="query_*" class="com.chezhu.web.QueryAction" method="{1}">
             <result name="success">index.jsp</result>
-            <result name="input">index.jsp</result>
         </action>
     </package>
 </struts>

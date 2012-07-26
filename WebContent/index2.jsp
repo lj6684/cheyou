@@ -76,8 +76,15 @@
 <script type="text/javascript">
 	// Ajax请求AutoComplet数据
 	$(function() {
-		$("#tab-container").easytabs();
-	
+		// 设置默认tab标签页
+		//$("#tab-container").easytabs();
+		var resultType = "<s:property value='#request.resultType'/>";
+		if(resultType == "" || resultType == "filter") {
+			$("#tab-container").easytabs("select", "#filter-tab");
+		} else if(resultType == "spark") {
+			$("#tab-container").easytabs("select", "#spark-tab");
+		}
+		
 		$.getJSON("query_init.action",
 			null,
 			function(data) {
@@ -169,12 +176,12 @@
 				<li class="tab"><a href="#brakepads-tab">刹车片</a></li>
 			</ul>
 			<div class="clear"></div>
-			<div id="filter-tab">
-				<form action="query_query.action" method="post" onsubmit="return checkInput();" id="form1">		
+			<div id="filter-tab" style="display:none;">
+				<form action="query_queryFilter.action" method="post" onsubmit="return checkInput();" id="form1">		
 				<div class="brand_item">
 					<s:set name="filterSupplies" value="#{'2':'原厂号', '1':'博世BOSCH', '4':'马勒MAHLE', '3':'索菲玛SOFIMA', '5':'曼牌MANN', '6':'豹王'}"></s:set>
 					<ul>
-					<s:if test="supplyItem">
+					<s:if test="filterSupplyItem">
 						<s:checkboxlist list="#filterSupplies" name="filterSupplyItem" theme="simple"></s:checkboxlist>
 					</s:if>
 					<s:else>
@@ -186,7 +193,7 @@
 
 				<div class="searchbar">
 					<s:if test="filterQueryStr != null">
-						<input class="input_type" type="text" size="35" name="filterQueryStr" id="filterQueryStr" value="<s:property value='queryStr'/>"/>
+						<input class="input_type" type="text" size="35" name="filterQueryStr" id="filterQueryStr" value="<s:property value='filterQueryStr'/>"/>
 					</s:if>
 					<s:else>
 						<input class="input_suggest" type="text" size="35" name="filterQueryStr" id="filterQueryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>
@@ -201,7 +208,7 @@
 				<div class="brand_item">
 					<s:set name="sparkSupplies" value="#{'1':'博世BOSCH', '7':'NGK', '8':'电装DENSO'}"></s:set>
 					<ul>
-					<s:if test="supplyItem">
+					<s:if test="sparkSupplyItem">
 						<s:checkboxlist list="#sparkSupplies" name="sparkSupplyItem" theme="simple"></s:checkboxlist>
 					</s:if>
 					<s:else>
@@ -213,7 +220,7 @@
 
 				<div class="searchbar">
 					<s:if test="sparkQueryStr != null">
-						<input class="input_type" type="text" size="35" name="sparkQueryStr" id="sparkQueryStr" value="<s:property value='queryStr'/>"/>
+						<input class="input_type" type="text" size="35" name="sparkQueryStr" id="sparkQueryStr" value="<s:property value='sparkQueryStr'/>"/>
 					</s:if>
 					<s:else>
 						<input class="input_suggest" type="text" size="35" name="sparkQueryStr" id="sparkQueryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>
@@ -246,42 +253,83 @@
 	<!--search result-->
 	<div id="search_result">
 		<!--new search_result area--->
-		<s:iterator value="#request.styles" id="style" status="st">
-		<table cellspacing="0" class="bigtable">
-			<tr>
-				<td class="brand"><img src="<s:property value='brandImg'/>"/></td>
-				<td class="title"><s:property value='styleName'/>&nbsp;<s:property value='styleOutter'/></td>
-				<td class="others">发动机型号：<span class="fdj"><s:property value='styleMotor'/></span></td>
-			</tr>
-		</table>
-		<table cellspacing="0" class="detailtb">
-			<tr>
-				<th width="80px" style="text-align:left;text-indent:8px;">品牌</th>
-				<th width="130px">机油滤芯</th>
-				<th width="130px">空气滤芯</th>
-				<th width="130px">燃油滤芯</th>
-				<th width="130px">空调滤(标准)</th>
-				<th width="130px">空调滤(活性碳)</th>
-				<th width="60px">&nbsp;</th>
-			</tr>
-			<s:iterator value="#request.orderSupplies" id="sp" status="sts">
-			<tr>
-				<td style="text-align:left;text-indent:4px;"><img src="<s:property value='#request.filters[styleFullName][name].supplyImg'/>" align="absmiddle" alt="<s:property value='name'/>" border="0"></td>
-				<td><s:if test="#request.filters[styleFullName][name].machineOil != null && #request.filters[styleFullName][name].machineOil != ''"><s:property value="#request.filters[styleFullName][name].machineOil"/></s:if><s:else>&nbsp;</s:else></td>
-				<td><s:if test="#request.filters[styleFullName][name].air != null && #request.filters[styleFullName][name].air != ''"><s:property value="#request.filters[styleFullName][name].air"/></s:if><s:else>&nbsp;</s:else></td>
-				<td><s:if test="#request.filters[styleFullName][name].fuelOil != null && #request.filters[styleFullName][name].fuelOil != ''"><s:property value="#request.filters[styleFullName][name].fuelOil"/></s:if><s:else>&nbsp;</s:else></td>
-				<td><s:if test="#request.filters[styleFullName][name].airConditionStd != null && #request.filters[styleFullName][name].airConditionStd != ''"><s:property value="#request.filters[styleFullName][name].airConditionStd"/></s:if><s:else>&nbsp;</s:else></td>
-				<td><s:if test="#request.filters[styleFullName][name].airConditionCarbon != null && #request.filters[styleFullName][name].airConditionCarbon != ''"><s:property value="#request.filters[styleFullName][name].airConditionCarbon"/></s:if><s:else>&nbsp;</s:else></td>
-				<td class="td_rgt"><a href="sanlv/<s:property value="#request.filters[styleFullName][name].filterId"/>/">详情>></a></td>
-			</tr>
-			</s:iterator>
-		</table>
+		<s:if test='#request.resultType == "filter"'>
+			<!-- 三滤结果数据 -->
+			<s:iterator value="#request.styles" id="style" status="st">
+			<table cellspacing="0" class="bigtable">
+				<tr>
+					<td class="brand"><img src="<s:property value='brandImg'/>"/></td>
+					<td class="title"><s:property value='styleName'/>&nbsp;<s:property value='styleOutter'/></td>
+					<td class="others">发动机型号：<span class="fdj"><s:property value='styleMotor'/></span></td>
+				</tr>
+			</table>
+			<table cellspacing="0" class="detailtb">
+				<tr>
+					<th width="80px" style="text-align:left;text-indent:8px;">品牌</th>
+					<th width="130px">机油滤芯</th>
+					<th width="130px">空气滤芯</th>
+					<th width="130px">燃油滤芯</th>
+					<th width="130px">空调滤(标准)</th>
+					<th width="130px">空调滤(活性碳)</th>
+					<th width="60px">&nbsp;</th>
+				</tr>
+				<s:iterator value="#request.orderFilterSupplies" id="sp" status="sts">
+				<tr>
+					<td style="text-align:left;text-indent:4px;"><img src="<s:property value='#request.filters[styleFullName][name].supplyImg'/>" align="absmiddle" alt="<s:property value='name'/>" border="0"></td>
+					<td><s:if test="#request.filters[styleFullName][name].machineOil != null && #request.filters[styleFullName][name].machineOil != ''"><s:property value="#request.filters[styleFullName][name].machineOil"/></s:if><s:else>&nbsp;</s:else></td>
+					<td><s:if test="#request.filters[styleFullName][name].air != null && #request.filters[styleFullName][name].air != ''"><s:property value="#request.filters[styleFullName][name].air"/></s:if><s:else>&nbsp;</s:else></td>
+					<td><s:if test="#request.filters[styleFullName][name].fuelOil != null && #request.filters[styleFullName][name].fuelOil != ''"><s:property value="#request.filters[styleFullName][name].fuelOil"/></s:if><s:else>&nbsp;</s:else></td>
+					<td><s:if test="#request.filters[styleFullName][name].airConditionStd != null && #request.filters[styleFullName][name].airConditionStd != ''"><s:property value="#request.filters[styleFullName][name].airConditionStd"/></s:if><s:else>&nbsp;</s:else></td>
+					<td><s:if test="#request.filters[styleFullName][name].airConditionCarbon != null && #request.filters[styleFullName][name].airConditionCarbon != ''"><s:property value="#request.filters[styleFullName][name].airConditionCarbon"/></s:if><s:else>&nbsp;</s:else></td>
+					<td class="td_rgt"><a href="sanlv/<s:property value="#request.filters[styleFullName][name].filterId"/>/">详情>></a></td>
+				</tr>
+				</s:iterator>
+			</table>
 
-		<!--hr with many results, if only one item need remove hr-->
-		<s:if test="!#st.last">
-			<hr/>
+			<!--hr with many results, if only one item need remove hr-->
+			<s:if test="!#st.last">
+				<hr/>
+			</s:if>
+			</s:iterator>
 		</s:if>
-		</s:iterator>
+	
+		<s:elseif test='#request.resultType == "spark"'>
+			<!-- 火花塞结果数据 -->
+			<s:iterator value="#request.styles" id="style" status="st">
+			<table cellspacing="0" class="bigtable">
+				<tr>
+					<td class="brand"><img src="<s:property value='brandImg'/>"/></td>
+					<td class="title"><s:property value='styleName'/>&nbsp;<s:property value='styleOutter'/></td>
+					<td class="others">发动机型号：<span class="fdj"><s:property value='styleMotor'/></span></td>
+				</tr>
+			</table>
+			<table cellspacing="0" class="detailtb">
+				<tr>
+					<th width="80px" style="text-align:left;text-indent:8px;">品牌</th>
+					<th width="130px">普通火花塞</th>
+					<th width="130px">含铂金火花塞</th>
+					<th width="130px">含铱金火花塞</th>
+					<th width="130px">铂铱合金火花塞</th>
+					<th width="60px">&nbsp;</th>
+				</tr>
+				<s:iterator value="#request.orderSparkSupplies" id="sp" status="sts">
+				<tr>
+					<td style="text-align:left;text-indent:4px;"><img src="<s:property value='#request.sparks[styleFullName][name].supplyImg'/>" align="absmiddle" alt="<s:property value='name'/>" border="0"></td>
+					<td><s:if test="#request.sparks[styleFullName][name].standard != null && #request.sparks[styleFullName][name].standard != ''"><s:property value="#request.sparks[styleFullName][name].standard"/></s:if><s:else>&nbsp;</s:else></td>
+					<td><s:if test="#request.sparks[styleFullName][name].platinum != null && #request.sparks[styleFullName][name].platinum != ''"><s:property value="#request.sparks[styleFullName][name].platinum"/></s:if><s:else>&nbsp;</s:else></td>
+					<td><s:if test="#request.sparks[styleFullName][name].iridium != null && #request.sparks[styleFullName][name].iridium != ''"><s:property value="#request.sparks[styleFullName][name].iridium"/></s:if><s:else>&nbsp;</s:else></td>
+					<td><s:if test="#request.sparks[styleFullName][name].alloy != null && #request.sparks[styleFullName][name].alloy != ''"><s:property value="#request.sparks[styleFullName][name].alloy"/></s:if><s:else>&nbsp;</s:else></td>
+					<td class="td_rgt"><a href="spark/<s:property value="#request.sparks[styleFullName][name].sparkId"/>/">详情>></a></td>
+				</tr>
+				</s:iterator>
+			</table>
+
+			<!--hr with many results, if only one item need remove hr-->
+			<s:if test="!#st.last">
+				<hr/>
+			</s:if>
+			</s:iterator>
+		</s:elseif>
 	</div>
 	</s:if>
 	<div id="footer"/>车主网致力于为车主免费提供<b>汽车三滤 火花塞 雨刷片 刹车片</b>等易损件配件自助查询服务!<br/>Copyrights &copy; 2012 Chezhu5.com 车主网 京ICP备1201703 <a href="sitemap.html">三滤型号大全</a><br/>
