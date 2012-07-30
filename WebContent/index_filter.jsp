@@ -61,11 +61,11 @@
 				
 		<div class="accessory_item">
 			<ul>
-				<li id="nav1"><a href="/" class="current">三滤+空调滤<span></span></a></li>
-				<li id="nav2"><a href="#">机油<span></span></a></li>
-				<li id="nav2"><a href="#">火花塞<span></span></a></li>
-				<li id="nav2"><a href="#">雨刷<span></span></a></li>
-				<li id="nav2"><a href="#">刹车片<span></span></a></li>
+				<li class="nav"><a href="/" class="current">三滤+空调滤<span></span></a></li>
+				<li class="nav"><a href="#">机油<span></span></a></li>
+				<li class="nav"><a href="#">火花塞<span></span></a></li>
+				<li class="nav"><a href="#">雨刷<span></span></a></li>
+				<li class="nav"><a href="#">刹车片<span></span></a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>

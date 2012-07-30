@@ -2,8 +2,23 @@
 非原厂型号，不需要再做数据格式化(makePage)
 搜索结果页面的LOGO指向各厂商空间
 
-spark首页检索功能
-详细页面中搜索功能区分三滤和火花塞
+1. /WEB-INF/lib/chezhu.jar
+
+2. /WEB-INF/classes/ftl/*
+   /WEB-INF/classes/chezhu.xml	
+
+3. /index.jsp
+4. /sanlv/* (三滤静态页面重新发布)
+5. /huohuasai/index.jsp
+6. /huohuasai/* (火花塞静态页面重新发布)
+7. /yushua/index.jsp
+8. /shachepian/index.jsp
+9. /jiyou/index.jsp
+
+10. /sitemap.html
+    /sitemap2.html
+    
+11. /css/style.css 
 
 邮件问题4
 邮件问题结尾，多页面显示

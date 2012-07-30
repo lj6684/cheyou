@@ -359,9 +359,9 @@ public class PageMaker {
 	}
 
 	/**
-	 * 产生全站数据导航页面
+	 * 产生三滤数据导航页面
 	 */
-	public void makeSiteMapPage() {
+	public void makeFilterSiteMapPage() {
 		try {
 			FilterViewService filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
 
@@ -378,6 +378,35 @@ public class PageMaker {
 			data.put("filterViews", all);
 
 			Writer writer = new OutputStreamWriter(new FileOutputStream("./WebContent/sitemap.html"));
+			template.process(data, writer);
+			writer.flush();
+			writer.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		System.out.println("finished.");
+	}
+	
+	/**
+	 * 产生火花塞数据导航页面
+	 */
+	public void makeSparkSiteMapPage() {
+		try {
+			SparkViewService sparkViewService = ContextUtil.getBean(SparkViewService.class, "sparkViewService");
+
+			List<SparkView> all = sparkViewService.getAllSparkViews();
+
+			Configuration config = new Configuration();
+			config.setDirectoryForTemplateLoading(new File("./ftl"));
+			config.setObjectWrapper(new DefaultObjectWrapper());
+			// 取消数字每3位自动格式化
+			config.setNumberFormat("#");
+
+			Template template = config.getTemplate("sitemap2.html");
+			Map data = new HashMap();
+			data.put("sparkViews", all);
+
+			Writer writer = new OutputStreamWriter(new FileOutputStream("./WebContent/sitemap2.html"));
 			template.process(data, writer);
 			writer.flush();
 			writer.close();
@@ -425,11 +454,15 @@ public class PageMaker {
 	public static void main(String[] args) {
 		// 单机运行时需开启
 		ContextUtil.initIocContext();
-
-		PageMaker maker = new PageMaker("./ftl", "sanlv.html", "./WebContent/sanlv/");
-		maker.makeFilterPageAll();
-		//maker.makeFilterPageById(72);
-		// maker.makeSiteMapPage();
+		
+		PageMaker maker1 = new PageMaker("./ftl", "sanlv.html", "./WebContent/sanlv/");
+		maker1.makeFilterPageAll();
+		PageMaker maker2 = new PageMaker("./ftl", "huohuasai.html", "./WebContent/huohuasai/");
+		maker2.makeSparkPageAll();
+		
+//		PageMaker maker = new PageMaker("./ftl", "huohuasai.html", "./WebContent/huohuasai/");
+//		maker.makeFilterSiteMapPage();
+//		maker.makeSparkSiteMapPage();
 	}
 
 }

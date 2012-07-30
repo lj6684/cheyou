@@ -360,10 +360,10 @@ public class SparkAction extends ActionSupport implements ServletRequestAware, S
 		}
 		//System.out.println(classPath);
 		String templatePath = classPath + "ftl";
-		String templateName = "spark.html";
+		String templateName = "huohuasai.html";
 		String webAppPath = servletContext.getRealPath("/");
 		//System.out.println(webAppPath);
-		String outputPath = webAppPath + "spark/";
+		String outputPath = webAppPath + "huohuasai/";
 		
 		// templatePath =
 		// outputPath = 

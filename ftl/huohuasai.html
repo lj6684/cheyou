@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dth XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/Dth/xhtml1-transitional.dth">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>${styleFullName}火花塞型号对照表[普通火花塞 含铂金火花塞 铂铱合金火花塞]${supplyName}品牌火花塞 价格 图片</title><meta name="keywords" content="三滤大全,三滤,火花塞,雨刷"/><meta name="description" content="车主网提供车主三滤型号查询、机油型号查询、火花塞型号查询等汽车易损件查询"/><link href="../../css/style.css" rel="stylesheet" type="text/css" /><!-- jQuery --><link href="../../css/ui-lightness/jquery-ui-autocomplete.css" rel="stylesheet" type="text/css" /><script type="text/javascript" src="../../js/jquery-1.7.2.min.js"></script><script type="text/javascript" src="../../js/jquery-ui-autocomplete.js"></script><script type="text/javascript">	// Ajax请求AutoComplet数据	$(function() {				$.getJSON("query_init.action",			null,			function(data) {				$("#sparkQueryStr").autocomplete({					source: data				});						});	});	function clearSuggest() {		if($("#sparkQueryStr").val() == "请输入您的车型，如速腾") {			$("#sparkQueryStr").val("");			$("#sparkQueryStr").css("color", "black");		}	}</script>
+</head><body>
+<div class="wrap_detail">	<div id="logobar_detail"><a href="../../"><img src="../../images/logo.gif" border="0"/></a></div>
+	<div class="searchbar_detail">		<form action="../query_querySpark.action" method="post" id="form">			<div style="display:none;">				<input type="checkbox" name="sparkSupplyItem" value="1" checked="checked"/>				<input type="checkbox" name="sparkSupplyItem" value="7" checked="checked"/>				<input type="checkbox" name="sparkSupplyItem" value="8" checked="checked"/>			</div>
+			<input class="input_suggest" type="text" size="35" name="sparkQueryStr" id="sparkQueryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>			<input class="submit_btn" type="submit" value="">			<div class="clear"></div>		</form>
+	</div>
+	<div class="clear"></div>
+	<div class="navbar">${styleFullName}火花塞型号对照表含普通火花塞 含铂金火花塞 含铱金火花塞 铂铱合金火花塞等所有火花塞型号的对照明细。</div>
+	<!--left body begin-->	
+	<div class="lft_detail">		<h1>${styleFullName} 火花塞型号对照表 ${supplyName}品牌</h1>		<table cellspacing="0" class="bigtable">			<tr>				<td class="brand"><img src="../../${brandImg}"/></td>				<td class="title">${styleFullName}</td>				<td class="others">发动机型号：<span class="fdj">${styleMottor}</span></td>			</tr>
+		</table>	
+		<table cellspacing="0" class="detailtb">			<tr>				<th width="50px" style="text-align:left;text-indent:4px;">品牌</th>				<th width="160px">普通火花塞</th>				<th width="160px">含铂金火花塞</th>				<th width="160px">含铱金火花塞</th>				<th width="auto">铂铱合金火花塞</th>			</tr>			<#if showOriginal>			<tr>				<td style="text-align:left;text-indent:4px"><a href="#"><img src="../../${orgSupplyImg}" align="absmiddle" alt="${orgSupplyName}" border="0"></a></td>				<td>${orgStandard}</td>				<td>${orgPlatinum}</td>				<td>${orgIridium}</td>				<td>${orgAlloy}</td>			</tr>			</#if>			<tr>				<td style="text-align:left;text-indent:4px"><a href="${supplyUrl}"><img src="../../${supplyImg}" align="absmiddle" alt="${supplyName}" border="0"></a></td>				<td>${standard}</td>				<td>${platinum}</td>				<td>${iridium}</td>				<td>${alloy}</td>			</tr>		</table>	
+		<h3>${styleFullName}其他品牌火花塞型号</h3>	
+		<div class="area">			<ul class="brand_link">				<#list otherSupplies as s>
+				<li><a href="../${s.sparkId}/"><img src="../../${s.supplyImg}" border="0"/></a></li>				</#list>
+			</ul>			<div class="clear"></div>		</div>			<#if standard != "&nbsp;">
+		<h2>${styleFullName}${supplyName}普通火花塞型号:${standard}</h2>		<div class="area">		${standardDescp}		</div>		</#if>				<#if platinum != "&nbsp;">		<h2>${styleFullName}${supplyName}含铂金火花塞芯型号:${platinum}</h2>		<div class="area">		${platinumDescp}		</div>		</#if>				<#if iridium != "&nbsp;">		<h2>${styleFullName}${supplyName}含铱金火花塞型号:${iridium}</h2>		<div class="area">		${iridiumDescp}		</div>		</#if>				<#if alloy != "&nbsp;">		<h2>${styleFullName}${supplyName}铂铱合金火花塞型号:${alloy}</h2>		<div class="area">		${alloyDescp}		</div>		</#if>	
+		<h2>${supplyName}品牌介绍</h2>
+		<div class="area">		${supplyDescp}
+		</div>	</div>	
+		
+	<!--left body end--->	
+		
+	<!--right link begin-->	
+	<div class="rgt_detail">		其他${brandName}车型${supplyName}火花塞型号对照表		<ul class="text_link">			<#list otherStyles as s>
+			<li><a href="../${s.sparkId}/">${s.styleFullName}</a></li>			</#list>
+		</ul>	</div>	
+	<div class="clear"></div>	
+	<!--right link end--->	
+	<div id="footer">		车主网致力于为车主免费提供<b>汽车三滤 火花塞 雨刷片 刹车片</b>等易损件配件自助查询服务!<br/>		车主网提供${brandName}${styleFullName}${supplyName}火花塞型号对照表[普通火花塞 含铂金火花塞 含铱金火花塞 铂铱合金火花塞]，仅供参考<br/>		<script type="text/javascript">		var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");		document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F8923cc0b97ccc7b4825046ef57ccdbf3' type='text/javascript'%3E%3C/script%3E"));		</script>	</div></div></body></html>

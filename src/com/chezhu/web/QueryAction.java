@@ -34,8 +34,7 @@ public class QueryAction extends ActionSupport implements ServletResponseAware {
 	private List<String> filterSupplyItem;
 	private String sparkQueryStr;
 	private List<String> sparkSupplyItem;
-	
-	
+
 	public String getFilterQueryStr() {
 		return filterQueryStr;
 	}
@@ -77,36 +76,49 @@ public class QueryAction extends ActionSupport implements ServletResponseAware {
 		response.getWriter().println(data);
 		response.getWriter().flush();
 		response.getWriter().close();
-		return SUCCESS;
+		return null;
 	}
 
 	// 查询三滤数据
 	public String queryFilter() throws Exception {
+		ActionContext context = ActionContext.getContext();
 		List<StyleView> styles = styleViewService.query(filterQueryStr);
+		if(styles == null || styles.size() == 0) {
+			context.put("noresult", "yes");
+			return SUCCESS;
+		}
+		
 		Map<String, Map<String, FilterView>> filters = filterViewService.queryFilters(filterQueryStr, filterSupplyItem);
 		// 为前台页面显示结果排序用，后期可以考虑优化为内存提取数据
 		List<Supply> supplies = supplyService.getSuppliesById(filterSupplyItem);
 		
-		ActionContext context = ActionContext.getContext();
-		context.put("resultType", "filter");
 		context.put("styles", styles);
 		context.put("filters", filters);
 		context.put("orderFilterSupplies", supplies);
+
 		return SUCCESS;
+		
 	}
 	
 	// 查询三滤数据
 	public String querySpark() throws Exception {
+		ActionContext context = ActionContext.getContext();
+		
 		List<StyleView> styles = styleViewService.query(sparkQueryStr);
+		if(styles == null || styles.size() == 0) {
+			context.put("noresult", "yes");
+			return SUCCESS;
+		}
+		
 		Map<String, Map<String, SparkView>> sparks = sparkViewService.querySparks(sparkQueryStr, sparkSupplyItem);
 		// 为前台页面显示结果排序用，后期可以考虑优化为内存提取数据
 		List<Supply> supplies = supplyService.getSuppliesById(sparkSupplyItem);
 		
-		ActionContext context = ActionContext.getContext();
-		context.put("resultType", "spark");
+		
 		context.put("styles", styles);
 		context.put("sparks", sparks);
 		context.put("orderSparkSupplies", supplies);
+
 		return SUCCESS;
 	}
 	
