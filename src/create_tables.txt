@@ -4,6 +4,7 @@ DROP TABLE brand;
 DROP TABLE style;
 DROP TABLE spark;
 DROP TABLE filter_descp;
+DROP TABLE unknown_record;
 
 
 CREATE TABLE filter
@@ -92,3 +93,12 @@ CREATE TABLE spark_descp
 	spark_descp TEXT,
 	PRIMARY KEY (descp_id)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE unknown_record
+(
+	record_id INT NOT NULL AUTO_INCREMENT,
+	record VARCHAR(50),
+	ip VARCHAR(20),
+	create_time DATETIME,
+	PRIMARY KEY (record_id)
+)
