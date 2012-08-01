@@ -11,15 +11,11 @@ form {padding:0;margin:0;}
 
 #search_begin {width: 660px;margin: 0 auto;}
 #search_begin .accessory_item {}
-#search_begin .accessory_item ul {list-style:none;margin:0 auto;padding:0;font-size:14px;width:387px;}
-#search_begin .accessory_item li {display: inline;list-style: none;margin: 0 1px 0 0; padding: 0;	float: left;background-image: none;	z-index: 0;line-height:280%;}
-	li#nav1 a {background: url(../images/big_tab.gif);background-position: 0 0;display: block;width: 110px;height: 31px;text-align:center;overflow: hidden;color:#222A2E;text-decoration:none;}
-	li#nav1 a:hover {background: url(../images/big_tab.gif);background-position: 0 -31px;}
-	li#nav1 a.current {background:url(../images/big_tab.gif);background-position: 0 -62px;}
-	li#nav2 a {background: url(../images/small_tab.gif) no-repeat left bottom;background-position: 0 0;display: block;width: 68px;height: 31px;text-align:center;overflow: hidden;color:#222A2E;text-decoration:none;}
-	li#nav2 a:hover {background: url(../images/small_tab.gif) no-repeat left bottom;background-position: 0 -31px;}
-	li#nav2 a.current {background: url(../images/small_tab.gif) no-repeat left bottom;background-position: 0 -62px;}
-
+#search_begin .accessory_item ul {list-style:none;margin:0 auto;padding:0;font-size:14px;width:555px;}
+#search_begin .accessory_item li {display: inline;list-style: none;margin: 0 1px 0 0; padding: 0; float: left;background-image: none;	z-index: 0;line-height:280%;}
+	li.nav a {background: url(../images/big_tab.gif);background-position: 0 0;display: block;width: 110px;height: 31px;text-align:center;overflow: hidden;color:#222A2E;text-decoration:none;}
+	li.nav a:hover {background: url(../images/big_tab.gif);background-position: 0 -31px;}
+	li.nav a.current {background:url(../images/big_tab.gif);background-position: 0 -62px;}
 	
 #search_begin .brand_item {width:631px;padding:10px 0 0 0;margin:0;background:url(../images/brandtab_back.gif) no-repeat center top;}
 #search_begin .brand_item ul {width:550px;list-style:none;padding:0;margin:0 auto;font-size:14px;color:#636465;}

@@ -87,5 +87,14 @@ var ioc = {
 				refer : "dao"
 			}
 		}
+	},
+	
+	unknownRecordService : {
+		type : "com.chezhu.dao.UnknownRecordService",
+		fields : {
+			dao : {
+				refer : "dao"
+			}
+		}
 	}
 };
