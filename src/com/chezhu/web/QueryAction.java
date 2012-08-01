@@ -133,7 +133,7 @@ public class QueryAction extends ActionSupport implements ServletRequestAware, S
 	
 	private void saveUnknownRecord(String record) {
 		String ip = request.getRemoteAddr();
-		System.out.println(ip);
+		//System.out.println(ip);
 		
 		UnknownRecord unknownRecord = new UnknownRecord();
 		unknownRecord.setRecord(record);
@@ -159,10 +159,12 @@ public class QueryAction extends ActionSupport implements ServletRequestAware, S
 		this.response = response;
 	}
 
-	@Override
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
+		
 	}
+
+
 	
 	
 }
