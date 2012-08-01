@@ -9,64 +9,6 @@
 <meta name="keywords" content="三滤大全,三滤,火花塞,雨刷"/>
 <meta name="description" content="车主网提供车主三滤型号查询、机油型号查询、火花塞型号查询等汽车易损件查询"/>
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
-<style>
-/* Example Styles for Demo */
-.etabs {
-	margin: 0px;
-	padding: 0px;
-}
-
-.tab {
-	display: inline-block;
-	zoom: 1;
-	*display: inline;
-	background: #eee;
-	border: solid 1px #999;
-	border-bottom: none;
-	-moz-border-radius: 4px 4px 0px 0px;
-	-webkit-border-radius: 4px 4px 0px 0px;
-}
-
-.tab a {
-	font-size: 14px;
-	line-height: 2em;
-	display: block;
-	padding: 0px 20px;
-	outline: none;
-	color: #222A2E;
-	text-decoration: none;
-}
-
-.tab a:hover {
-	
-}
-
-.tab.active {
-	background: #D9D9D9;
-	padding-top: 6px;
-	position: relative;
-	top: 1px;
-	border-color: #666;
-}
-
-.tab a.active {
-	*font-weight: bold;
-}
-
-.tab-container .panel-container {
-	background: #fff;
-	border: solid #666 1px;
-	padding: 10px;
-	-moz-border-radius: 0px 4px 4px 4px;
-	-webkit-border-radius: 0px 4px 4px 4px;
-}
-
-.panel-container {
-	margin-bottom: 10px;
-}
-
-#filter-tab, #spark-tab, #engineoil-tab, #wipers-tab, #brakepads-tab {background:white;margin:0;padding:0;}
-</style>
 <!-- jQuery -->
 <link href="../css/ui-lightness/jquery-ui-autocomplete.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
@@ -74,14 +16,6 @@
 <script type="text/javascript">
 	// Ajax请求AutoComplet数据
 	$(function() {
-		
-		$("#current").css("background", "#D9D9D9");
-		$("#current").css("padding-top", "6px");
-		$("#current").css("position", "relative");
-		$("#current").css("top", "1px");
-		$("#current").css("border-color", "#666");
-		
-		// 设置默认tab标签页
 		$.getJSON("query_init.action",
 			null,
 			function(data) {	
@@ -137,32 +71,29 @@
 	<div id="logobar"><a href="../"><img src="../images/logo.gif" alt="车主网" border="0"/></a></div>
 	<!--search begin-->
 	<div id="search_begin">
-		<div id="tab-container" class="tab-container" align="center">
-			<ul class="etabs">
-				<li class="tab"><a href="../">三滤+空调滤</a></li>
-				<li class="tab"><a href="../huohuasai/">火花塞</a></li>
-				<li class="tab"><a href="#" id="current">机油</a></li>
-				<li class="tab"><a href="../yushua/">雨刷</a></li>
-				<li class="tab"><a href="../shachepian/">刹车片</a></li>
+		<div class="accessory_item">
+			<ul>
+				<li class="nav"><a href="../">三滤+空调滤</a></li>
+				<li class="nav"><a href="../huohuasai/">火花塞</a></li>
+				<li class="nav"><a href="#" class="current">机油</a></li>
+				<li class="nav"><a href="../yushua/">雨刷</a></li>
+				<li class="nav"><a href="../shachepian/">刹车片</a></li>
 			</ul>
 			<div class="clear"></div>
-			<div id="spark-tab">
-				<form action="query_engineOilSpark.action" method="post" onsubmit="return checkInput();" id="form">		
-				<div class="brand_item">
-					<s:set name="sparkSupplies" value="#{'1':'博世BOSCH', '7':'NGK', '8':'电装DENSO'}"></s:set>
-					<ul>
-					
-					</ul>
-					<div class="clear"></div>
-				</div>
+		</div>
+		<form action="query_engineOil.action" method="post" onsubmit="return checkInput();" id="form">
+		<div id="spark-tab">
+			<div class="brand_item" align="center">
+				&nbsp;
+				<div class="clear"></div>
+			</div>
 
-				<div class="searchbar">
-					即将上线...
-					<div class="clear"></div>
-				</div>
-				</form>
+			<div class="searchbar" align="center">
+				即将上线...
+				<div class="clear"></div>
 			</div>
 		</div>
+		</form>
 	</div>
 	
 	<div align="center">

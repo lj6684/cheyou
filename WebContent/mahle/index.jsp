@@ -16,36 +16,51 @@
 <script type="text/javascript">
 	// Ajax请求AutoComplet数据
 	$(function() {
-		$.getJSON("../query_init.action",
+		$.getJSON("query_init.action",
 			null,
 			function(data) {
-				$("#queryStr").autocomplete({
+				$("#filterQueryStr").autocomplete({
 					source: data
-				});			
+				});
 			});
 	});
 
 	// 检查表单输入，不允许查询条件为空
-	function checkInput () {
-		var queryStr = $("#queryStr").val();
-		if(queryStr == "") {
+	function checkInput () {		
+		var inputObj = $("#filterQueryStr");
+		var checkObj = $(":checkbox[name='filterSupplyItem']");
+		
+		// 判断查询条件不允许为空
+		if(inputObj.val() == "") {
 			return false;
 		}
+		// 判断供应商列表不允许为空
 		var checked = false;
-		$(":checkbox[name='supplyItem']").each(function () {
+		checkObj.each(function () {
 			if($(this).is(":checked")) {
 				checked = true;
 				return;
 			}
-		})
+		});
+		// 判断不允许直接输入厂商名字进行查询
+		var inputValue = inputObj.val();
+		var reg = /大众|斯柯达|现代|别克|本田|丰田|福特|海马|起亚|尼桑|日产尼桑|雪佛兰|雪铁龙/;
+		if(reg.test(inputValue)) {
+			$("#search_suggest").show();
+			return false;
+		}
+		
 
 		return checked;
 	}
 
+	// 清除提示信息
 	function clearSuggest() {
-		if($("#queryStr").val() == "请输入您的车型，如速腾") {
-			$("#queryStr").val("");
-			$("#queryStr").css("color", "black");
+		var inputObj = $("#filterQueryStr");
+		
+		if(inputObj.val() == "请输入您的车型，如速腾") {
+			inputObj.val("");
+			inputObj.css("color", "black");
 		}
 	}
 </script>
@@ -55,50 +70,54 @@
 	<div id="topbar"/></div>
 	<div id="logobar"><a href="./"><img src="../images/mahle.gif" alt="马勒logo" border="0"/></a><a href="../"><img src="../images/logo_fenzhan.gif" alt="点击回首页" border="0"/></a></div>
 	<!--search begin-->
-	<form action="query_query.action" method="post" onsubmit="return checkInput();" id="form1">
 	<div id="search_begin">
-				
 		<div class="accessory_item">
 			<ul>
-				<li id="nav1"><a href="/mahle/" class="current">马勒三滤<span></span></a></li>
-				<li id="nav2"><a href="#">机油<span></span></a></li>
-				<li id="nav2"><a href="#">火花塞<span></span></a></li>
-				<li id="nav2"><a href="#">雨刷<span></span></a></li>
-				<li id="nav2"><a href="#">刹车片<span></span></a></li>
+				<li class="nav"><a href="#" class="current">三滤+空调滤</a></li>
+				<li class="nav"><a href="../huohuasai/">火花塞</a></li>
+				<li class="nav"><a href="../jiyou/">机油</a></li>
+				<li class="nav"><a href="../yushua/">雨刷</a></li>
+				<li class="nav"><a href="../shachepian/">刹车片</a></li>
 			</ul>
 			<div class="clear"></div>
 		</div>
 				
-		<div class="brand_item">
-			<s:set name="supplies" value="#{'2':'原厂号', '1':'博世BOSCH', '4':'马勒MAHLE', '3':'索菲玛SOFIMA', '5':'曼牌MANN', '6':'豹王'}"></s:set>
+		<form action="query_queryFilter.action" method="post" onsubmit="return checkInput();" id="form">		
+		<div class="brand_item" align="center">
+			<s:set name="filterSupplies" value="#{'2':'原厂号', '1':'博世BOSCH', '4':'马勒MAHLE', '3':'索菲玛SOFIMA', '5':'曼牌MANN', '6':'豹王'}"></s:set>
 			<ul>
-			<s:if test="supplyItem">
-				<s:checkboxlist list="#supplies" name="supplyItem" theme="simple"></s:checkboxlist>
+			<s:if test="filterSupplyItem">
+				<s:checkboxlist list="#filterSupplies" name="filterSupplyItem" theme="simple"></s:checkboxlist>
 			</s:if>
 			<s:else>
-				<s:checkboxlist list="#supplies" name="supplyItem" theme="simple" value="{'2', '4'}"></s:checkboxlist>
+				<s:checkboxlist list="#filterSupplies" name="filterSupplyItem" theme="simple" value="{'2', '4'}"></s:checkboxlist>
 			</s:else>
 			</ul>
 			<div class="clear"></div>
 		</div>
 
 		<div class="searchbar">
-			<s:if test="queryStr != null">
-				<input class="input_type" type="text" size="35" name="queryStr" id="queryStr" value="<s:property value='queryStr'/>"/>
+			<s:if test="filterQueryStr != null">
+				<input class="input_type" type="text" size="35" name="filterQueryStr" id="filterQueryStr" value="<s:property value='filterQueryStr'/>"/>
 			</s:if>
 			<s:else>
-				<input class="input_suggest" type="text" size="35" name="queryStr" id="queryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>
+				<input class="input_suggest" type="text" size="35" name="filterQueryStr" id="filterQueryStr" value="请输入您的车型，如速腾" onclick="clearSuggest();"/>
 			</s:else>
 			<input class="submit_btn" type="submit" value="">
 			<div class="clear"></div>
 		</div>
+		</form>
 	</div>
-	</form>
+	
+	<div align="center">
+		<div id="search_suggest">请输入输入具体车型信息便于准确定位，例如 速腾1.6L</div>
+	</div>
 	
 	<s:if test="#request.styles != null">
 	<!--search result-->
 	<div id="search_result">
 		<!--new search_result area--->
+		<!-- 三滤结果数据 -->
 		<s:iterator value="#request.styles" id="style" status="st">
 		<table cellspacing="0" class="bigtable">
 			<tr>
@@ -117,15 +136,15 @@
 				<th width="130px">空调滤(活性碳)</th>
 				<th width="60px">&nbsp;</th>
 			</tr>
-			<s:iterator value="#request.orderSupplies" id="sp" status="sts">
+			<s:iterator value="#request.orderFilterSupplies" id="sp" status="sts">
 			<tr>
-				<td style="text-align:left;text-indent:4px;"><img src="../<s:property value='#request.filters[styleFullName][name].supplyImg'/>" align="absmiddle" alt="<s:property value='name'/>" border="0"></td>
+				<td style="text-align:left;text-indent:4px;"><img src="../<s:property value='#request.filters[styleFullName][name].supplyImg'/>" alt="<s:property value='name'/>" border="0"></td>
 				<td><s:if test="#request.filters[styleFullName][name].machineOil != null && #request.filters[styleFullName][name].machineOil != ''"><s:property value="#request.filters[styleFullName][name].machineOil"/></s:if><s:else>&nbsp;</s:else></td>
 				<td><s:if test="#request.filters[styleFullName][name].air != null && #request.filters[styleFullName][name].air != ''"><s:property value="#request.filters[styleFullName][name].air"/></s:if><s:else>&nbsp;</s:else></td>
 				<td><s:if test="#request.filters[styleFullName][name].fuelOil != null && #request.filters[styleFullName][name].fuelOil != ''"><s:property value="#request.filters[styleFullName][name].fuelOil"/></s:if><s:else>&nbsp;</s:else></td>
 				<td><s:if test="#request.filters[styleFullName][name].airConditionStd != null && #request.filters[styleFullName][name].airConditionStd != ''"><s:property value="#request.filters[styleFullName][name].airConditionStd"/></s:if><s:else>&nbsp;</s:else></td>
 				<td><s:if test="#request.filters[styleFullName][name].airConditionCarbon != null && #request.filters[styleFullName][name].airConditionCarbon != ''"><s:property value="#request.filters[styleFullName][name].airConditionCarbon"/></s:if><s:else>&nbsp;</s:else></td>
-				<td class="td_rgt"><a href="../sanlv/<s:property value="#request.filters[styleFullName][name].filterId"/>/">详情>></a></td>
+				<td class="td_rgt"><a href="../sanlv/<s:property value="#request.filters[styleFullName][name].filterId"/>/">详情&gt;&gt;</a></td>
 			</tr>
 			</s:iterator>
 		</table>
@@ -137,7 +156,12 @@
 		</s:iterator>
 	</div>
 	</s:if>
-	<div id="footer"/>车主网致力于为车主免费提供<b>汽车三滤 火花塞 雨刷片 刹车片</b>等易损件配件自助查询服务!<br/>
+	<s:elseif test='#request.noresult == "yes"'>
+		<div align="center">
+			<div id="search_suggest" style="color:blue;display:inline;">抱歉，暂时未收录此型号车辆信息</div>
+		</div>
+	</s:elseif>
+	<div id="footer">车主网致力于为车主免费提供<b>汽车三滤 火花塞 雨刷片 刹车片</b>等易损件配件自助查询服务!<br/>
 		车主网提供马勒三滤型号对照表[机滤 空滤 汽滤 空调滤芯]，仅供参考 <a href="../sitemap.html">三滤型号大全</a><br/>
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
