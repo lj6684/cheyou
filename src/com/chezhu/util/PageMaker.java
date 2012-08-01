@@ -23,6 +23,11 @@ import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
 
+/**
+ * 静态页面生成工具类
+ * @author Administrator
+ *
+ */
 public class PageMaker {
 
 	private Template template;
@@ -36,6 +41,12 @@ public class PageMaker {
 	private String templatePath;
 	private String outputPath;
 
+	/**
+	 * Constructor
+	 * @param templatePath 模板文件路径
+	 * @param templateName 模板文件名称
+	 * @param outputPath 输出文件路径
+	 */
 	public PageMaker(String templatePath, String templateName, String outputPath) {
 		filterViewService = ContextUtil.getBean(FilterViewService.class, "filterViewService");
 		filterDescpService = ContextUtil.getBean(FilterDescpService.class, "filterDescpService");
@@ -59,6 +70,10 @@ public class PageMaker {
 		}
 	}
 
+	/**
+	 * 按fiterId生成一个静态页面
+	 * @param filterId 三滤器编号
+	 */
 	public void makeFilterPageById(long filterId) {
 		try {
 			FilterView filterView = filterViewService.fetch(filterId);
@@ -70,6 +85,9 @@ public class PageMaker {
 		System.out.println("finished.");
 	}
 
+	/**
+	 * 生成全部三滤静态页面
+	 */
 	public void makeFilterPageAll() {
 		try {
 			List<FilterView> all = filterViewService.getAllFilterViews();
@@ -84,6 +102,10 @@ public class PageMaker {
 		System.out.println("finished.");
 	}
 	
+	/**
+	 * 按sparkId生成一个静态页面
+	 * @param sparkId 火花塞ID
+	 */
 	public void makeSparkPageById(long sparkId) {
 		try {
 			SparkView sparkView = sparkViewService.fetch(sparkId);
@@ -95,6 +117,9 @@ public class PageMaker {
 		System.out.println("finished.");
 	}
 
+	/**
+	 * 生成全部火花塞静态页面
+	 */
 	public void makeSparkPageAll() {
 		try {
 			List<SparkView> all = sparkViewService.getAllSparkViews();
@@ -109,6 +134,11 @@ public class PageMaker {
 		System.out.println("finished.");
 	}
 
+	/**
+	 * 生成三滤静态页面
+	 * @param filterView 三滤详细信息
+	 * @throws Exception
+	 */
 	public void makeFilterPage(FilterView filterView) throws Exception {
 		// 可以考虑使用工具自动处理
 		Map data = new HashMap();
@@ -236,6 +266,11 @@ public class PageMaker {
 		writer.close();
 	}
 
+	/**
+	 * 生成火花塞静态页面
+	 * @param sparkView 火花塞详细信息
+	 * @throws Exception
+	 */
 	public void makeSparkPage(SparkView sparkView) throws Exception {
 		// 可以考虑使用工具自动处理
 		Map data = new HashMap();
@@ -388,9 +423,8 @@ public class PageMaker {
 	}
 
 	/**
-	 * 主要用于处理原厂三滤数据，将/替换为<br/>
-	 * 
-	 * @param str
+	 * 主要用于处理原厂三滤数据,将空格替换为&nbsp; 将/替换为<br/>
+	 * @param str 待格式化数据
 	 * @return
 	 */
 	public String formatConent(String str) {
@@ -406,6 +440,11 @@ public class PageMaker {
 		}
 	}
 
+	/**
+	 * 格式化字符串,将空格替换为&nbsp;
+	 * @param str 待格式化字符串
+	 * @return 格式化结果
+	 */
 	public String formatStr(String str) {
 		if (str == null || str.trim().equals("")) {
 			return "&nbsp;";
@@ -414,6 +453,11 @@ public class PageMaker {
 		}
 	}
 
+	/**
+	 * 格式化图片字符串
+	 * @param str 待格式化字符串
+	 * @return 格式化结果
+	 */
 	public String formatImg(String str) {
 		if (str == null || str.trim().equals("")) {
 			return "";
